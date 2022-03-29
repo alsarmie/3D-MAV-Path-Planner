@@ -1,0 +1,3 @@
+[submodule "CrazyS"]
+	path = CrazyS
+	url = https://github.com/gsilano/CrazyS.git
