@@ -15,18 +15,19 @@ public:
   Ply_publisher(Ply_publisher &&src) noexcept;
   Ply_publisher &operator=(Ply_publisher &&src) noexcept;
   // Destructor
-  ~Ply_publisher() = default;
+  ~Ply_publisher() override = default;
+  // Copy constructor and Copy assignment are forbidden.
+  Ply_publisher(Ply_publisher &src) = delete;
+  Ply_publisher &operator=(Ply_publisher &src) = delete;
+
   // Setup member function, we will wrap the constructor with it, so that we can
   // keep the constructor atomic with low complexity.
   static Ply_publisher setup(ros::NodeHandle *nodeHandle);
   // Member functions
-  bool publish();
-  bool loadFile(const std::string &path);
+  bool publish() override;
+  bool loadFile(const std::string &path) override;
 
 private:
-  // Copy constructor and Copy assignment are forbidden.
-  Ply_publisher(Ply_publisher &src) = delete;
-  Ply_publisher &operator=(Ply_publisher &src) = delete;
   // For Move Semantics
   friend void swap(Ply_publisher &src, Ply_publisher &dst) {
     using std::swap;
@@ -44,7 +45,6 @@ private:
 
   // Handle
   ros::NodeHandle *handle = nullptr;
-
   // Point cloud frame ID.
   std::string pointCloudFrameID;
   // ROS publisher.

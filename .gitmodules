@@ -1,3 +1,6 @@
 [submodule "CrazyS"]
 	path = CrazyS
 	url = https://github.com/gsilano/CrazyS.git
+[submodule "ufomap"]
+	path = ufomap
+	url = https://github.com/UnknownFreeOccupied/ufomap.git
