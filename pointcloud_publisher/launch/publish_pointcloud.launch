@@ -1,0 +1,11 @@
+<launch>
+    <node pkg="pointcloud_publisher" type="cloud_publisher" name="cloud_publisher" output="screen">
+        <param name="path"
+               value="/home/alsarmi/udacity_ws/src/3D-MAV-Path-Planner/pointcloud_publisher/models/room_d435i_t265.ply"/>
+        <param name="topic" value="/point_cloud"/>
+        <param name="frame_id" value="t265_d400_base"/>
+        <param name="publish_rate" value="1.0"/>
+    </node>
+    <node pkg="tf" type="static_transform_publisher" name="world_to_pointcloud"
+          args="0 0 0 1.35 0 0  world t265_d400_base 100"/>
+</launch>
