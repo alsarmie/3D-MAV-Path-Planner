@@ -11,11 +11,13 @@ find_package(catkin REQUIRED COMPONENTS
         roscpp
         sensor_msgs
         pcl_ros
+        tf2 
+        tf2_ros
         )
 
 catkin_package(
         INCLUDE_DIRS include
-        CATKIN_DEPENDS roscpp sensor_msgs
+        CATKIN_DEPENDS roscpp sensor_msgs tf2 tf2_ros
         #  DEPENDS system_lib
 )
 
@@ -50,7 +52,10 @@ target_link_libraries(
 #   ${catkin_LIBRARIES}
 # )
 
-
+catkin_install_python(PROGRAMS scripts/marker_map_reference.py
+  scripts/map_to_odom_transformation.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 #############
 ## Testing ##
 #############

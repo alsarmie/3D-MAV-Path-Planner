@@ -56,10 +56,13 @@
       <arg name="enable_sync"           value="$(arg enable_sync)"/>
     </include>
   </group>
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find pointcloud_publisher)/rviz/3d_mapping_rviz.rviz" />
   <node pkg="tf" type="static_transform_publisher" name="t265_to_d400" args=" -0.009375589 0.015890727 0.028273059 0 0 0 /$(arg tf_prefix_camera1)_link /$(arg tf_prefix_camera2)_link 100"/>
-
+  <node pkg="tf" type="static_transform_publisher" name="map_to_aruco" args="  0.75 0 1.15 3.1415926536 0 1.5707963268   map aruco 100"/>
+  <node pkg="pointcloud_publisher" type="marker_map_reference.py" name="marker_map_reference" output="screen"/>
+  <node pkg="pointcloud_publisher" type="map_to_odom_transformation.py" name="map_to_odom_transformation" output="screen"/>
   <!--Start RTAB-Map-->
-  <include file = "$(find rtabmap_ros)/launch/rtabmap.launch" >
+   <include file = "$(find rtabmap_ros)/launch/rtabmap.launch" >
       <arg name = "rtabmap_args" value ="--delete_db_on_start --Mem/UseOdomGravity true --Optimizer/GravitySigma 0.3"/>
       <arg name = "odom_topic" value ="/t265/odom/sample"/>
       <arg name = "frame_id" value ="t265_link"/>
@@ -69,6 +72,9 @@
       <arg name = "camera_info_topic" value ="/d400/color/camera_info"/>
       <arg name = "approx_rgbd_sync" value ="false"/>
       <arg name = "visual_odometry" value ="false"/>
-  </include>
+       <arg name="publish_tf_map"   value="false"/>
+      <param name="cloud_noise_filtering_radius" value="0.05"/>
+      <param name="cloud_noise_filtering_min_neighbors" value="2"/>
+  </include> 
 
 </launch>
