@@ -15,6 +15,7 @@
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 #include <ufomap_msgs/conversions.h>
 #include <visualization_msgs/Marker.h>
+#include <visualization_msgs/MarkerArray.h>
 
 static ufo::map::OccupancyMapColor map(0.05);
 bool mapAvailable = false;
