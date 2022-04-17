@@ -6,97 +6,87 @@
 #include <chrono>
 using std::chrono::duration;
 using std::chrono::duration_cast;
-using std::chrono::high_resolution_clock;
-using std::chrono::milliseconds;
+using std::chrono::seconds;
+using std::chrono::steady_clock;
 
-// Forward declarations of template specialization.
-template <>
-void RRT<ColorMap, Point, NavPath>::getClosestVoxel(const Point &src,
-                                                    Point &dst);
-template <> void RRT<ColorMap, Point, NavPath>::getMapLimits(); //
-template <>
-bool RRT<ColorMap, Point, NavPath>::isInCollision(Point const &center);
-template <>
-bool RRT<ColorMap, Point, NavPath>::isInCollision(Point const &goal_,
-                                                  Point const &position_);
-template <>
-NavPath *RRT<ColorMap, Point, NavPath>::computePath(Point const &start_,
-                                                    Point const &goal_);
-template <> Point RRT<ColorMap, Point, NavPath>::generateRandomPoint();
-template <>
-RRT<ColorMap, Point, NavPath>::Node *
-RRT<ColorMap, Point, NavPath>::nearestVertex(Node *qrand);
-template <>
-Point RRT<ColorMap, Point, NavPath>::steer(Point const &nearestVertex,
-                                           Point const &randomVertex);
-template <>
-void RRT<ColorMap, Point, NavPath>::expandTree(Node *qNear, Point qNew);
-template <>
-void RRT<ColorMap, Point, NavPath>::chooseParent(Node *qNear, Node *newVertex);
-template <> void RRT<ColorMap, Point, NavPath>::rewire();
-template <> void RRT<ColorMap, Point, NavPath>::traceBack();
+namespace planner::RRT {
+using Sphere = ufo::geometry::Sphere;
+using Point = ufo::math::Vector3;
+using ColorMap = ufo::map::OccupancyMapColor;
+using NavPath = std::vector<Point>;
 // Public method definitions
 // Constructors
-template <>
-RRT<ColorMap, Point, NavPath>::RRT(ColorMap &map_, double radius_)
-    : map(map_), iterations(std::numeric_limits<int>::max()), deltaStep(0.10),
-      radius(radius_), randomEngine(randomDevice()),
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+RRT<Map, BoundingVolume, Coordinates, Path>::RRT(Map *map_, double radius_)
+    : map(map_), timeout(30), deltaStep(0.10), epsilon(0.01), threshold(0.5),
+      searchRadius(0.3), radius(radius_),
+      randomEngine((std::random_device())()),
       rnd(std::uniform_real_distribution<>(0.0, 1.0)) {
   // Get Map limits
   getMapLimits();
   // Initialize the uniform distributions for random coordinate generation
   xrand = std::uniform_real_distribution<>(-10.0, 10.0);
   yrand = std::uniform_real_distribution<>(-10.0, 10.0);
-  zrand = std::uniform_real_distribution<>(mapLBoundary.z(), mapUBoundary.z());
+  zrand =
+      std::uniform_real_distribution<>(mapMinBoundary.z(), mapMaxBoundary.z());
   // Initialize path frame_id
   std::cout << "RRT Planner created!" << std::endl;
 }
-template <>
-RRT<ColorMap, Point, NavPath>::RRT(ColorMap &map_, Point const &mapMinBoundary,
-                                   Point const &mapMaxBoundary, double step,
-                                   double radius_)
-    : map(map_), mapLBoundary(mapMinBoundary), mapUBoundary(mapMaxBoundary),
-      deltaStep(step), iterations(std::numeric_limits<int>::max()),
-      radius(radius_), randomEngine(randomDevice()),
-      xrand(
-          std::uniform_real_distribution<>(mapLBoundary.x(), mapUBoundary.x())),
-      yrand(
-          std::uniform_real_distribution<>(mapLBoundary.y(), mapUBoundary.y())),
-      zrand(
-          std::uniform_real_distribution<>(mapLBoundary.z(), mapUBoundary.z())),
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+RRT<Map, BoundingVolume, Coordinates, Path>::RRT(
+    Map *map_, Coordinates const &mapMinBoundary_,
+    Coordinates const &mapMaxBoundary_, double step, double epsilon_,
+    double threshold_, double searchRadius_, double radius_)
+    : map(map_), mapMinBoundary(mapMinBoundary_),
+      mapMaxBoundary(mapMaxBoundary_), deltaStep(step), epsilon(0.01),
+      threshold(0.5), searchRadius(0.3), timeout(30), radius(radius_),
+      randomEngine((std::random_device())()),
+      xrand(std::uniform_real_distribution<>(mapMinBoundary.x(),
+                                             mapMaxBoundary.x())),
+      yrand(std::uniform_real_distribution<>(mapMinBoundary.y(),
+                                             mapMaxBoundary.y())),
+      zrand(std::uniform_real_distribution<>(mapMinBoundary.z(),
+                                             mapMaxBoundary.z())),
       rnd(std::uniform_real_distribution<>(0.0, 1.0)) {
   // Initialize path frame_id
 
   std::cout << "RRT Planner created!" << std::endl;
 }
-template <>
-RRT<ColorMap, Point, NavPath>::RRT(ColorMap &map_, Point const &mapMinBoundary,
-                                   Point const &mapMaxBoundary, double step,
-                                   int iterations_, double radius_)
-    : map(map_), mapLBoundary(mapMinBoundary), mapUBoundary(mapMaxBoundary),
-      deltaStep(step), iterations(iterations_), radius(radius_),
-      randomEngine(randomDevice()), xrand(std::uniform_real_distribution<>(
-                                        mapLBoundary.x(), mapUBoundary.x())),
-      yrand(
-          std::uniform_real_distribution<>(mapLBoundary.y(), mapUBoundary.y())),
-      zrand(
-          std::uniform_real_distribution<>(mapLBoundary.z(), mapUBoundary.z())),
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+RRT<Map, BoundingVolume, Coordinates, Path>::RRT(
+    Map *map_, Coordinates const &mapMinBoundary_,
+    Coordinates const &mapMaxBoundary_, double step, double epsilon_,
+    double threshold_, double searchRadius_, long timeout_, double radius_)
+    : map(map_), mapMinBoundary(mapMinBoundary_),
+      mapMaxBoundary(mapMaxBoundary_), deltaStep(step), timeout(timeout_),
+      epsilon(0.01), threshold(0.5), searchRadius(0.3), radius(radius_),
+      randomEngine((std::random_device())()),
+      xrand(std::uniform_real_distribution<>(mapMinBoundary.x(),
+                                             mapMaxBoundary.x())),
+      yrand(std::uniform_real_distribution<>(mapMinBoundary.y(),
+                                             mapMaxBoundary.y())),
+      zrand(std::uniform_real_distribution<>(mapMinBoundary.z(),
+                                             mapMaxBoundary.z())),
       rnd(std::uniform_real_distribution<>(0.0, 1.0)) {
   // Initialize path frame_id
 
   std::cout << "RRT Planner created!" << std::endl;
 }
 // Destructor
-template <> RRT<ColorMap, Point, NavPath>::~RRT() = default;
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+RRT<Map, BoundingVolume, Coordinates, Path>::~RRT() = default;
 
 // Private method definitions
+// Template specialization for collision checking considering a specific
+// bounding volume.
 template <>
-bool RRT<ColorMap, Point, NavPath>::isInCollision(Point const &center) {
-  Sphere sphere(center, radius);
+bool RRT<ufo::map::OccupancyMapColor, ufo::geometry::Sphere, ufo::math::Vector3,
+         std::vector<ufo::math::Vector3>>::isInCollision(Point const &center) {
+  ufo::geometry::Sphere sphere(center, radius);
   // Iterate through all leaf nodes that intersects the bounding volume
   // Check intersection with          //occupied/free/unknown space
-  for (auto it = map.beginLeaves(sphere, true, false, false, false, 0),
-            it_end = map.endLeaves();
+  for (auto it = map->beginLeaves(sphere, true, false, false, false, 0),
+            it_end = map->endLeaves();
        it != it_end; ++it) {
     // Is in collision since a leaf node intersects the bounding volume.
     return true;
@@ -104,11 +94,11 @@ bool RRT<ColorMap, Point, NavPath>::isInCollision(Point const &center) {
   // No leaf node intersects the bounding volume.
   return false;
 }
-template <>
-bool RRT<ColorMap, Point, NavPath>::isInCollision(Point const &goal_,
-                                                  Point const &position_) {
-  Point direction = goal_ - position_;
-  Point center = position_ + (direction / 2.0);
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+bool RRT<Map, BoundingVolume, Coordinates, Path>::isInCollision(
+    Coordinates const &goal_, Coordinates const &position_) {
+  Coordinates direction = goal_ - position_;
+  Coordinates center = position_ + (direction / 2.0);
   double distance = direction.norm();
   direction /= distance; // Distance normalization
   // Calculate yaw, pitch and roll for oriented bounding box
@@ -123,8 +113,8 @@ bool RRT<ColorMap, Point, NavPath>::isInCollision(Point const &goal_,
 
   // Iterate through all leaf nodes that intersects the bounding volume
   // Check intersection with       //occupied/free/unknown space
-  for (auto it = map.beginLeaves(obb, true, false, false, false, 0),
-            it_end = map.endLeaves();
+  for (auto it = map->beginLeaves(obb, true, false, false, false, 0),
+            it_end = map->endLeaves();
        it != it_end; ++it) {
     // Is in collision since a leaf node intersects the bounding volume.
     return true;
@@ -133,14 +123,12 @@ bool RRT<ColorMap, Point, NavPath>::isInCollision(Point const &goal_,
   // No leaf node intersects the bounding volume.
   return false;
 }
-template <>
-void RRT<ColorMap, Point, NavPath>::getClosestVoxel(const Point &src,
-                                                    Point &dst) {
-  for (auto it = map.beginNNLeaves(src, false, true, false, false, 0),
-            it_end = map.endNNLeaves();
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+void RRT<Map, BoundingVolume, Coordinates, Path>::getClosestVoxel(
+    const Coordinates &src, Coordinates &dst) {
+  for (auto it = map->beginNNLeaves(src, false, true, false, false, 0),
+            it_end = map->endNNLeaves();
        it != it_end; ++it) {
-    std::cout << "Limit: " << it.getX() << " " << it.getY() << " " << it.getZ()
-              << std::endl;
     dst[0] = it.getX();
     dst[1] = it.getY();
     dst[2] = it.getZ();
@@ -148,12 +136,15 @@ void RRT<ColorMap, Point, NavPath>::getClosestVoxel(const Point &src,
   }
 }
 
-template <> void RRT<ColorMap, Point, NavPath>::getMapLimits() {
-  getClosestVoxel(map.getMin(), mapLBoundary);
-  getClosestVoxel(map.getMax(), mapUBoundary);
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+void RRT<Map, BoundingVolume, Coordinates, Path>::getMapLimits() {
+  getClosestVoxel(map->getMin(), mapMinBoundary);
+  getClosestVoxel(map->getMax(), mapMaxBoundary);
 }
-template <> Point RRT<ColorMap, Point, NavPath>::generateRandomPoint() {
-  Point rndPoint(xrand(randomEngine), yrand(randomEngine), zrand(randomEngine));
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+Coordinates RRT<Map, BoundingVolume, Coordinates, Path>::generateRandomPoint() {
+  Coordinates rndPoint(xrand(randomEngine), yrand(randomEngine),
+                       zrand(randomEngine));
 
   rndPoint[0] = xrand(randomEngine);
   rndPoint[1] = yrand(randomEngine);
@@ -161,9 +152,9 @@ template <> Point RRT<ColorMap, Point, NavPath>::generateRandomPoint() {
 
   return rndPoint;
 }
-template <>
-RRT<ColorMap, Point, NavPath>::Node *
-RRT<ColorMap, Point, NavPath>::nearestVertex(RRT::Node *qrand) {
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+typename RRT<Map, BoundingVolume, Coordinates, Path>::Node *
+RRT<Map, BoundingVolume, Coordinates, Path>::nearestVertex(RRT::Node *qrand) {
 
   double previousDistance{std::numeric_limits<double>::max()};
   double currentDistance{0.0};
@@ -185,11 +176,11 @@ RRT<ColorMap, Point, NavPath>::nearestVertex(RRT::Node *qrand) {
   return nearest;
 }
 
-template <>
-Point RRT<ColorMap, Point, NavPath>::steer(Point const &nearestVertex,
-                                           Point const &randomVertex) {
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+Coordinates RRT<Map, BoundingVolume, Coordinates, Path>::steer(
+    Coordinates const &nearestVertex, Coordinates const &randomVertex) {
   // Assuming holonomic motion model.
-  Point difference = randomVertex - nearestVertex;
+  Coordinates difference = randomVertex - nearestVertex;
   double norm = difference.norm();
   if (norm > deltaStep) {
     // Random point is beyond our step size
@@ -200,8 +191,9 @@ Point RRT<ColorMap, Point, NavPath>::steer(Point const &nearestVertex,
   }
   return randomVertex;
 }
-template <>
-void RRT<ColorMap, Point, NavPath>::chooseParent(Node *qNear, Node *newVertex) {
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+void RRT<Map, BoundingVolume, Coordinates, Path>::chooseParent(
+    Node *qNear, Node *newVertex) {
   double cost{0.0};
   nearby.clear();
   auto norm = [](const auto &A, const auto &B) {
@@ -223,7 +215,8 @@ void RRT<ColorMap, Point, NavPath>::chooseParent(Node *qNear, Node *newVertex) {
       }
     }
 }
-template <> void RRT<ColorMap, Point, NavPath>::rewire() {
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+void RRT<Map, BoundingVolume, Coordinates, Path>::rewire() {
   double cost{0.0};
   auto norm = [](const auto &A, const auto &B) {
     return std::sqrt(((A.x() - B.x()) * (A.x() - B.x())) +
@@ -242,8 +235,9 @@ template <> void RRT<ColorMap, Point, NavPath>::rewire() {
   }
 }
 
-template <>
-void RRT<ColorMap, Point, NavPath>::expandTree(Node *qNear, Point qNew) {
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+void RRT<Map, BoundingVolume, Coordinates, Path>::expandTree(Node *qNear,
+                                                             Coordinates qNew) {
 
   auto norm = [](const auto &A, const auto &B) {
     return std::sqrt(((A.x() - B.x()) * (A.x() - B.x())) +
@@ -262,7 +256,8 @@ void RRT<ColorMap, Point, NavPath>::expandTree(Node *qNear, Point qNew) {
   // Rewire the tree
   rewire();
 }
-template <> void RRT<ColorMap, Point, NavPath>::traceBack() {
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+void RRT<Map, BoundingVolume, Coordinates, Path>::traceBack() {
   auto node = tree.back().get(); // Get goal
 
   while (node != nullptr) { // get the path in one vector
@@ -272,9 +267,9 @@ template <> void RRT<ColorMap, Point, NavPath>::traceBack() {
   std::reverse(path.begin(), path.end());
 }
 
-template <>
-NavPath *RRT<ColorMap, Point, NavPath>::computePath(Point const &start_,
-                                                    Point const &goal_) {
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+Path *RRT<Map, BoundingVolume, Coordinates, Path>::computePath(
+    Coordinates const &start_, Coordinates const &goal_) {
   // Main RRT algorithm body
   try {
     if (isInCollision(start_))
@@ -290,15 +285,17 @@ NavPath *RRT<ColorMap, Point, NavPath>::computePath(Point const &start_,
   std::cout << "Path planning started" << std::endl;
   tree.clear(); // Useful if running the planner more than once.
   path.clear();
-  double n = iterations;
+
   double distanceToGoal = std::numeric_limits<double>::max();
   // Initialize nodes
-  Point qNew;
+  Coordinates qNew;
   Node *qNearest = nullptr;
-  auto qStart = std::make_unique<Node>(std::move(start_));
+  auto qStart = std::make_unique<Node>(start_);
   auto qRand = std::make_unique<Node>();
   tree.emplace_back(std::move(qStart)); // Add start node.
-  while ((n-- > 0) && distanceToGoal >= epsilon) {
+  auto start = steady_clock::now();
+  auto elapsedTime = std::numeric_limits<long>::min();
+  while ((elapsedTime < timeout) && distanceToGoal >= epsilon) {
     if (rnd(randomEngine) > threshold)
       qRand->point = goal_;
     else
@@ -311,10 +308,11 @@ NavPath *RRT<ColorMap, Point, NavPath>::computePath(Point const &start_,
       distanceToGoal = (goal_ - qNew).norm(); // Update the distance
       // left.
     }
+    elapsedTime = duration_cast<seconds>(steady_clock::now() - start).count();
   }
   // We need to connect the goal to the closest vertex if distanceToGoal <=
   // epsilon and n>0
-  std::unique_ptr<Node> qGoal = std::make_unique<Node>(std::move(goal_));
+  std::unique_ptr<Node> qGoal = std::make_unique<Node>(goal_);
   qNearest = nearestVertex(qGoal.get());
   if (!isInCollision(qNearest->point,
                      qGoal->point)) { // We can get to the goal directly
@@ -332,3 +330,19 @@ NavPath *RRT<ColorMap, Point, NavPath>::computePath(Point const &start_,
   traceBack();
   return &path;
 }
+
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+RRT<Map, BoundingVolume, Coordinates, Path>::RRT(RRT &&src) noexcept {
+  swap(src, *this);
+}
+
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+RRT<Map, BoundingVolume, Coordinates, Path> &
+RRT<Map, BoundingVolume, Coordinates, Path>::operator=(RRT &&src) noexcept {
+  swap(src, *this);
+  return *this;
+}
+} // namespace planner::RRT
+template class planner::RRT::RRT<ufo::map::OccupancyMapColor,
+                                 ufo::geometry::Sphere, ufo::math::Vector3,
+                                 std::vector<ufo::math::Vector3>>;

@@ -22,4 +22,9 @@ bool mapAvailable = false;
 bool setPoints = true;
 std::vector<ufo::math::Vector3> points;
 
+using Sphere = ufo::geometry::Sphere;
+using Point = ufo::math::Vector3;
+using ColorMap = ufo::map::OccupancyMapColor;
+using NavPath = std::vector<Point>;
+
 #endif // PATH_PLANNER_PATH_PLANNER_NODE_H

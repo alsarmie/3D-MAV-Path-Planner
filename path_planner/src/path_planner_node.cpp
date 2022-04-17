@@ -2,7 +2,7 @@
 // Created by alsarmi on 04/04/22.
 //
 
-#include <path_planner_node.h>
+#include "path_planner_node.h"
 
 void mapCallback(ufomap_msgs::UFOMapStamped::ConstPtr const &msg) {
 
@@ -55,7 +55,6 @@ void publishMarkers(ros::Publisher &markerPublisher) {
   int cnt{0};
   visualization_msgs::MarkerArray markerArray;
   for (auto &point : points) {
-    std::cout << "Moving point" << std::endl;
     visualization_msgs::Marker marker;
     marker.header.frame_id = "map";
     marker.id = cnt++;
@@ -93,7 +92,8 @@ int main(int argv, char **argc) {
 
   while (!mapAvailable)
     ros::spinOnce();
-  auto rrt_planner = RRT<ColorMap, Point, NavPath>(map, 0.05);
+  auto rrt_planner =
+      planner::RRT::RRT<ColorMap, Sphere, Point, NavPath>(&map, 0.05);
   ROS_INFO("Path planner ready!");
 
   while (ros::ok()) {
