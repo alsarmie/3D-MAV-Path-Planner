@@ -1,5 +1,5 @@
 <launch>
-    <arg name="resolution" default="0.02"/>
+    <arg name="resolution" default="0.05"/>
     <arg name="depth_levels" default="16"/>
     <arg name="num_workers" default="3"/>
     <arg name="color" default="true"/>

@@ -1,9 +1,5 @@
-//
-// Created by alsarmi on 04/04/22.
-//
-
-#ifndef PATH_PLANNER_RRT_PLANNER_H
-#define PATH_PLANNER_RRT_PLANNER_H
+#ifndef IB_RRT_STAR_PLANNER_H
+#define IB_RRT_STAR_PLANNER_H
 
 #include <chrono>
 #include <deque>
@@ -20,29 +16,28 @@ using std::chrono::steady_clock;
 namespace globalPlanner::RRT {
 template <typename Map, typename BoundingVolume, typename Coordinates,
           typename Path>
-class RRTStar {
+class IBRRT {
 
 public:
   // Constructors
-  RRTStar(Map *map_, double radius_);
+  IBRRT(Map *map_, double radius_);
 
-  RRTStar(Map *map_, Coordinates const &mapMinBoundary_,
-          Coordinates const &mapMaxBoundary_, double step, double epsilon_,
-          double threshold_, double searchRadius_, double radius_);
+  IBRRT(Map *map_, Coordinates const &mapMinBoundary_,
+        Coordinates const &mapMaxBoundary_, double step, double epsilon_,
+        double threshold_, double searchRadius_, double radius_);
 
-  RRTStar(Map *map_, Coordinates const &mapMinBoundary_,
-          Coordinates const &mapMaxBoundary_, double step, double epsilon_,
-          double threshold_, double searchRadius_, long timeout_,
-          double radius_);
+  IBRRT(Map *map_, Coordinates const &mapMinBoundary_,
+        Coordinates const &mapMaxBoundary_, double step, double epsilon_,
+        double threshold_, double searchRadius_, long timeout_, double radius_);
 
   // Copy constructor and Copy assignment are not allowed
-  RRTStar(RRTStar const &src) = delete;
-  RRTStar &operator=(RRTStar const &src) = delete;
+  IBRRT(IBRRT const &src) = delete;
+  IBRRT &operator=(IBRRT const &src) = delete;
   // Move assignment and move constructor
-  RRTStar(RRTStar &&src) noexcept;
-  RRTStar &operator=(RRTStar &&src) noexcept;
+  IBRRT(IBRRT &&src) noexcept;
+  IBRRT &operator=(IBRRT &&src) noexcept;
   // Destructor
-  ~RRTStar();
+  ~IBRRT();
   // Public member functions
   void setMaxIterations(int iterations_) { timeout = iterations_; }
   void setMapBoundaries(Coordinates const &mapMinBoundary_,
@@ -54,7 +49,7 @@ public:
 
 protected:
   // Default constructor for derived templates
-  RRTStar() = default;
+  IBRRT() = default;
   // Data  structure for the tree
   struct Node {
     explicit Node(Coordinates point_) : point(point_){};
@@ -65,8 +60,16 @@ protected:
     double costToParent{0.0};
   };
   // Protected members
+  std::vector<std::unique_ptr<Node>> treeA;
+  std::vector<std::unique_ptr<Node>> treeB;
   std::vector<std::unique_ptr<Node>> tree;
+
+  std::mutex mA;
+  std::mutex mB;
+  double sigmaF{std::numeric_limits<double>::max()};
+  bool activeTree{false};
   std::vector<Node *> nearby;
+  std::vector<std::pair<double, Node *>> ls;
   Path path{};
   Map *map{nullptr};
   long timeout{30};         // 30 seconds default
@@ -86,7 +89,7 @@ protected:
 
   // Private methods
   // For Move Semantics
-  friend void swap(RRTStar &src, RRTStar &dst) {
+  friend void swap(IBRRT &src, IBRRT &dst) {
     using std::swap;
     swap(src.tree, dst.tree);
     swap(src.nearby, dst.nearby);
@@ -108,27 +111,33 @@ protected:
   }
   // Define map limits if they were not provided
   void getMapLimits();
-  // Core component of RRTStar algorithm
-  void expandTree(Node *qNear, Coordinates qNew);
+
   // RRTStar* components
+  // Random point generation
+  Coordinates sample();
+  // Get the set of nearby vertices to a point.
+  void nearVertices(Node *xRand);
+  // Get the nearest vertex in the tree to a Node based on Euclidean distance
+  void nearestVertex(Node *xRand);
+  Node *chooseBestParent(Node *xRand);
   void rewire();
-  void chooseParent(Node *qNear, Node *newVertex);
+  // Core component of RRTStar algorithm
+  void expandTree(Node *xNear, Coordinates xNew);
   // 3D collision checking
   // To check if point is in occupied or unknown space.
   bool isInCollision(Coordinates const &center);
   // To check if path from A to B is collision free.
   bool isInCollision(Coordinates const &goal_, Coordinates const &position_);
   void getClosestVoxel(Coordinates const &src, Coordinates &dst);
-  // Random point generation with validation check( is within free space).
-  Coordinates generateRandomPoint();
-  // Get the nearest vertex in the tree to a Node based on Euclidean distance
-  Node *nearestVertex(Node *qrand);
+
   // Check if path between vertices is possible, following dynamic constraints.
   Coordinates steer(Coordinates const &nearestVertex,
                     Coordinates const &randomVertex);
   // Generate the final path to be returned.
   void traceBack();
 };
+
+// Definitions
 using Sphere = ufo::geometry::Sphere;
 using Point = ufo::math::Vector3;
 using ColorMap = ufo::map::OccupancyMapColor;
@@ -136,9 +145,8 @@ using NavPath = std::vector<Point>;
 // Public template definitions
 // Constructors
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(Map *map_,
-                                                         double radius_)
-    : map(map_), timeout(30), deltaStep(0.05), epsilon(0.01), threshold(0.5),
+IBRRT<Map, BoundingVolume, Coordinates, Path>::IBRRT(Map *map_, double radius_)
+    : map(map_), timeout(30), deltaStep(0.05), epsilon(0.01), threshold(0.2),
       searchRadius(0.3), radius(radius_),
       randomEngine((std::random_device())()),
       rnd(std::uniform_real_distribution<>(0.0, 1.0)) {
@@ -153,7 +161,7 @@ RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(Map *map_,
   std::cout << "RRTStar Planner created!" << std::endl;
 }
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
+IBRRT<Map, BoundingVolume, Coordinates, Path>::IBRRT(
     Map *map_, Coordinates const &mapMinBoundary_,
     Coordinates const &mapMaxBoundary_, double step, double epsilon_,
     double threshold_, double searchRadius_, double radius_)
@@ -173,7 +181,7 @@ RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
   std::cout << "RRTStar Planner created!" << std::endl;
 }
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
+IBRRT<Map, BoundingVolume, Coordinates, Path>::IBRRT(
     Map *map_, Coordinates const &mapMinBoundary_,
     Coordinates const &mapMaxBoundary_, double step, double epsilon_,
     double threshold_, double searchRadius_, long timeout_, double radius_)
@@ -193,37 +201,35 @@ RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
 }
 // Destructor
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-RRTStar<Map, BoundingVolume, Coordinates, Path>::~RRTStar() = default;
+IBRRT<Map, BoundingVolume, Coordinates, Path>::~IBRRT() = default;
 // Move constructor and Move assignment
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
-    RRTStar &&src) noexcept {
+IBRRT<Map, BoundingVolume, Coordinates, Path>::IBRRT(IBRRT &&src) noexcept {
   swap(src, *this);
 }
 
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-RRTStar<Map, BoundingVolume, Coordinates, Path> &
-RRTStar<Map, BoundingVolume, Coordinates, Path>::operator=(
-    RRTStar &&src) noexcept {
+IBRRT<Map, BoundingVolume, Coordinates, Path> &
+IBRRT<Map, BoundingVolume, Coordinates, Path>::operator=(IBRRT &&src) noexcept {
   swap(src, *this);
   return *this;
 }
 // Private method definitions
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-bool RRTStar<Map, BoundingVolume, Coordinates, Path>::isInCollision(
+bool IBRRT<Map, BoundingVolume, Coordinates, Path>::isInCollision(
     Coordinates const &center) {
   return false;
 }
 // Template specialization for collision checking considering a specific
 // bounding volume.
 template <>
-bool RRTStar<
+bool IBRRT<
     ufo::map::OccupancyMapColor, ufo::geometry::Sphere, ufo::math::Vector3,
     std::vector<ufo::math::Vector3>>::isInCollision(Point const &center) {
   ufo::geometry::Sphere sphere(center, radius);
   // Iterate through all leaf nodes that intersects the bounding volume
   // Check intersection with          //occupied/free/unknown space
-  for (auto it = map->beginLeaves(sphere, true, false, false, false, 0),
+  for (auto it = map->beginLeaves(sphere, true, false, true, false, 0),
             it_end = map->endLeaves();
        it != it_end; ++it) {
     // Is in collision since a leaf node intersects the bounding volume.
@@ -233,7 +239,7 @@ bool RRTStar<
   return false;
 }
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-bool RRTStar<Map, BoundingVolume, Coordinates, Path>::isInCollision(
+bool IBRRT<Map, BoundingVolume, Coordinates, Path>::isInCollision(
     Coordinates const &goal_, Coordinates const &position_) {
   Coordinates direction = goal_ - position_;
   Coordinates center = position_ + (direction / 2.0);
@@ -262,7 +268,7 @@ bool RRTStar<Map, BoundingVolume, Coordinates, Path>::isInCollision(
   return false;
 }
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-void RRTStar<Map, BoundingVolume, Coordinates, Path>::getClosestVoxel(
+void IBRRT<Map, BoundingVolume, Coordinates, Path>::getClosestVoxel(
     const Coordinates &src, Coordinates &dst) {
   for (auto it = map->beginNNLeaves(src, false, true, false, false, 0),
             it_end = map->endNNLeaves();
@@ -275,27 +281,18 @@ void RRTStar<Map, BoundingVolume, Coordinates, Path>::getClosestVoxel(
 }
 
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-void RRTStar<Map, BoundingVolume, Coordinates, Path>::getMapLimits() {
+void IBRRT<Map, BoundingVolume, Coordinates, Path>::getMapLimits() {
   getClosestVoxel(map->getMin(), mapMinBoundary);
   getClosestVoxel(map->getMax(), mapMaxBoundary);
 }
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-Coordinates
-RRTStar<Map, BoundingVolume, Coordinates, Path>::generateRandomPoint() {
-  Coordinates rndPoint(xrand(randomEngine), yrand(randomEngine),
-                       zrand(randomEngine));
-
-  rndPoint[0] = xrand(randomEngine);
-  rndPoint[1] = yrand(randomEngine);
-  rndPoint[2] = zrand(randomEngine);
-
-  return rndPoint;
+Coordinates IBRRT<Map, BoundingVolume, Coordinates, Path>::sample() {
+  return {xrand(randomEngine), yrand(randomEngine), zrand(randomEngine)};
 }
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-typename RRTStar<Map, BoundingVolume, Coordinates, Path>::Node *
-RRTStar<Map, BoundingVolume, Coordinates, Path>::nearestVertex(
-    RRTStar::Node *qrand) {
-
+void IBRRT<Map, BoundingVolume, Coordinates, Path>::nearestVertex(
+    IBRRT::Node *xRand) {
+  nearby.clear();
   double previousDistance{std::numeric_limits<double>::max()};
   double currentDistance{0.0};
   Node *nearest = nullptr;
@@ -307,17 +304,17 @@ RRTStar<Map, BoundingVolume, Coordinates, Path>::nearestVertex(
   };
   for (auto &vertex : tree) {
     // Compute the euclidean distance to the random point
-    norm(qrand->point, vertex->point);
+    norm(xRand->point, vertex->point);
     if (currentDistance < previousDistance) {
       previousDistance = currentDistance;
       nearest = vertex.get();
     }
   }
-  return nearest;
+  nearby.emplace_back(nearest);
 }
 
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-Coordinates RRTStar<Map, BoundingVolume, Coordinates, Path>::steer(
+Coordinates IBRRT<Map, BoundingVolume, Coordinates, Path>::steer(
     Coordinates const &nearestVertex, Coordinates const &randomVertex) {
   // Assuming holonomic motion model.
   Coordinates difference = randomVertex - nearestVertex;
@@ -332,74 +329,95 @@ Coordinates RRTStar<Map, BoundingVolume, Coordinates, Path>::steer(
   return randomVertex;
 }
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-void RRTStar<Map, BoundingVolume, Coordinates, Path>::chooseParent(
-    Node *qNear, Node *newVertex) {
-  double cost{0.0};
+void IBRRT<Map, BoundingVolume, Coordinates, Path>::nearVertices(Node *xRand) {
+  nearby.clear();
   double limit =
       searchRadius *
       std::pow(std::log((double)tree.size()) / (double)tree.size(), 1.0 / 3.0);
-  nearby.clear();
   auto norm = [](const auto &A, const auto &B) {
     return std::sqrt(((A.x() - B.x()) * (A.x() - B.x())) +
                      ((A.y() - B.y()) * (A.y() - B.y())) +
                      ((A.z() - B.z()) * (A.z() - B.z())));
   };
   for (auto &vertex : tree)
-    if (vertex.get() != qNear && norm(vertex->point, newVertex->point) <= limit)
+    if (norm(vertex->point, xRand->point) <= limit)
       nearby.emplace_back(vertex.get());
-  for (auto &vertex : nearby)
-    if (!isInCollision(vertex->point, newVertex->point)) {
-      cost = norm(vertex->point, newVertex->point) + vertex->costToParent;
-      if (cost < newVertex->costToParent) {
-        newVertex->parent = vertex;
-        vertex->child = newVertex;
-        newVertex->costToParent = cost;
-      }
-    }
 }
+
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-void RRTStar<Map, BoundingVolume, Coordinates, Path>::rewire() {
+typename IBRRT<Map, BoundingVolume, Coordinates, Path>::Node *
+IBRRT<Map, BoundingVolume, Coordinates, Path>::chooseBestParent(Node *xRand) {
   double cost{0.0};
   auto norm = [](const auto &A, const auto &B) {
     return std::sqrt(((A.x() - B.x()) * (A.x() - B.x())) +
                      ((A.y() - B.y()) * (A.y() - B.y())) +
                      ((A.z() - B.z()) * (A.z() - B.z())));
   };
-  auto qNew = tree.back().get();
+  ls.clear();
+  std::pair<double, Node *> n;
+
   for (auto &vertex : nearby) {
-    cost = qNew->costToParent + norm(qNew->point, vertex->point);
-    if (cost < vertex->costToParent) {
-      qNew->child = vertex;
-      vertex->parent->child = nullptr;
-      vertex->parent = qNew;
-      vertex->costToParent = cost;
-    }
+    auto xNew = steer(
+        vertex->point,
+        xRand->point); // xRand->point; // steer(vertex->point,xRand->point);//
+    cost = norm(tree[0]->point, vertex->point) + norm(vertex->point, xNew);
+    n.first = cost;
+    n.second = vertex;
+    ls.emplace_back(n);
   }
+  std::sort(ls.begin(), ls.end(),
+            [](const auto &a, const auto &b) { return a.first < b.first; });
+  for (auto &vertex : ls)
+    if (!isInCollision(vertex.second->point,
+                       steer(vertex.second->point,
+                             xRand->point))) //            xRand->point)) //
+                                             //            steer(vertex.second->point,xRand->point)))
+                                             //            //
+      return vertex.second;
+  return nullptr;
 }
-
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-void RRTStar<Map, BoundingVolume, Coordinates, Path>::expandTree(
-    Node *qNear, Coordinates qNew) {
-
+void IBRRT<Map, BoundingVolume, Coordinates, Path>::rewire() {
+  double cost{0.0};
   auto norm = [](const auto &A, const auto &B) {
     return std::sqrt(((A.x() - B.x()) * (A.x() - B.x())) +
                      ((A.y() - B.y()) * (A.y() - B.y())) +
                      ((A.z() - B.z()) * (A.z() - B.z())));
   };
-  std::unique_ptr<Node> newVertex = std::make_unique<Node>(std::move(qNew));
-  qNear->child = newVertex.get();
-  newVertex->parent = qNear;
-  newVertex->costToParent = norm(qNear->point, newVertex->point) +
-                            qNear->costToParent; // cost so far.
-  // Look for the nearest neighbor vertices of the new point and choose the best
-  // parent based on cost.
-  chooseParent(qNear, newVertex.get());
+  auto xRand = tree.back().get();
+  auto xInit = tree[0].get();
+  for (auto &vertex : ls) {
+    cost = norm(xInit->point, xRand->point) +
+           norm(xRand->point, vertex.second->point);
+    if (cost < norm(xInit->point, vertex.second->point))
+      if (!isInCollision(xRand->point, vertex.second->point)) {
+        xRand->child = vertex.second;
+        vertex.second->parent = xRand;
+        vertex.second->costToParent = cost;
+      }
+  }
+}
+
+template <class Map, class BoundingVolume, class Coordinates, class Path>
+void IBRRT<Map, BoundingVolume, Coordinates, Path>::expandTree(
+    Node *xMin, Coordinates xRand) {
+  auto norm = [](const auto &A, const auto &B) {
+    return std::sqrt(((A.x() - B.x()) * (A.x() - B.x())) +
+                     ((A.y() - B.y()) * (A.y() - B.y())) +
+                     ((A.z() - B.z()) * (A.z() - B.z())));
+  };
+  std::unique_ptr<Node> newVertex =
+      std::make_unique<Node>(std::move(steer(xMin->point, xRand)));
+  xMin->child = newVertex.get();
+  newVertex->parent = xMin;
+  newVertex->costToParent =
+      norm(xMin->point, newVertex->point) + xMin->costToParent; // cost so far.
   tree.emplace_back(std::move(newVertex));
   // Rewire the tree
   rewire();
 }
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-void RRTStar<Map, BoundingVolume, Coordinates, Path>::traceBack() {
+void IBRRT<Map, BoundingVolume, Coordinates, Path>::traceBack() {
 
   auto node = tree.back().get(); // Get goal
 
@@ -411,7 +429,7 @@ void RRTStar<Map, BoundingVolume, Coordinates, Path>::traceBack() {
 }
 
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-Path *RRTStar<Map, BoundingVolume, Coordinates, Path>::computePath(
+Path *IBRRT<Map, BoundingVolume, Coordinates, Path>::computePath(
     Coordinates const &start_, Coordinates const &goal_) {
   // Main RRTStar algorithm body
   try {
@@ -432,47 +450,59 @@ Path *RRTStar<Map, BoundingVolume, Coordinates, Path>::computePath(
   double distanceToGoal = std::numeric_limits<double>::max();
   // Initialize nodes
   Coordinates qNew;
-  Node *qNearest = nullptr;
-
-  auto qStart = std::make_unique<Node>(start_);
-  auto qRand = std::make_unique<Node>();
-  tree.emplace_back(std::move(qStart)); // Add start node.
+  Node *xNearest = nullptr;
+  Node *xMin = nullptr;
+  int cnt = 100000;
+  auto startPoint = std::make_unique<Node>(start_);
+  auto xRand = std::make_unique<Node>();
+  tree.emplace_back(std::move(startPoint)); // Add start node.
   auto start = steady_clock::now();
   auto elapsedTime = std::numeric_limits<long>::min();
   while ((elapsedTime < timeout) && distanceToGoal >= epsilon) {
-    if (rnd(randomEngine) > threshold)
-      qRand->point = goal_;
+    // A) Sample
+    if (rnd(randomEngine) > threshold) // Bias towards goal
+      xRand->point = goal_;
     else
-      qRand->point = generateRandomPoint();
-    qNearest = nearestVertex(qRand.get());
-    qNew = steer(qNearest->point, qRand->point);
-    if (!isInCollision(qNearest->point, qNew)) {
-      // Add point to tree if it is collision free
-      expandTree(qNearest, qNew);
-      distanceToGoal = (goal_ - qNew).norm(); // Update the distance
-      // left.
+      xRand->point = sample();
+    // Get the nearby vertices.
+    nearVertices(xRand.get());
+    if (nearby.empty())
+      // If no nearby vertices were found within a search
+      // radius, get the closest vertex using Euclidean
+      // distance.
+      nearestVertex(xRand.get());
+    // Sort nearby vertices by cost and select the best parent option.
+    xMin = chooseBestParent(xRand.get());
+    if (xMin != nullptr) {
+      expandTree(xMin, xRand.get()->point);
+      distanceToGoal =
+          (goal_ - tree.back()->point).norm(); // Update the distance
     }
+
     elapsedTime = duration_cast<seconds>(steady_clock::now() - start).count();
   }
   // We need to connect the goal to the closest vertex if distanceToGoal <=
   // epsilon and n>0
   std::unique_ptr<Node> qGoal = std::make_unique<Node>(goal_);
-  qNearest = nearestVertex(qGoal.get());
-  if (!isInCollision(qNearest->point,
+  nearestVertex(qGoal.get());
+  xNearest = nearby[0];
+  if (!isInCollision(xNearest->point,
                      qGoal->point)) { // We can get to the goal directly
-    qNearest->child = qGoal.get();
-    qGoal->parent = qNearest;
+    xNearest->child = qGoal.get();
+    qGoal->parent = xNearest;
     tree.emplace_back(std::move(qGoal));
   } else {
     // We did not reach the goal, we return the path that was the closest.
     for (auto it = tree.begin(); it != tree.end(); it++)
       // move the closest vertex to the goal to the end of the vector,
       // so it is easier to backtrack.
-      if (it->get() == qNearest)
+      if (it->get() == xNearest)
         std::rotate(it, it + 1, tree.end());
   }
   traceBack();
   return &path;
 }
+
 } // namespace globalPlanner::RRT
-#endif // PATH_PLANNER_RRT_PLANNER_H
+
+#endif
