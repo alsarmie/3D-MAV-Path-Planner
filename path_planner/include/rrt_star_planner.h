@@ -2,8 +2,8 @@
 // Created by alsarmi on 04/04/22.
 //
 
-#ifndef PATH_PLANNER_RRT_PLANNER_H
-#define PATH_PLANNER_RRT_PLANNER_H
+#ifndef PATH_PLANNER_RRT_STAR_PLANNER_H
+#define PATH_PLANNER_RRT_STAR_PLANNER_H
 
 #include <chrono>
 #include <deque>
@@ -51,10 +51,10 @@ public:
     mapMaxBoundary = mapMaxBoundary_;
   }
   Path *computePath(Coordinates const &start_, Coordinates const &goal_);
-
-protected:
-  // Default constructor for derived templates
   RRTStar() = default;
+private:
+  // Default constructor for derived templates
+
   // Data  structure for the tree
   struct Node {
     explicit Node(Coordinates point_) : point(point_){};
@@ -158,9 +158,9 @@ RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
     Coordinates const &mapMaxBoundary_, double step, double epsilon_,
     double threshold_, double searchRadius_, double radius_)
     : map(map_), mapMinBoundary(mapMinBoundary_),
-      mapMaxBoundary(mapMaxBoundary_), deltaStep(step), epsilon(0.01),
-      threshold(0.5), searchRadius(0.3), timeout(30), radius(radius_),
-      randomEngine((std::random_device())()),
+      mapMaxBoundary(mapMaxBoundary_), deltaStep(step), epsilon(epsilon_),
+      threshold(threshold_), searchRadius(searchRadius_), timeout(30),
+      radius(radius_), randomEngine((std::random_device())()),
       xrand(std::uniform_real_distribution<>(mapMinBoundary.x(),
                                              mapMaxBoundary.x())),
       yrand(std::uniform_real_distribution<>(mapMinBoundary.y(),
@@ -179,8 +179,8 @@ RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
     double threshold_, double searchRadius_, long timeout_, double radius_)
     : map(map_), mapMinBoundary(mapMinBoundary_),
       mapMaxBoundary(mapMaxBoundary_), deltaStep(step), timeout(timeout_),
-      epsilon(0.01), threshold(0.5), searchRadius(0.3), radius(radius_),
-      randomEngine((std::random_device())()),
+      epsilon(epsilon_), threshold(threshold_), searchRadius(searchRadius_),
+      radius(radius_), randomEngine((std::random_device())()),
       xrand(std::uniform_real_distribution<>(mapMinBoundary.x(),
                                              mapMaxBoundary.x())),
       yrand(std::uniform_real_distribution<>(mapMinBoundary.y(),
@@ -425,7 +425,8 @@ Path *RRTStar<Map, BoundingVolume, Coordinates, Path>::computePath(
     std::cout << "Cannot compute path, reason: " << e.what() << std::endl;
     return nullptr;
   }
-  std::cout << "Path planning started" << std::endl;
+  std::cout << "RRT* Path planning started" << std::endl;
+
   tree.clear(); // Useful if running the globalPlanner more than once.
   path.clear();
 
@@ -472,7 +473,7 @@ Path *RRTStar<Map, BoundingVolume, Coordinates, Path>::computePath(
         std::rotate(it, it + 1, tree.end());
   }
   traceBack();
-  return &path;
+  return (path.empty()) ? nullptr : &path;
 }
 } // namespace globalPlanner::RRT
-#endif // PATH_PLANNER_RRT_PLANNER_H
+#endif // PATH_PLANNER_RRT_STAR_PLANNER_H

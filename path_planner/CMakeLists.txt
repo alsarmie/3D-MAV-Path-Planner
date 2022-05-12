@@ -1,16 +1,18 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(path_planner)
 IF (NOT CMAKE_BUILD_TYPE)
-    SET(CMAKE_BUILD_TYPE Release)
+    set(CMAKE_BUILD_TYPE Release)
 ENDIF ()
 
-MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
+message("Build type: " ${CMAKE_BUILD_TYPE})
+
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}    -O3")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}   -O3")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -march=native")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
+
 
 add_compile_options(-std=c++17)
 ## Compile as C++11, supported in ROS Kinetic and newer

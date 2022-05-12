@@ -8,7 +8,7 @@ public:
   CatmullRomSpline();
   CatmullRomSpline(double alpha_, double tension_);
   ~CatmullRomSpline() = default;
-  Path interpolate(double step, Path *control);
+  Path interpolate(double step, Path *controlPoints);
 
 private:
   double tension{0.0};
@@ -24,7 +24,9 @@ private:
   Point m2;
   std::vector<double> time;
   Path interpolatedPath;
-  double epsilon{0.001}; // To avoid dividing by zero
+  double epsilon{0.0001}; // To avoid dividing by zero
+  // Utility function
+  void padding(Path *controlPoints);
 };
 // Constructors
 template <typename Point, typename Path>
@@ -32,23 +34,36 @@ CatmullRomSpline<Point, Path>::CatmullRomSpline() : tension(0.0), alpha(0.5) {}
 template <typename Point, typename Path>
 CatmullRomSpline<Point, Path>::CatmullRomSpline(double alpha_, double tension_)
     : alpha(alpha_), tension(tension_) {}
-template <typename Point, typename Path>
 
-Path CatmullRomSpline<Point, Path>::interpolate(double step, Path *control) {
+template <typename Point, typename Path>
+void CatmullRomSpline<Point, Path>::padding(Path *controlPoints) {
+  auto unit = controlPoints->front() - *(controlPoints->begin() + 1);
+  unit /= unit.norm();
+  controlPoints->emplace_front(controlPoints->front() + unit);
+  unit = controlPoints->back() - *(controlPoints->end() - 2);
+  unit /= unit.norm();
+  controlPoints->emplace_back(controlPoints->back() + unit);
+}
+template <typename Point, typename Path>
+Path CatmullRomSpline<Point, Path>::interpolate(double step,
+                                                Path *controlPoints) {
   try {
     if (step == 0)
       throw std::runtime_error(" Step size cannot be 0!");
-    if (control->size() < 4)
+    if (controlPoints->size() < 4)
       throw std::runtime_error("Not enough control points! #Current points: " +
-                               std::to_string(control->size()));
+                               std::to_string(controlPoints->size()));
   } catch (const std::exception &e) {
     std::cout << "Cannot interpolate, reason: " << e.what() << std::endl;
+    return {};
   };
+  // Padding of path vector for Catmull interpolation control points.
+  padding(controlPoints);
 
   interpolatedPath.clear();
   // Precompute the t for interpolation
   time.clear();
-  for (int t = 0; t < step; t++)
+  for (int t = 0; t <= step; t++)
     time.emplace_back(((double)t) / step);
 
   // For  calculating t01,t12,t23.
@@ -70,22 +85,26 @@ Path CatmullRomSpline<Point, Path>::interpolate(double step, Path *control) {
   auto s = [&](const auto &t) { return a * t * t * t + b * t * t + c * t + d; };
   // interpolate for all points.
 
-  for (int i = 0; i < control->size() - 3; i++) {
-    t01 = tnm((*control)[i], (*control)[i + 1]);
-    t12 = tnm((*control)[i + 1], (*control)[i + 2]);
-    t23 = tnm((*control)[i + 2], (*control)[i + 3]);
-    m1 = tan1((*control)[i], (*control)[i + 1], (*control)[i + 2]);
-    m2 = tan2((*control)[i + 1], (*control)[i + 2], (*control)[i + 3]);
-    a = (((*control)[i + 1] - (*control)[i + 2]) * 2.0) + m1 + m2;
-    b = ((*control)[i + 1] - (*control)[i + 2]) * (-3.0) - m1 - m1 - m2;
+  for (int i = 0; i < controlPoints->size() - 3; i++) {
+    t01 = tnm((*controlPoints)[i], (*controlPoints)[i + 1]);
+    t12 = tnm((*controlPoints)[i + 1], (*controlPoints)[i + 2]);
+    t23 = tnm((*controlPoints)[i + 2], (*controlPoints)[i + 3]);
+    m1 = tan1((*controlPoints)[i], (*controlPoints)[i + 1],
+              (*controlPoints)[i + 2]);
+    m2 = tan2((*controlPoints)[i + 1], (*controlPoints)[i + 2],
+              (*controlPoints)[i + 3]);
+    a = (((*controlPoints)[i + 1] - (*controlPoints)[i + 2]) * 2.0) + m1 + m2;
+    b = ((*controlPoints)[i + 1] - (*controlPoints)[i + 2]) * (-3.0) - m1 - m1 -
+        m2;
     c = m1;
-    d = (*control)[i + 1];
+    d = (*controlPoints)[i + 1];
     for (const auto &t : time)
       interpolatedPath.emplace_back(s(t));
   }
 
   return interpolatedPath;
 }
+
 // Methods
 } // namespace globalPlanner
 
