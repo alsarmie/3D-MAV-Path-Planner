@@ -1,6 +1,3 @@
-//
-// Created by alsarmi on 31/03/22.
-//
 /***
  * @author Alejandro Sarmiento
  * @description This header defines the general class point cloud_publisher that
@@ -26,7 +23,6 @@ public:
   virtual bool loadFile(const std::string &path) = 0;
   // Member functions
   virtual void loadParams(){};
-
   //
 };
 #endif // RGBD_MAPPING_POINTCLOUD_PUBLISHER_H

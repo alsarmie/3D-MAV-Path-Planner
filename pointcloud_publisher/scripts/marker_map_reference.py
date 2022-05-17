@@ -22,22 +22,32 @@ camera_intrinsics = None
 image = None
 running = True
 rospack = rospkg.RosPack()
-path = rospack.get_path('pointcloud_publisher')+'/scripts/'
+path = rospack.get_path('pointcloud_publisher') + '/scripts/'
 
 
 def cameraInfoCallback(camera_info):
+    """
+    It takes a message of type `sensor_msgs/CameraInfo` and stores the camera intrinsics in a global variable
+
+    :param camera_info: The camera_info topic is a ROS topic that contains the camera intrinsics
+    """
     global camera_intrinsics
     camera_intrinsics = camera_info
 
 
 class image_converter:
     def __init__(self):
-
+        # Subscribing to the image topic and converting the image to a cv2 image.
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber(
             "/d400/color/image_raw", Image, self.callback)
 
     def callback(self, data):
+        """
+        The function takes in a ROS image message and converts it into a CV2 image
+
+        :param data: The image data
+        """
         global image
         try:
             image = self.bridge.imgmsg_to_cv2(data, "bgr8")
@@ -56,8 +66,9 @@ def read_dictionary(filename='custom_aruco_dictionary.npy'):
     """
     # Load dictionary from npy file
     try:
-        data = np.load(path+filename, allow_pickle=True, encoding='bytes')
-        print("/home/alsarmi/udacity_ws/src/3D-MAV-Path-Planner/pointcloud_publisher/scripts/custom_aruco_dictionary.npy")
+        data = np.load(path + filename, allow_pickle=True, encoding='bytes')
+        print(
+            "/home/alsarmi/udacity_ws/src/3D-MAV-Path-Planner/pointcloud_publisher/scripts/custom_aruco_dictionary.npy")
         dict = cv2.aruco.custom_dictionary(0, data[0][0])
         dict.maxCorrectionBits = data[0][1]
         dict.bytesList = data[0][2]
@@ -77,7 +88,7 @@ def main():
     marker_transform.child_frame_id = "aruco_detection"
 
     ic = image_converter()
-    #cv2.namedWindow("D435i AruCo", 1)
+    # cv2.namedWindow("D435i AruCo", 1)
 
     dictionary = read_dictionary()
     filtered_translation = None
@@ -87,16 +98,14 @@ def main():
         if image is not None:
             res = cv2.aruco.detectMarkers(image, dictionary)
             if len(res[0]) > 0:
-                #cv2.aruco.drawDetectedMarkers(image, res[0], res[1])
                 K = np.array(camera_intrinsics.K,
                              dtype=np.float32).reshape(3, 3)
                 D = np.array(camera_intrinsics.D, dtype=np.float32)
                 rvec, tvec, _ = aruco.estimatePoseSingleMarkers(
                     res[0], marker_length, K, D)
-                #aruco.drawAxis(image, K, D, rvec, tvec, 0.1)
                 rot[:3, :3], _ = cv2.Rodrigues(rvec)
                 quaternion = quaternion_from_matrix(rot)
-                quaternion_norm = quaternion/np.linalg.norm(quaternion)
+                quaternion_norm = quaternion / np.linalg.norm(quaternion)
 
                 if filtered_translation is None or cnt < 10:
                     filtered_translation = np.array(tvec[0][0])
@@ -105,8 +114,8 @@ def main():
 
                 filtered_rotation = tf.transformations.quaternion_slerp(
                     filtered_rotation, quaternion_norm, 0.01)
-                filtered_translation = 0.80*filtered_translation+0.2 * \
-                    np.array(tvec[0][0])
+                filtered_translation = 0.80 * filtered_translation + 0.2 * \
+                                       np.array(tvec[0][0])
                 # Detection of marker w.r.t camera optical frame
                 marker_transform.transform.translation.x = filtered_translation[0]
                 marker_transform.transform.translation.y = filtered_translation[1]
@@ -121,14 +130,10 @@ def main():
                 broadcaster.sendTransform(marker_transform)
 
                 cnt += 1
-            # rate.sleep()
-        #cv2.imshow("D435i Aruco", image)
-        # if cv2.waitKey(1) & 0xFF == ord('q'):
-            #running = False
 
 
+# A way to run the main function only if the script is executed and not imported.
 if __name__ == "__main__":
-
     rospy.init_node('marker_map_reference',
                     anonymous=True, disable_signals=True)
     rospy.Subscriber("/d400/color/camera_info", CameraInfo, cameraInfoCallback)

@@ -1,15 +1,13 @@
-
-
 import rospy
-import tf
 import tf_conversions
 import tf2_ros
 import geometry_msgs.msg
-import numpy as np
-from tf.transformations import quaternion_from_matrix, quaternion_from_euler
 
 
 def main():
+    """
+    Calculates the transform from map to odom frame given a detection of a custom ARuCo marker.
+    """
     map_to_odom_stable = False
     rate = rospy.Rate(5)
     filtered_map_2_odom_translation = None
@@ -42,30 +40,30 @@ def main():
                 continue
             T_Odom_Marker = tf_conversions.fromTf(
                 ((odom_2_marker.transform.translation.x,
-                    odom_2_marker.transform.translation.y,
-                    odom_2_marker.transform.translation.z),
-                    (odom_2_marker.transform.rotation.x,
-                     odom_2_marker.transform.rotation.y,
-                     odom_2_marker.transform.rotation.z,
-                     odom_2_marker.transform.rotation.w)))
+                  odom_2_marker.transform.translation.y,
+                  odom_2_marker.transform.translation.z),
+                 (odom_2_marker.transform.rotation.x,
+                  odom_2_marker.transform.rotation.y,
+                  odom_2_marker.transform.rotation.z,
+                  odom_2_marker.transform.rotation.w)))
             T_Map_Marker = tf_conversions.fromTf(
                 ((map_2_marker.transform.translation.x,
-                    map_2_marker.transform.translation.y,
-                    map_2_marker.transform.translation.z),
-                    (map_2_marker.transform.rotation.x,
-                     map_2_marker.transform.rotation.y,
-                     map_2_marker.transform.rotation.z,
-                     map_2_marker.transform.rotation.w)))
+                  map_2_marker.transform.translation.y,
+                  map_2_marker.transform.translation.z),
+                 (map_2_marker.transform.rotation.x,
+                  map_2_marker.transform.rotation.y,
+                  map_2_marker.transform.rotation.z,
+                  map_2_marker.transform.rotation.w)))
             T_Map_Odom = T_Map_Marker * T_Odom_Marker.Inverse()
             map_2_odom.header.frame_id = "map"
             map_2_odom.child_frame_id = "t265_odom_frame"
             ((map_2_odom.transform.translation.x,
-                map_2_odom.transform.translation.y,
-                map_2_odom.transform.translation.z),
-                (map_2_odom.transform.rotation.x,
-                 map_2_odom.transform.rotation.y,
-                 map_2_odom.transform.rotation.z,
-                 map_2_odom.transform.rotation.w)) = tf_conversions.toTf(T_Map_Odom)
+              map_2_odom.transform.translation.y,
+              map_2_odom.transform.translation.z),
+             (map_2_odom.transform.rotation.x,
+              map_2_odom.transform.rotation.y,
+              map_2_odom.transform.rotation.z,
+              map_2_odom.transform.rotation.w)) = tf_conversions.toTf(T_Map_Odom)
 
             # Send Transform after certain time to stabilize detection
             if cnt == 100:
@@ -76,8 +74,8 @@ def main():
         broadcaster.sendTransform(map_2_odom)
 
 
+# A way to run the code only if the file is run directly.
 if __name__ == "__main__":
-
     rospy.init_node('map_to_odom_transformation',
                     anonymous=True, disable_signals=True)
     broadcaster = tf2_ros.StaticTransformBroadcaster()

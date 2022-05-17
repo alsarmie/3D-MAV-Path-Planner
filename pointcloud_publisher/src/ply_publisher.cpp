@@ -12,6 +12,16 @@
 #include <pcl_conversions/pcl_conversions.h>
 //! Class definitions and implementation
 /** Constructor */
+/**
+ * It creates a new
+ * `Ply_publisher` object, which is a class that publishes a point cloud
+ * message to a ROS topic
+ *
+ * @param nodeHandle The ROS node handle.
+ * @param frameID The frame ID of the point cloud.
+ * @param rosTopic The topic name to publish the point cloud to.
+ * @param pubRate The rate at which the point cloud will be published.
+ */
 Ply_publisher::Ply_publisher(ros::NodeHandle *nodeHandle, std::string frameID,
                              std::string rosTopic, ros::Duration pubRate)
     : handle(nodeHandle), pointCloudFrameID(std::move(frameID)),
@@ -27,8 +37,19 @@ Ply_publisher::Ply_publisher(ros::NodeHandle *nodeHandle, std::string frameID,
   ROS_INFO("Point Cloud Publisher created!");
 }
 /** Move semantics*/
+/**
+ * Move constructor.
+ *
+ * @param src The object to move from.
+ */
 Ply_publisher::Ply_publisher(Ply_publisher &&src) noexcept { swap(src, *this); }
 
+/**
+ * A move assignment operator. It is used to move the data from one object to
+ * another.
+ *
+ * @return A reference to the object that was assigned to.
+ */
 Ply_publisher &Ply_publisher::operator=(Ply_publisher &&src) noexcept {
   std::cout << "Point Cloud Publisher move assignment operation.\n";
   swap(src, *this);
@@ -36,6 +57,14 @@ Ply_publisher &Ply_publisher::operator=(Ply_publisher &&src) noexcept {
 }
 
 /** Member functions*/
+
+/**
+ * It loads the parameters from the launch file and sets up the publisher
+ *
+ * @param nodeHandle A pointer to the node handle.
+ *
+ * @return A Ply_publisher object.
+ */
 Ply_publisher Ply_publisher::setup(ros::NodeHandle *nodeHandle) {
   // Point cloud file's absolute path.
   std::string filePath;
@@ -87,10 +116,23 @@ Ply_publisher Ply_publisher::setup(ros::NodeHandle *nodeHandle) {
 
   return publisher;
 }
+/**
+ * It publishes the point cloud
+ *
+ * @param timerEvent The timer event that triggered the callback.
+ */
 void Ply_publisher::publishingCallback(const ros::TimerEvent &timerEvent) {
   if (!publish())
     ROS_ERROR("Could not publish point cloud!");
 }
+/**
+ * It loads a .ply file and
+ * converts it to a ROS message
+ *
+ * @param path The path to the .ply file
+ *
+ * @return A boolean value. true if loading of the file is successful.
+ */
 bool Ply_publisher::loadFile(const std::string &path) {
   if (path.find(".ply") == std::string::npos) {
     ROS_WARN("Provided file format is different from .ply!");
@@ -108,6 +150,12 @@ bool Ply_publisher::loadFile(const std::string &path) {
   ROS_INFO("Successfully loaded point cloud data!");
   return true;
 }
+/**
+ * It publishes the point cloud message to the topic specified in the
+ * constructor
+ *
+ * @return A boolean value.
+ */
 bool Ply_publisher::publish() {
   pointCloudMessage->header.stamp = ros::Time::now();
   pointCloudMessage->header.frame_id = pointCloudFrameID;

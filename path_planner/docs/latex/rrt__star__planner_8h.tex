@@ -1,0 +1,77 @@
+\hypertarget{rrt__star__planner_8h}{}\doxysection{/home/alsarmi/udacity\+\_\+ws/src/3\+D-\/\+M\+A\+V-\/\+Path-\/\+Planner/path\+\_\+planner/include/rrt\+\_\+star\+\_\+planner.h File Reference}
+\label{rrt__star__planner_8h}\index{/home/alsarmi/udacity\_ws/src/3D-\/MAV-\/Path-\/Planner/path\_planner/include/rrt\_star\_planner.h@{/home/alsarmi/udacity\_ws/src/3D-\/MAV-\/Path-\/Planner/path\_planner/include/rrt\_star\_planner.h}}
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$deque$>$}\newline
+{\ttfamily \#include $<$exception$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$ufo/map/occupancy\+\_\+map\+\_\+color.\+h$>$}\newline
+Include dependency graph for rrt\+\_\+star\+\_\+planner.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rrt__star__planner_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{rrt__star__planner_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1RRTStar}{global\+Planner\+::\+R\+R\+T\+::\+R\+R\+T\+Star$<$ Map, Bounding\+Volume, Coordinates, Path $>$}}
+\item 
+struct \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1RRTStar_1_1Node}{global\+Planner\+::\+R\+R\+T\+::\+R\+R\+T\+Star$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::\+Node}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceglobalPlanner}{global\+Planner}}
+\begin{DoxyCompactList}\small\item\em Created by Alejandro Sarmiento. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespaceglobalPlanner_1_1RRT}{global\+Planner\+::\+R\+RT}}
+\begin{DoxyCompactList}\small\item\em The implementation of I\+B-\/\+R\+R\+T$\ast$ is based on Intelligent bidirectional rapidly-\/exploring random trees for optimal motion planning in complex cluttered environments\+: \href{https://arxiv.org/pdf/1703.08944.pdf}{\texttt{ https\+://arxiv.\+org/pdf/1703.\+08944.\+pdf}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{rrt__star__planner_8h_a201e1baa779a3cacfb4f6038b8e0bfff}{Sphere}} = ufo\+::geometry\+::\+Sphere
+\item 
+using \mbox{\hyperlink{rrt__star__planner_8h_aedfd33b73bdb2b275dde2b5a71570053}{Point}} = ufo\+::math\+::\+Vector3
+\item 
+using \mbox{\hyperlink{rrt__star__planner_8h_a1ce745853086472df7f45256007ee619}{Color\+Map}} = ufo\+::map\+::\+Occupancy\+Map\+Color
+\item 
+using \mbox{\hyperlink{rrt__star__planner_8h_a8db2bc2fa1041b121f14c02d22a504f1}{Nav\+Path}} = std\+::vector$<$ \mbox{\hyperlink{rrt__star__planner_8h_aedfd33b73bdb2b275dde2b5a71570053}{Point}} $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{rrt__star__planner_8h_a1ce745853086472df7f45256007ee619}\label{rrt__star__planner_8h_a1ce745853086472df7f45256007ee619}} 
+\index{rrt\_star\_planner.h@{rrt\_star\_planner.h}!ColorMap@{ColorMap}}
+\index{ColorMap@{ColorMap}!rrt\_star\_planner.h@{rrt\_star\_planner.h}}
+\doxysubsubsection{\texorpdfstring{ColorMap}{ColorMap}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{rrt__star__planner_8h_a1ce745853086472df7f45256007ee619}{Color\+Map}} =  ufo\+::map\+::\+Occupancy\+Map\+Color}
+
+\mbox{\Hypertarget{rrt__star__planner_8h_a8db2bc2fa1041b121f14c02d22a504f1}\label{rrt__star__planner_8h_a8db2bc2fa1041b121f14c02d22a504f1}} 
+\index{rrt\_star\_planner.h@{rrt\_star\_planner.h}!NavPath@{NavPath}}
+\index{NavPath@{NavPath}!rrt\_star\_planner.h@{rrt\_star\_planner.h}}
+\doxysubsubsection{\texorpdfstring{NavPath}{NavPath}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{rrt__star__planner_8h_a8db2bc2fa1041b121f14c02d22a504f1}{Nav\+Path}} =  std\+::vector$<$\mbox{\hyperlink{rrt__star__planner_8h_aedfd33b73bdb2b275dde2b5a71570053}{Point}}$>$}
+
+\mbox{\Hypertarget{rrt__star__planner_8h_aedfd33b73bdb2b275dde2b5a71570053}\label{rrt__star__planner_8h_aedfd33b73bdb2b275dde2b5a71570053}} 
+\index{rrt\_star\_planner.h@{rrt\_star\_planner.h}!Point@{Point}}
+\index{Point@{Point}!rrt\_star\_planner.h@{rrt\_star\_planner.h}}
+\doxysubsubsection{\texorpdfstring{Point}{Point}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{rrt__star__planner_8h_aedfd33b73bdb2b275dde2b5a71570053}{Point}} =  ufo\+::math\+::\+Vector3}
+
+\mbox{\Hypertarget{rrt__star__planner_8h_a201e1baa779a3cacfb4f6038b8e0bfff}\label{rrt__star__planner_8h_a201e1baa779a3cacfb4f6038b8e0bfff}} 
+\index{rrt\_star\_planner.h@{rrt\_star\_planner.h}!Sphere@{Sphere}}
+\index{Sphere@{Sphere}!rrt\_star\_planner.h@{rrt\_star\_planner.h}}
+\doxysubsubsection{\texorpdfstring{Sphere}{Sphere}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{rrt__star__planner_8h_a201e1baa779a3cacfb4f6038b8e0bfff}{Sphere}} =  ufo\+::geometry\+::\+Sphere}
+

@@ -1,0 +1,236 @@
+\hypertarget{classglobalPlanner_1_1CatmullRomSpline}{}\doxysection{global\+Planner\+::Catmull\+Rom\+Spline$<$ Point, Path $>$ Class Template Reference}
+\label{classglobalPlanner_1_1CatmullRomSpline}\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+
+
+{\ttfamily \#include $<$path\+\_\+smoothing.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_a1e98eb0f5eb065ead8ef1cb9ff4bd7eb}{Catmull\+Rom\+Spline}} ()
+\item 
+\mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_a8d502cd3cdc292ce4bd74abd7d855703}{Catmull\+Rom\+Spline}} (double alpha\+\_\+, double tension\+\_\+)
+\item 
+\mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_ab5ee4ad1319e147548ee5f8eaf795b5f}{$\sim$\+Catmull\+Rom\+Spline}} ()=default
+\item 
+Path \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_ac7443fc520c5dce3059f72a3b08aacb0}{interpolate}} (double step, Path $\ast$control\+Points)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_ae2ca3637b85c9971e7e6fc9181e5f87e}{padding}} (Path $\ast$control\+Points)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_a79322a4c4015eeea2fa1438ae4ed4832}{tension}} \{0.\+0\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_abe55be1d7d3eb90931a219cd1e92d030}{alpha}} \{0.\+0\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_a96d58e639e93f49c0da62cf9f3d40113}{t01}} \{0.\+0\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_afede4e560a67534339f99f6a87a07d2b}{t12}} \{0.\+0\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_a9a5cc49386681231853aae2cb70ba928}{t23}} \{0.\+0\}
+\item 
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_a9d74dd0148a99e5cc1a1b25733295d8f}{a}}
+\item 
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_ac804893703052744236d7f5904cc83b2}{b}}
+\item 
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_aeeff5521d0c528b8ca0148a980d1eb10}{c}}
+\item 
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_ac86535dbb65f150988a645f22f59a741}{d}}
+\item 
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_acefeb91a7d273a2b8aa1e69a3d5b7836}{m1}}
+\item 
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_a363be67f78dd84018916c31c865ea364}{m2}}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_a3138805d879e024fd67311d48be02581}{time}}
+\item 
+Path \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_abb99f6fc26486f94a420d9d4dd28c7e8}{interpolated\+Path}}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline_a98fe14e2005e263a145b6fbc4c8847fa}{epsilon}} \{0.\+0001\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_a1e98eb0f5eb065ead8ef1cb9ff4bd7eb}\label{classglobalPlanner_1_1CatmullRomSpline_a1e98eb0f5eb065ead8ef1cb9ff4bd7eb}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!CatmullRomSpline@{CatmullRomSpline}}
+\index{CatmullRomSpline@{CatmullRomSpline}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{CatmullRomSpline()}{CatmullRomSpline()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::\mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{Catmull\+Rom\+Spline}}}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Point} & Template parameter for the type of Point data structure (2D/3D). Default ufo\+::math\+::\+Vector3; \\
+\hline
+{\em Path} & Template parameter for the type of Path data structure. Default std\+::deque $<$ufo\+::math\+::\+Vector3$>$; \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_a8d502cd3cdc292ce4bd74abd7d855703}\label{classglobalPlanner_1_1CatmullRomSpline_a8d502cd3cdc292ce4bd74abd7d855703}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!CatmullRomSpline@{CatmullRomSpline}}
+\index{CatmullRomSpline@{CatmullRomSpline}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{CatmullRomSpline()}{CatmullRomSpline()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::\mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{Catmull\+Rom\+Spline}} (\begin{DoxyParamCaption}\item[{double}]{alpha\+\_\+,  }\item[{double}]{tension\+\_\+ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_ab5ee4ad1319e147548ee5f8eaf795b5f}\label{classglobalPlanner_1_1CatmullRomSpline_ab5ee4ad1319e147548ee5f8eaf795b5f}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!````~CatmullRomSpline@{$\sim$CatmullRomSpline}}
+\index{````~CatmullRomSpline@{$\sim$CatmullRomSpline}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$CatmullRomSpline()}{~CatmullRomSpline()}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::$\sim$\mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{Catmull\+Rom\+Spline}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_ac7443fc520c5dce3059f72a3b08aacb0}\label{classglobalPlanner_1_1CatmullRomSpline_ac7443fc520c5dce3059f72a3b08aacb0}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!interpolate@{interpolate}}
+\index{interpolate@{interpolate}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{interpolate()}{interpolate()}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+Path \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::interpolate (\begin{DoxyParamCaption}\item[{double}]{step,  }\item[{Path $\ast$}]{control\+Points }\end{DoxyParamCaption})}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Point} & Template parameter for the type of Point data structure (2D/3D). Default ufo\+::math\+::\+Vector3; \\
+\hline
+{\em Path} & Template parameter for the type of Path data structure. Default std\+::deque $<$ufo\+::math\+::\+Vector3$>$; \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em step} & Interpolation granularity. Number of points to be generated between control points (e.\+g 10.\+0). Number must be $>$ 0.\+0. \\
+\hline
+{\em control\+Points} & Pointer to a path generated by a path planner, used as control points for the spline to be generated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_ae2ca3637b85c9971e7e6fc9181e5f87e}\label{classglobalPlanner_1_1CatmullRomSpline_ae2ca3637b85c9971e7e6fc9181e5f87e}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!padding@{padding}}
+\index{padding@{padding}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{padding()}{padding()}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+void \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::padding (\begin{DoxyParamCaption}\item[{Path $\ast$}]{control\+Points }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Point} & Template parameter for the type of Point data structure (2D/3D). Default ufo\+::math\+::\+Vector3; \\
+\hline
+{\em Path} & Template parameter for the type of Path data structure. Default std\+::deque $<$ufo\+::math\+::\+Vector3$>$; \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em control\+Points} & Pointer to a path generated by a path planner, used as control points for the spline to be generated. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_a9d74dd0148a99e5cc1a1b25733295d8f}\label{classglobalPlanner_1_1CatmullRomSpline_a9d74dd0148a99e5cc1a1b25733295d8f}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!a@{a}}
+\index{a@{a}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::a\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_abe55be1d7d3eb90931a219cd1e92d030}\label{classglobalPlanner_1_1CatmullRomSpline_abe55be1d7d3eb90931a219cd1e92d030}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!alpha@{alpha}}
+\index{alpha@{alpha}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::alpha \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_ac804893703052744236d7f5904cc83b2}\label{classglobalPlanner_1_1CatmullRomSpline_ac804893703052744236d7f5904cc83b2}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!b@{b}}
+\index{b@{b}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::b\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_aeeff5521d0c528b8ca0148a980d1eb10}\label{classglobalPlanner_1_1CatmullRomSpline_aeeff5521d0c528b8ca0148a980d1eb10}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!c@{c}}
+\index{c@{c}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::c\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_ac86535dbb65f150988a645f22f59a741}\label{classglobalPlanner_1_1CatmullRomSpline_ac86535dbb65f150988a645f22f59a741}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!d@{d}}
+\index{d@{d}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{d}{d}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::d\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_a98fe14e2005e263a145b6fbc4c8847fa}\label{classglobalPlanner_1_1CatmullRomSpline_a98fe14e2005e263a145b6fbc4c8847fa}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!epsilon@{epsilon}}
+\index{epsilon@{epsilon}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{epsilon}{epsilon}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::epsilon \{0.\+0001\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_abb99f6fc26486f94a420d9d4dd28c7e8}\label{classglobalPlanner_1_1CatmullRomSpline_abb99f6fc26486f94a420d9d4dd28c7e8}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!interpolatedPath@{interpolatedPath}}
+\index{interpolatedPath@{interpolatedPath}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{interpolatedPath}{interpolatedPath}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+Path \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::interpolated\+Path\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_acefeb91a7d273a2b8aa1e69a3d5b7836}\label{classglobalPlanner_1_1CatmullRomSpline_acefeb91a7d273a2b8aa1e69a3d5b7836}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!m1@{m1}}
+\index{m1@{m1}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{m1}{m1}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::m1\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_a363be67f78dd84018916c31c865ea364}\label{classglobalPlanner_1_1CatmullRomSpline_a363be67f78dd84018916c31c865ea364}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!m2@{m2}}
+\index{m2@{m2}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{m2}{m2}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::m2\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_a96d58e639e93f49c0da62cf9f3d40113}\label{classglobalPlanner_1_1CatmullRomSpline_a96d58e639e93f49c0da62cf9f3d40113}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!t01@{t01}}
+\index{t01@{t01}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{t01}{t01}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::t01 \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_afede4e560a67534339f99f6a87a07d2b}\label{classglobalPlanner_1_1CatmullRomSpline_afede4e560a67534339f99f6a87a07d2b}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!t12@{t12}}
+\index{t12@{t12}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{t12}{t12}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::t12 \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_a9a5cc49386681231853aae2cb70ba928}\label{classglobalPlanner_1_1CatmullRomSpline_a9a5cc49386681231853aae2cb70ba928}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!t23@{t23}}
+\index{t23@{t23}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{t23}{t23}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::t23 \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_a79322a4c4015eeea2fa1438ae4ed4832}\label{classglobalPlanner_1_1CatmullRomSpline_a79322a4c4015eeea2fa1438ae4ed4832}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!tension@{tension}}
+\index{tension@{tension}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{tension}{tension}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+double \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::tension \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1CatmullRomSpline_a3138805d879e024fd67311d48be02581}\label{classglobalPlanner_1_1CatmullRomSpline_a3138805d879e024fd67311d48be02581}} 
+\index{globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}!time@{time}}
+\index{time@{time}!globalPlanner::CatmullRomSpline$<$ Point, Path $>$@{globalPlanner::CatmullRomSpline$<$ Point, Path $>$}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily template$<$typename Point , typename Path $>$ \\
+std\+::vector$<$double$>$ \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, Path $>$\+::time\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/alsarmi/udacity\+\_\+ws/src/3\+D-\/\+M\+A\+V-\/\+Path-\/\+Planner/path\+\_\+planner/include/\mbox{\hyperlink{path__smoothing_8h}{path\+\_\+smoothing.\+h}}\end{DoxyCompactItemize}

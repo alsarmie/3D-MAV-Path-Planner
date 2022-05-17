@@ -1,0 +1,71 @@
+\hypertarget{path__planner__node_8h}{}\doxysection{/home/alsarmi/udacity\+\_\+ws/src/3\+D-\/\+M\+A\+V-\/\+Path-\/\+Planner/path\+\_\+planner/include/path\+\_\+planner\+\_\+node.h File Reference}
+\label{path__planner__node_8h}\index{/home/alsarmi/udacity\_ws/src/3D-\/MAV-\/Path-\/Planner/path\_planner/include/path\_planner\_node.h@{/home/alsarmi/udacity\_ws/src/3D-\/MAV-\/Path-\/Planner/path\_planner/include/path\_planner\_node.h}}
+{\ttfamily \#include \char`\"{}b\+\_\+rrt\+\_\+star\+\_\+planner.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ib\+\_\+rrt\+\_\+star\+\_\+planner.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}parallel\+\_\+ib\+\_\+rrt\+\_\+star\+\_\+planner.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}path\+\_\+smoothing.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rrt\+\_\+star\+\_\+planner.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$geometry\+\_\+msgs/\+Point\+Stamped.\+h$>$}\newline
+{\ttfamily \#include $<$geometry\+\_\+msgs/\+Pose\+Stamped.\+h$>$}\newline
+{\ttfamily \#include $<$nav\+\_\+msgs/\+Path.\+h$>$}\newline
+{\ttfamily \#include $<$tf2\+\_\+geometry\+\_\+msgs/tf2\+\_\+geometry\+\_\+msgs.\+h$>$}\newline
+{\ttfamily \#include $<$ufo/map/occupancy\+\_\+map\+\_\+color.\+h$>$}\newline
+{\ttfamily \#include $<$ufomap\+\_\+msgs/\+U\+F\+O\+Map\+Stamped.\+h$>$}\newline
+{\ttfamily \#include $<$ufomap\+\_\+msgs/conversions.\+h$>$}\newline
+{\ttfamily \#include $<$visualization\+\_\+msgs/\+Marker.\+h$>$}\newline
+{\ttfamily \#include $<$visualization\+\_\+msgs/\+Marker\+Array.\+h$>$}\newline
+Include dependency graph for path\+\_\+planner\+\_\+node.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{path__planner__node_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{path__planner__node_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structglobalPlanner_1_1overload}{global\+Planner\+::overload$<$ Ts $>$}}
+\item 
+class \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner}{global\+Planner\+::path\+Planner}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceglobalPlanner}{global\+Planner}}
+\begin{DoxyCompactList}\small\item\em Created by Alejandro Sarmiento. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}{global\+Planner\+::\+Sphere}} = ufo\+::geometry\+::\+Sphere
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{global\+Planner\+::\+Point}} = ufo\+::math\+::\+Vector3
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_aceb717592b1bac801482e978f8c29d50}{global\+Planner\+::\+Points}} = std\+::vector$<$ ufo\+::math\+::\+Vector3 $>$
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{global\+Planner\+::\+Color\+Map}} = ufo\+::map\+::\+Occupancy\+Map\+Color
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{global\+Planner\+::\+Nav\+Path}} = std\+::deque$<$ \mbox{\hyperlink{rrt__star__planner_8h_aedfd33b73bdb2b275dde2b5a71570053}{Point}} $>$
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a9d526081f07f361d9384ef4252326da4}{global\+Planner\+::\+I\+B\+R\+RT}} = R\+R\+T\+::\+I\+B\+R\+RT$<$ \mbox{\hyperlink{rrt__star__planner_8h_a1ce745853086472df7f45256007ee619}{Color\+Map}}, \mbox{\hyperlink{rrt__star__planner_8h_a201e1baa779a3cacfb4f6038b8e0bfff}{Sphere}}, \mbox{\hyperlink{rrt__star__planner_8h_aedfd33b73bdb2b275dde2b5a71570053}{Point}}, \mbox{\hyperlink{rrt__star__planner_8h_a8db2bc2fa1041b121f14c02d22a504f1}{Nav\+Path}} $>$
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_ad76a196fff56b9857cf6b69355db79da}{global\+Planner\+::\+P\+I\+B\+R\+RT}} = R\+R\+T\+::\+P\+I\+B\+R\+RT$<$ \mbox{\hyperlink{rrt__star__planner_8h_a1ce745853086472df7f45256007ee619}{Color\+Map}}, \mbox{\hyperlink{rrt__star__planner_8h_a201e1baa779a3cacfb4f6038b8e0bfff}{Sphere}}, \mbox{\hyperlink{rrt__star__planner_8h_aedfd33b73bdb2b275dde2b5a71570053}{Point}}, \mbox{\hyperlink{rrt__star__planner_8h_a8db2bc2fa1041b121f14c02d22a504f1}{Nav\+Path}} $>$
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_ad19d88786f2d25f86f2288df7f508c37}{global\+Planner\+::\+B\+R\+RT}} = R\+R\+T\+::\+B\+R\+RT$<$ \mbox{\hyperlink{rrt__star__planner_8h_a1ce745853086472df7f45256007ee619}{Color\+Map}}, \mbox{\hyperlink{rrt__star__planner_8h_a201e1baa779a3cacfb4f6038b8e0bfff}{Sphere}}, \mbox{\hyperlink{rrt__star__planner_8h_aedfd33b73bdb2b275dde2b5a71570053}{Point}}, \mbox{\hyperlink{rrt__star__planner_8h_a8db2bc2fa1041b121f14c02d22a504f1}{Nav\+Path}} $>$
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a3c4eb2a6f1769e74dbdd52792b61e5c0}{global\+Planner\+::\+R\+R\+TS}} = R\+R\+T\+::\+R\+R\+T\+Star$<$ \mbox{\hyperlink{rrt__star__planner_8h_a1ce745853086472df7f45256007ee619}{Color\+Map}}, \mbox{\hyperlink{rrt__star__planner_8h_a201e1baa779a3cacfb4f6038b8e0bfff}{Sphere}}, \mbox{\hyperlink{rrt__star__planner_8h_aedfd33b73bdb2b275dde2b5a71570053}{Point}}, \mbox{\hyperlink{rrt__star__planner_8h_a8db2bc2fa1041b121f14c02d22a504f1}{Nav\+Path}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class... Ts$>$ }\\\mbox{\hyperlink{namespaceglobalPlanner_a2a042fc04a2af7a21d1538463f09b425}{global\+Planner\+::overload}} (Ts...) -\/$>$ overload$<$ Ts... $>$
+\end{DoxyCompactItemize}

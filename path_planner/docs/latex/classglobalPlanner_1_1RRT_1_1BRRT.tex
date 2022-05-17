@@ -1,0 +1,918 @@
+\hypertarget{classglobalPlanner_1_1RRT_1_1BRRT}{}\doxysection{global\+Planner\+::R\+RT\+::B\+R\+RT$<$ Map, Bounding\+Volume, Coordinates, Path $>$ Class Template Reference}
+\label{classglobalPlanner_1_1RRT_1_1BRRT}\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+
+
+{\ttfamily \#include $<$b\+\_\+rrt\+\_\+star\+\_\+planner.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_ac326031347cf729bd9fd7729c17493db}{B\+R\+RT}} ()=default
+\item 
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_abadf0caeb5e454b203543b6178c08a0d}{B\+R\+RT}} (Map $\ast$map\+\_\+, double radius\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor of B-\/\+R\+RT $\ast$ class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a99509ca8dea14ca0234340742be7ac9d}{B\+R\+RT}} (Map $\ast$map\+\_\+, Coordinates const \&map\+Min\+Boundary\+\_\+, Coordinates const \&map\+Max\+Boundary\+\_\+, double step, double search\+Radius\+\_\+, double radius\+\_\+, long iterations\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor of B-\/\+R\+RT $\ast$ class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a07e9be77da04feb8c8dfc7d2b5cf30bc}{B\+R\+RT}} (Map $\ast$map\+\_\+, Coordinates const \&map\+Min\+Boundary\+\_\+, Coordinates const \&map\+Max\+Boundary\+\_\+, double step, double search\+Radius\+\_\+, double radius\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{namespaceglobalPlanner_1_1RRT}{R\+RT}} $\ast$ class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a2ffbd8a40de1aa7d26af5d5389a3dc5d}{B\+R\+RT}} (\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} const \&src)=delete
+\item 
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} \& \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a7b294fc35a739139a421757b8fc4723b}{operator=}} (\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} const \&src)=delete
+\item 
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a84266232961517343ee886e3fc668e7b}{B\+R\+RT}} (\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} \&\&src) noexcept
+\begin{DoxyCompactList}\small\item\em Move constructor for B-\/\+R\+RT $\ast$ class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} \& \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a06688f4fb4217e93ea496774af37ba37}{operator=}} (\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} \&\&src) noexcept
+\begin{DoxyCompactList}\small\item\em Move assignment operator for the B-\/\+R\+RT $\ast$ class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_ab580c4dd7cbab121b0418eb262a318d0}{$\sim$\+B\+R\+RT}} ()
+\begin{DoxyCompactList}\small\item\em Default destructor of B-\/\+R\+RT $\ast$ class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a92eefad7d304f1ec63abde6e77bf1a35}{set\+Map\+Boundaries}} (Coordinates const \&map\+Min\+Boundary\+\_\+, Coordinates const \&map\+Max\+Boundary\+\_\+)
+\item 
+Path $\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a9ba04cee5c68e96ef97161476244f034}{compute\+Path}} (Coordinates const \&start\+\_\+, Coordinates const \&goal\+\_\+)
+\begin{DoxyCompactList}\small\item\em Implementation of the B-\/\+R\+R\+T$\ast$ algorithm\textquotesingle{}s main body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a47d6fecba2f53a550c4c09b05089f379}{get\+Map\+Limits}} ()
+\begin{DoxyCompactList}\small\item\em This function tries to get the map boundaries from the Ufo\+Map. \end{DoxyCompactList}\item 
+Coordinates \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a2af1c28faac2f6bca49bb279e33a82db}{sample}} ()
+\begin{DoxyCompactList}\small\item\em Core I\+B-\/\+R\+R\+T$\ast$ components. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_aa75e19b3858ca98c143bc18ac0ab77c9}{nearest\+Vertex}} (Coordinates $\ast$x\+Rand, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$tree)
+\begin{DoxyCompactList}\small\item\em This function returns the nearest vertex in the tree from any given state x ∈ X. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_addca1a4426b0b236ceb134d7d9b45123}{near\+Vertices}} (Coordinates $\ast$x\+Rand, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$tree)
+\begin{DoxyCompactList}\small\item\em This function populates the nearby std\+::vector with the set of near vertices to a given sample coordinate (x\+Rand) within a ball of radius R centered at x\+Rand. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a6d7d16e15c7a08b43a6fdf202d90d2c1}{choose\+Best\+Parent}} (Coordinates $\ast$x\+Rand, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$tree)
+\begin{DoxyCompactList}\small\item\em This function chooses the best parent of the new vertex x\+Rand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a297594ed470577e1352e2d70e6020c22}{rewire}} (std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$tree)
+\begin{DoxyCompactList}\small\item\em Rewires the tree of vertices(\+Nodes). \end{DoxyCompactList}\item 
+Coordinates \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_aa044e2dd665311acaae504662b97f6bc}{extend}} (Coordinates $\ast$x1, Coordinates $\ast$x2)
+\begin{DoxyCompactList}\small\item\em This function generates a new Coordinate in the direction from x1 to x2. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a4219f7d153b1e5f6a0b2799079e23e48}{expand\+Tree}} (\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$x\+Min, Coordinates $\ast$x\+New, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$tree)
+\begin{DoxyCompactList}\small\item\em Expands current tree (A or B). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_aacbe43a1272fb622f47fd1f57ac9e963}{connect}} (Coordinates $\ast$x1, Coordinates $\ast$x2, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$tree)
+\begin{DoxyCompactList}\small\item\em Heuristic function employed by B-\/\+R\+RT $\ast$, main responsible for generating a path. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_ad70127d29ae5fa66f39efe70cdf51934}{is\+In\+Collision}} (Coordinates const \&center)
+\begin{DoxyCompactList}\small\item\em Collision checking function considering a specific bounding volume. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_ad52a4a831f56a3a82891277c4d372f85}{is\+In\+Collision}} (Coordinates const \&goal\+\_\+, Coordinates const \&position\+\_\+)
+\begin{DoxyCompactList}\small\item\em Checks if the linear path between the goal and the position is in collision with occupied space. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a4326cc3a145d0945f45cc7a316f03b45}{get\+Closest\+Voxel}} (Coordinates const \&src, Coordinates \&dst)
+\begin{DoxyCompactList}\small\item\em Finding the closest voxel to the source point. \end{DoxyCompactList}\item 
+Path \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a3f1ec0b9ca86589235c78979a6f7ac21}{trace\+Back}} (\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$node, double \&cost)
+\begin{DoxyCompactList}\small\item\em Track back the path from the provided \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} pointer to the last available parent. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$ $>$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_aa0c67213fcdbdd43e94bd5c55f99dd7e}{treeA}}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$ $>$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_ae9d0f94d5d4eca2954f582bd16e20f9d}{treeB}}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$ $>$ $\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a6e77f4fb35b1f3fb543ca7ba91ad29cd}{tree\+A\+Ptr}}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$ $>$ $\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a86d19b959e88f2a5ec922627d3a613bf}{tree\+B\+Ptr}}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_ac39f5171bb2cbf1100208e50b627e255}{sigmaF}} \{std\+::numeric\+\_\+limits$<$double$>$\+::max()\}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$ $>$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_ad4f98d16d3e9a39245c96074d6944917}{nearby}}
+\item 
+std\+::vector$<$ std\+::pair$<$ double, \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$ $>$ $>$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_ab3f5a5c83c8697c5a99d2bbb60bea5d0}{ls}}
+\item 
+Path \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_ae32613af02690ac9fbb27057bd551f11}{path}} \{\}
+\item 
+Map $\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a11c5ea08cf8a2df4708ffc9ebf9f4dad}{map}} \{nullptr\}
+\item 
+long \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a1851109105059c782ece4b30a7dcfb32}{iterations}} \{10000\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_afb40ad0254bf102ab7b5686b556c3db4}{search\+Radius}} \{0.\+0\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a27c664e836d77257a7b40f672fd4cfc6}{delta\+Step}} \{0.\+0\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a0c2fbe4caf5808eda9f8865a2b9230b5}{radius}} \{0.\+0\}
+\item 
+Coordinates \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_a9355f0c53fd67087db5a72528a49be53}{map\+Min\+Boundary}}
+\item 
+Coordinates \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_afcacedee385c660d3a85af7390d3bb98}{map\+Max\+Boundary}}
+\item 
+std\+::mt19937 \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_abd46a0195a81a5cd6ebe79423825441d}{random\+Engine}}
+\item 
+std\+::uniform\+\_\+real\+\_\+distribution \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_acb4ce91c55e720fbc3c2efd787f2e876}{xrand}}
+\item 
+std\+::uniform\+\_\+real\+\_\+distribution \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_abb7a89bedceac94f5a585886481d0f73}{yrand}}
+\item 
+std\+::uniform\+\_\+real\+\_\+distribution \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_abd5823aefa3ab5095f86f701a162d1fc}{zrand}}
+\item 
+std\+::uniform\+\_\+real\+\_\+distribution \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_ae6d697dff8b141eb2ab910ad208b406a}{rnd}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT_ad472fee1d91a8541af480ad4ff7d545d}{swap}} (\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} \&src, \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} \&dst)
+\begin{DoxyCompactList}\small\item\em Friend function that swaps the values of two \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1RRTStar}{R\+R\+T\+Star}} objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_ac326031347cf729bd9fd7729c17493db}\label{classglobalPlanner_1_1RRT_1_1BRRT_ac326031347cf729bd9fd7729c17493db}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!BRRT@{BRRT}}
+\index{BRRT@{BRRT}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{BRRT()}{BRRT()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_abadf0caeb5e454b203543b6178c08a0d}\label{classglobalPlanner_1_1RRT_1_1BRRT_abadf0caeb5e454b203543b6178c08a0d}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!BRRT@{BRRT}}
+\index{BRRT@{BRRT}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{BRRT()}{BRRT()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} (\begin{DoxyParamCaption}\item[{Map $\ast$}]{map\+\_\+,  }\item[{double}]{radius\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Constructor of B-\/\+R\+RT $\ast$ class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em map\+\_\+} & Pointer to map resource. \\
+\hline
+{\em radius\+\_\+} & Radius of the agent (sphere). The sphere represents the volume occupied by a robot/\+M\+AV. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a99509ca8dea14ca0234340742be7ac9d}\label{classglobalPlanner_1_1RRT_1_1BRRT_a99509ca8dea14ca0234340742be7ac9d}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!BRRT@{BRRT}}
+\index{BRRT@{BRRT}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{BRRT()}{BRRT()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} (\begin{DoxyParamCaption}\item[{Map $\ast$}]{map\+\_\+,  }\item[{Coordinates const \&}]{map\+Min\+Boundary\+\_\+,  }\item[{Coordinates const \&}]{map\+Max\+Boundary\+\_\+,  }\item[{double}]{step,  }\item[{double}]{search\+Radius\+\_\+,  }\item[{double}]{radius\+\_\+,  }\item[{long}]{iterations\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Constructor of B-\/\+R\+RT $\ast$ class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em map\+\_\+} & Pointer to map resource. \\
+\hline
+{\em map\+Min\+Boundary\+\_\+} & 3D boundaries of provided map (x,y,z) \\
+\hline
+{\em map\+Max\+Boundary\+\_\+} & 3D boundaries of the provided map (x,y,z) \\
+\hline
+{\em step} & Exploration step (in mts) for B-\/\+R\+RT $\ast$ algorithm. \\
+\hline
+{\em search\+Radius\+\_\+} & Radius used to search for near vertices, centered at random sample. \\
+\hline
+{\em radius\+\_\+} & Radius of the agent (sphere). The sphere represents the volume occupied by a robot/\+M\+AV. \\
+\hline
+{\em iterations\+\_\+} & maximum number of iterations for the B-\/\+R\+RT $\ast$ planner to run. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a07e9be77da04feb8c8dfc7d2b5cf30bc}\label{classglobalPlanner_1_1RRT_1_1BRRT_a07e9be77da04feb8c8dfc7d2b5cf30bc}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!BRRT@{BRRT}}
+\index{BRRT@{BRRT}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{BRRT()}{BRRT()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} (\begin{DoxyParamCaption}\item[{Map $\ast$}]{map\+\_\+,  }\item[{Coordinates const \&}]{map\+Min\+Boundary\+\_\+,  }\item[{Coordinates const \&}]{map\+Max\+Boundary\+\_\+,  }\item[{double}]{step,  }\item[{double}]{search\+Radius\+\_\+,  }\item[{double}]{radius\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Constructor of \mbox{\hyperlink{namespaceglobalPlanner_1_1RRT}{R\+RT}} $\ast$ class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em map\+\_\+} & Pointer to map resource. \\
+\hline
+{\em map\+Min\+Boundary\+\_\+} & 3D boundaries of provided map (x,y,z) \\
+\hline
+{\em map\+Max\+Boundary\+\_\+} & 3D boundaries of the provided map (x,y,z) \\
+\hline
+{\em step} & Exploration step (in mts) for \mbox{\hyperlink{namespaceglobalPlanner_1_1RRT}{R\+RT}} $\ast$ algorithm. \\
+\hline
+{\em search\+Radius\+\_\+} & Radius used to search for near vertices, centered at random sample. \\
+\hline
+{\em radius\+\_\+} & Radius of the agent (sphere). The sphere represents the volume occupied by a robot/\+M\+AV. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a2ffbd8a40de1aa7d26af5d5389a3dc5d}\label{classglobalPlanner_1_1RRT_1_1BRRT_a2ffbd8a40de1aa7d26af5d5389a3dc5d}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!BRRT@{BRRT}}
+\index{BRRT@{BRRT}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{BRRT()}{BRRT()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$ const \&}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a84266232961517343ee886e3fc668e7b}\label{classglobalPlanner_1_1RRT_1_1BRRT_a84266232961517343ee886e3fc668e7b}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!BRRT@{BRRT}}
+\index{BRRT@{BRRT}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{BRRT()}{BRRT()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$ \&\&}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Move constructor for B-\/\+R\+RT $\ast$ class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Source R-\/value reference object of type B-\/\+R\+RT $\ast$. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_ab580c4dd7cbab121b0418eb262a318d0}\label{classglobalPlanner_1_1RRT_1_1BRRT_ab580c4dd7cbab121b0418eb262a318d0}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!````~BRRT@{$\sim$BRRT}}
+\index{````~BRRT@{$\sim$BRRT}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$BRRT()}{~BRRT()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::$\sim$\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default destructor of B-\/\+R\+RT $\ast$ class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a6d7d16e15c7a08b43a6fdf202d90d2c1}\label{classglobalPlanner_1_1RRT_1_1BRRT_a6d7d16e15c7a08b43a6fdf202d90d2c1}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!chooseBestParent@{chooseBestParent}}
+\index{chooseBestParent@{chooseBestParent}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{chooseBestParent()}{chooseBestParent()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::choose\+Best\+Parent (\begin{DoxyParamCaption}\item[{Coordinates $\ast$}]{x\+Rand,  }\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$}]{tree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+This function chooses the best parent of the new vertex x\+Rand. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Rand} & Coordinate pointer to the random vertex generated by the sample process of B-\/\+R\+RT $\ast$ algorithm. \\
+\hline
+{\em tree} & Pointer to current tree of Nodes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} pointer to best parent in current tree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a9ba04cee5c68e96ef97161476244f034}\label{classglobalPlanner_1_1RRT_1_1BRRT_a9ba04cee5c68e96ef97161476244f034}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!computePath@{computePath}}
+\index{computePath@{computePath}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{computePath()}{computePath()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+Path $\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::compute\+Path (\begin{DoxyParamCaption}\item[{Coordinates const \&}]{start\+\_\+,  }\item[{Coordinates const \&}]{goal\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Implementation of the B-\/\+R\+R\+T$\ast$ algorithm\textquotesingle{}s main body. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+} & Start coordinate (2D/3D) \\
+\hline
+{\em goal\+\_\+} & Goal coordinate (2D/3D) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to generated path between start and goal coordinates. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_aacbe43a1272fb622f47fd1f57ac9e963}\label{classglobalPlanner_1_1RRT_1_1BRRT_aacbe43a1272fb622f47fd1f57ac9e963}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!connect@{connect}}
+\index{connect@{connect}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::connect (\begin{DoxyParamCaption}\item[{Coordinates $\ast$}]{x1,  }\item[{Coordinates $\ast$}]{x2,  }\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$}]{tree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Heuristic function employed by B-\/\+R\+RT $\ast$, main responsible for generating a path. 
+
+X1 plays the role of xrand while the set of near vertices is computed from the other tree. After computing a set of near vertices from tree b, the procedure Get\+Sorted\+List is executed, and the best vertex is selected from the sorted list such that it provides collision-\/free low-\/cost connection between the trees Ta, Tb. Finally, this procedure ends by generating and returning the end-\/to-\/end feasible path solution, connecting xinit and Xgoal. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x1} & Coordinate pointer \\
+\hline
+{\em x2} & Coordinate pointer \\
+\hline
+{\em tree} & Pointer to current tree of Nodes. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a4219f7d153b1e5f6a0b2799079e23e48}\label{classglobalPlanner_1_1RRT_1_1BRRT_a4219f7d153b1e5f6a0b2799079e23e48}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!expandTree@{expandTree}}
+\index{expandTree@{expandTree}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{expandTree()}{expandTree()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::expand\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$}]{x\+Min,  }\item[{Coordinates $\ast$}]{x\+New,  }\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$}]{tree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Expands current tree (A or B). 
+
+Inserts x\+New coordinates into a new node (vertex) and into the tree. x\+Min is set as x\+New best parent. A rewire process is run on the tree to determine if the new node serves as the best parent for near nodes. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Min} & Pointer to the best parent vertex. \\
+\hline
+{\em x\+New} & Coordinates of the new \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} to be added to the current tree. \\
+\hline
+{\em tree} & Pointer to current tree of Nodes. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_aa044e2dd665311acaae504662b97f6bc}\label{classglobalPlanner_1_1RRT_1_1BRRT_aa044e2dd665311acaae504662b97f6bc}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!extend@{extend}}
+\index{extend@{extend}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{extend()}{extend()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+Coordinates \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::extend (\begin{DoxyParamCaption}\item[{Coordinates $\ast$}]{x1,  }\item[{Coordinates $\ast$}]{x2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+This function generates a new Coordinate in the direction from x1 to x2. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x1} & \\
+\hline
+{\em x2} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns a new Coordinate xnew ∈ R$^\wedge$n such that xnew is closer to x2 (x\+Rand) than x1 in the direction from x1 to x2. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a4326cc3a145d0945f45cc7a316f03b45}\label{classglobalPlanner_1_1RRT_1_1BRRT_a4326cc3a145d0945f45cc7a316f03b45}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!getClosestVoxel@{getClosestVoxel}}
+\index{getClosestVoxel@{getClosestVoxel}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{getClosestVoxel()}{getClosestVoxel()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::get\+Closest\+Voxel (\begin{DoxyParamCaption}\item[{Coordinates const \&}]{src,  }\item[{Coordinates \&}]{dst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Finding the closest voxel to the source point. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Origin Coordinate \\
+\hline
+{\em dst} & Coordinate of free space type closest to the src coordinate. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a47d6fecba2f53a550c4c09b05089f379}\label{classglobalPlanner_1_1RRT_1_1BRRT_a47d6fecba2f53a550c4c09b05089f379}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!getMapLimits@{getMapLimits}}
+\index{getMapLimits@{getMapLimits}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{getMapLimits()}{getMapLimits()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::get\+Map\+Limits\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+This function tries to get the map boundaries from the Ufo\+Map. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_ad70127d29ae5fa66f39efe70cdf51934}\label{classglobalPlanner_1_1RRT_1_1BRRT_ad70127d29ae5fa66f39efe70cdf51934}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!isInCollision@{isInCollision}}
+\index{isInCollision@{isInCollision}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{isInCollision()}{isInCollision()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+bool \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::is\+In\+Collision (\begin{DoxyParamCaption}\item[{Coordinates const \&}]{center }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Collision checking function considering a specific bounding volume. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em center} & Coordinate of the center of a sphere of radius R. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean. True if there is a collision with occupied space. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_ad52a4a831f56a3a82891277c4d372f85}\label{classglobalPlanner_1_1RRT_1_1BRRT_ad52a4a831f56a3a82891277c4d372f85}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!isInCollision@{isInCollision}}
+\index{isInCollision@{isInCollision}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{isInCollision()}{isInCollision()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+bool \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::is\+In\+Collision (\begin{DoxyParamCaption}\item[{Coordinates const \&}]{goal\+\_\+,  }\item[{Coordinates const \&}]{position\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if the linear path between the goal and the position is in collision with occupied space. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em goal\+\_\+} & Target coordinate \\
+\hline
+{\em position\+\_\+} & Current coordinate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean. True if there is a collision with occupied space along the trajectory between position\+\_\+ and goal\+\_\+. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_aa75e19b3858ca98c143bc18ac0ab77c9}\label{classglobalPlanner_1_1RRT_1_1BRRT_aa75e19b3858ca98c143bc18ac0ab77c9}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!nearestVertex@{nearestVertex}}
+\index{nearestVertex@{nearestVertex}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{nearestVertex()}{nearestVertex()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::nearest\+Vertex (\begin{DoxyParamCaption}\item[{Coordinates $\ast$}]{x\+Rand,  }\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$}]{tree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+This function returns the nearest vertex in the tree from any given state x ∈ X. 
+
+Given the tree T = (V, E), the nearest vertex procedure can be defined as\+: Nearest(\+T, x) \+:= argminv∈V d(x, v) $\vert$→ xmin. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Rand} & Coordinate pointer to the random vertex generated by the sample process of B-\/\+R\+RT $\ast$ algorithm. \\
+\hline
+{\em tree} & Pointer to a specific tree of Nodes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} pointer to the nearest vertex of the tree based on Euclidean distance. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_addca1a4426b0b236ceb134d7d9b45123}\label{classglobalPlanner_1_1RRT_1_1BRRT_addca1a4426b0b236ceb134d7d9b45123}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!nearVertices@{nearVertices}}
+\index{nearVertices@{nearVertices}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{nearVertices()}{nearVertices()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::near\+Vertices (\begin{DoxyParamCaption}\item[{Coordinates $\ast$}]{x\+Rand,  }\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$}]{tree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+This function populates the nearby std\+::vector with the set of near vertices to a given sample coordinate (x\+Rand) within a ball of radius R centered at x\+Rand. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Rand} & Coordinate pointer to the random vertex generated by the sample process of B-\/\+R\+RT $\ast$ algorithm. \\
+\hline
+{\em tree} & Pointer to tree of Nodes. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a06688f4fb4217e93ea496774af37ba37}\label{classglobalPlanner_1_1RRT_1_1BRRT_a06688f4fb4217e93ea496774af37ba37}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$ \& \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$ \&\&}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Move assignment operator for the B-\/\+R\+RT $\ast$ class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Source R-\/value reference object of type B-\/\+R\+RT $\ast$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to new object of class B-\/\+R\+RT $\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a7b294fc35a739139a421757b8fc4723b}\label{classglobalPlanner_1_1RRT_1_1BRRT_a7b294fc35a739139a421757b8fc4723b}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}}\& \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$ const \&}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a297594ed470577e1352e2d70e6020c22}\label{classglobalPlanner_1_1RRT_1_1BRRT_a297594ed470577e1352e2d70e6020c22}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!rewire@{rewire}}
+\index{rewire@{rewire}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{rewire()}{rewire()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::rewire (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $>$$>$ $\ast$}]{tree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Rewires the tree of vertices(\+Nodes). 
+
+After successfully inserting a new vertex into the tree, this function sets the new vertex as parent of nearby vertices if the cost of traveling to the nearby vertices is lower through the new vertex than through its current parent. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em tree} & Pointer to current tree of Nodes. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a2af1c28faac2f6bca49bb279e33a82db}\label{classglobalPlanner_1_1RRT_1_1BRRT_a2af1c28faac2f6bca49bb279e33a82db}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!sample@{sample}}
+\index{sample@{sample}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+Coordinates \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::sample\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Core I\+B-\/\+R\+R\+T$\ast$ components. 
+
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1RRTStar}{R\+R\+T\+Star}} components
+
+Main sample function used in B-\/\+R\+RT $\ast$ algorithm. Returns an independent and uniformly distributed random sample from the map space, i.\+e., xrand ∈ Xmap. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+Independent and uniformly distributed random sample from the map space. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a92eefad7d304f1ec63abde6e77bf1a35}\label{classglobalPlanner_1_1RRT_1_1BRRT_a92eefad7d304f1ec63abde6e77bf1a35}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!setMapBoundaries@{setMapBoundaries}}
+\index{setMapBoundaries@{setMapBoundaries}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{setMapBoundaries()}{setMapBoundaries()}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::set\+Map\+Boundaries (\begin{DoxyParamCaption}\item[{Coordinates const \&}]{map\+Min\+Boundary\+\_\+,  }\item[{Coordinates const \&}]{map\+Max\+Boundary\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a3f1ec0b9ca86589235c78979a6f7ac21}\label{classglobalPlanner_1_1RRT_1_1BRRT_a3f1ec0b9ca86589235c78979a6f7ac21}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!traceBack@{traceBack}}
+\index{traceBack@{traceBack}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{traceBack()}{traceBack()}}
+{\footnotesize\ttfamily template$<$class Map , class Bounding\+Volume , class Coordinates , class Path $>$ \\
+Path \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::trace\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$}]{node,  }\item[{double \&}]{cost }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Track back the path from the provided \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} pointer to the last available parent. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Map} & Template parameter, specifies the Map type. \\
+\hline
+{\em Bounding\+Volume} & Template parameter, specifies the type of bounding volume to check for collisions in a map. \\
+\hline
+{\em Coordinates} & Template parameter, specifies the type of coordinates data structure (2D/3D) \\
+\hline
+{\em Path} & Template parameter, specifies path type, default std\+::deque of ufo\+::math\+::\+Vector3 \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em node} & Pointer to a Node/vertex in tree A or B. \\
+\hline
+{\em cost} & Reference to cost variable. Used to store the cost of the tracked path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A path of points/coordinates of type Path. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_ad472fee1d91a8541af480ad4ff7d545d}\label{classglobalPlanner_1_1RRT_1_1BRRT_ad472fee1d91a8541af480ad4ff7d545d}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!swap@{swap}}
+\index{swap@{swap}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{swap}{swap}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+void swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$ \&}]{src,  }\item[{\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$ \&}]{dst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Friend function that swaps the values of two \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1RRTStar}{R\+R\+T\+Star}} objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Source B-\/\+R\+RT $\ast$ instance \\
+\hline
+{\em dst} & Destination B-\/\+R\+RT $\ast$ instance \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a27c664e836d77257a7b40f672fd4cfc6}\label{classglobalPlanner_1_1RRT_1_1BRRT_a27c664e836d77257a7b40f672fd4cfc6}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!deltaStep@{deltaStep}}
+\index{deltaStep@{deltaStep}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{deltaStep}{deltaStep}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+double \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::delta\+Step \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a1851109105059c782ece4b30a7dcfb32}\label{classglobalPlanner_1_1RRT_1_1BRRT_a1851109105059c782ece4b30a7dcfb32}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!iterations@{iterations}}
+\index{iterations@{iterations}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{iterations}{iterations}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+long \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::iterations \{10000\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_ab3f5a5c83c8697c5a99d2bbb60bea5d0}\label{classglobalPlanner_1_1RRT_1_1BRRT_ab3f5a5c83c8697c5a99d2bbb60bea5d0}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!ls@{ls}}
+\index{ls@{ls}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{ls}{ls}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+std\+::vector$<$std\+::pair$<$double, \mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$$>$ $>$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::ls\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a11c5ea08cf8a2df4708ffc9ebf9f4dad}\label{classglobalPlanner_1_1RRT_1_1BRRT_a11c5ea08cf8a2df4708ffc9ebf9f4dad}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!map@{map}}
+\index{map@{map}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{map}{map}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+Map$\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::map \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_afcacedee385c660d3a85af7390d3bb98}\label{classglobalPlanner_1_1RRT_1_1BRRT_afcacedee385c660d3a85af7390d3bb98}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!mapMaxBoundary@{mapMaxBoundary}}
+\index{mapMaxBoundary@{mapMaxBoundary}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{mapMaxBoundary}{mapMaxBoundary}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+Coordinates \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::map\+Max\+Boundary\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a9355f0c53fd67087db5a72528a49be53}\label{classglobalPlanner_1_1RRT_1_1BRRT_a9355f0c53fd67087db5a72528a49be53}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!mapMinBoundary@{mapMinBoundary}}
+\index{mapMinBoundary@{mapMinBoundary}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{mapMinBoundary}{mapMinBoundary}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+Coordinates \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::map\+Min\+Boundary\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_ad4f98d16d3e9a39245c96074d6944917}\label{classglobalPlanner_1_1RRT_1_1BRRT_ad4f98d16d3e9a39245c96074d6944917}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!nearby@{nearby}}
+\index{nearby@{nearby}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{nearby}{nearby}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+std\+::vector$<$\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}} $\ast$$>$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::nearby\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_ae32613af02690ac9fbb27057bd551f11}\label{classglobalPlanner_1_1RRT_1_1BRRT_ae32613af02690ac9fbb27057bd551f11}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!path@{path}}
+\index{path@{path}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+Path \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::path \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a0c2fbe4caf5808eda9f8865a2b9230b5}\label{classglobalPlanner_1_1RRT_1_1BRRT_a0c2fbe4caf5808eda9f8865a2b9230b5}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!radius@{radius}}
+\index{radius@{radius}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{radius}{radius}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+double \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::radius \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_abd46a0195a81a5cd6ebe79423825441d}\label{classglobalPlanner_1_1RRT_1_1BRRT_abd46a0195a81a5cd6ebe79423825441d}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!randomEngine@{randomEngine}}
+\index{randomEngine@{randomEngine}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{randomEngine}{randomEngine}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+std\+::mt19937 \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::random\+Engine\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_ae6d697dff8b141eb2ab910ad208b406a}\label{classglobalPlanner_1_1RRT_1_1BRRT_ae6d697dff8b141eb2ab910ad208b406a}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!rnd@{rnd}}
+\index{rnd@{rnd}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{rnd}{rnd}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+std\+::uniform\+\_\+real\+\_\+distribution \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::rnd\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_afb40ad0254bf102ab7b5686b556c3db4}\label{classglobalPlanner_1_1RRT_1_1BRRT_afb40ad0254bf102ab7b5686b556c3db4}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!searchRadius@{searchRadius}}
+\index{searchRadius@{searchRadius}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{searchRadius}{searchRadius}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+double \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::search\+Radius \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_ac39f5171bb2cbf1100208e50b627e255}\label{classglobalPlanner_1_1RRT_1_1BRRT_ac39f5171bb2cbf1100208e50b627e255}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!sigmaF@{sigmaF}}
+\index{sigmaF@{sigmaF}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{sigmaF}{sigmaF}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+double \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::sigmaF \{std\+::numeric\+\_\+limits$<$double$>$\+::max()\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_aa0c67213fcdbdd43e94bd5c55f99dd7e}\label{classglobalPlanner_1_1RRT_1_1BRRT_aa0c67213fcdbdd43e94bd5c55f99dd7e}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!treeA@{treeA}}
+\index{treeA@{treeA}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{treeA}{treeA}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+std\+::vector$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}}$>$ $>$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::treeA\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a6e77f4fb35b1f3fb543ca7ba91ad29cd}\label{classglobalPlanner_1_1RRT_1_1BRRT_a6e77f4fb35b1f3fb543ca7ba91ad29cd}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!treeAPtr@{treeAPtr}}
+\index{treeAPtr@{treeAPtr}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{treeAPtr}{treeAPtr}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+std\+::vector$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}}$>$ $>$$\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::tree\+A\+Ptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_ae9d0f94d5d4eca2954f582bd16e20f9d}\label{classglobalPlanner_1_1RRT_1_1BRRT_ae9d0f94d5d4eca2954f582bd16e20f9d}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!treeB@{treeB}}
+\index{treeB@{treeB}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{treeB}{treeB}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+std\+::vector$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}}$>$ $>$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::treeB\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_a86d19b959e88f2a5ec922627d3a613bf}\label{classglobalPlanner_1_1RRT_1_1BRRT_a86d19b959e88f2a5ec922627d3a613bf}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!treeBPtr@{treeBPtr}}
+\index{treeBPtr@{treeBPtr}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{treeBPtr}{treeBPtr}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+std\+::vector$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structglobalPlanner_1_1RRT_1_1BRRT_1_1Node}{Node}}$>$ $>$$\ast$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::tree\+B\+Ptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_acb4ce91c55e720fbc3c2efd787f2e876}\label{classglobalPlanner_1_1RRT_1_1BRRT_acb4ce91c55e720fbc3c2efd787f2e876}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!xrand@{xrand}}
+\index{xrand@{xrand}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{xrand}{xrand}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+std\+::uniform\+\_\+real\+\_\+distribution \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::xrand\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_abb7a89bedceac94f5a585886481d0f73}\label{classglobalPlanner_1_1RRT_1_1BRRT_abb7a89bedceac94f5a585886481d0f73}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!yrand@{yrand}}
+\index{yrand@{yrand}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{yrand}{yrand}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+std\+::uniform\+\_\+real\+\_\+distribution \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::yrand\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1BRRT_abd5823aefa3ab5095f86f701a162d1fc}\label{classglobalPlanner_1_1RRT_1_1BRRT_abd5823aefa3ab5095f86f701a162d1fc}} 
+\index{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}!zrand@{zrand}}
+\index{zrand@{zrand}!globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$@{globalPlanner::RRT::BRRT$<$ Map, BoundingVolume, Coordinates, Path $>$}}
+\doxysubsubsection{\texorpdfstring{zrand}{zrand}}
+{\footnotesize\ttfamily template$<$typename Map , typename Bounding\+Volume , typename Coordinates , typename Path $>$ \\
+std\+::uniform\+\_\+real\+\_\+distribution \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{global\+Planner\+::\+R\+R\+T\+::\+B\+R\+RT}}$<$ Map, Bounding\+Volume, Coordinates, Path $>$\+::zrand\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/alsarmi/udacity\+\_\+ws/src/3\+D-\/\+M\+A\+V-\/\+Path-\/\+Planner/path\+\_\+planner/include/\mbox{\hyperlink{b__rrt__star__planner_8h}{b\+\_\+rrt\+\_\+star\+\_\+planner.\+h}}\end{DoxyCompactItemize}

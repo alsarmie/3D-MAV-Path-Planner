@@ -1,38 +1,39 @@
 <launch>
     <!--Path planner parameters-->
-    <arg name="planner" default="2"/> <!-- 0: RRT*  1: B-RRT*  2: IB-RRT*-->
+    <arg name="planner"              default="1"/> <!-- 0: RRT*  1: B-RRT*  2: IB-RRT* 3: Parallel IB-RRT*-->
     <!-- For RRT*-->
-    <arg name="step" default="0.2"/>            <!-- Step size to expand in the direction of random sample-->
-    <arg name="search_radius" default=" 1.75"/>  <!-- Search radius for neighbor vertices in tree graph-->
-    <arg name="radius" default="0.05"/>          <!-- Assuming a sphere bounding volume for a robot -->
-    <arg name="threshold" default="0.2"/>       <!-- Bias used to pull the random tree exploration to the goal-->
-    <arg name="eps"
-         default="0.1"/>             <!-- Stop condition, in  meters. Error between a node and the goal. -->
-    <arg name="x_min" default="-5.0"/>          <!-- Map x min boundary -->
-    <arg name="x_max" default="5.0"/>           <!-- Map x max boundary-->
-    <arg name="y_min" default="-5.0"/>          <!-- Map y min boundary-->
-    <arg name="y_max" default="5.0"/>           <!-- Map y max boundary-->
-    <arg name="z_min" default="-0.05"/>          <!-- Map z min boundary-->
-    <arg name="z_max" default="2.10"/>           <!-- Map z max boundary-->
+    <arg name="step"                 default="0.2"/>            <!-- Step size to expand in the direction of random sample-->
+    <arg name="search_radius"        default=" 1.75"/>  <!-- Search radius for neighbor vertices in tree graph-->
+    <arg name="radius"               default="0.05"/>          <!-- Assuming a sphere bounding volume for a robot -->
+    <arg name="threshold"            default="0.2"/>       <!-- Bias used to pull the random tree exploration to the goal-->
+    <arg name="eps"                  default="0.1"/>             <!-- Stop condition, in  meters. Error between a node and the goal. -->
+    <arg name="x_min"                default="-5.0"/>          <!-- Map x min boundary -->
+    <arg name="x_max"                default="5.0"/>           <!-- Map x max boundary-->
+    <arg name="y_min"                default="-5.0"/>          <!-- Map y min boundary-->
+    <arg name="y_max"                default="5.0"/>           <!-- Map y max boundary-->
+    <arg name="z_min"                default="-0.05"/>          <!-- Map z min boundary-->
+    <arg name="z_max"                default="2.10"/>           <!-- Map z max boundary-->
     <!-- For B-RRT* & IB-RRT*-->
-    <arg name="iterations" default="30000"/>  <!-- Max number of iterations for bidirectional RRT-->
+    <arg name="iterations"           default="30000"/>  <!-- Max number of iterations for bidirectional RRT-->
+    <!-- For Parallel IB-RRT*-->
+    <arg name="workers"              default="10"/>
     <!-- Point cloud publisher -->
     <include file="$(find pointcloud_publisher)/launch/publish_pointcloud.launch"/>
     <!-- Path planner node -->
-
     <node pkg="path_planner" type="path_planner_node" name="path_planner_node" output="screen" respawn="true">
-        <param name="planner" value="$(arg planner)"/>
-        <param name="iterations" value="$(arg iterations)"/>
-        <param name="step" value="$(arg step)"/>
-        <param name="search_radius" value="$(arg search_radius)"/>
-        <param name="radius" value="$(arg radius)"/>
-        <param name="threshold" value="$(arg threshold)"/>
-        <param name="eps" value="$(arg eps)"/>
-        <param name="x_min" value="$(arg x_min)"/>
-        <param name="x_max" value="$(arg x_max)"/>
-        <param name="y_min" value="$(arg y_min)"/>
-        <param name="y_max" value="$(arg y_max)"/>
-        <param name="z_min" value="$(arg z_min)"/>
-        <param name="z_max" value="$(arg z_max)"/>
+        <param name="planner"        value="$(arg planner)"/>
+        <param name="iterations"     value="$(arg iterations)"/>
+        <param name="step"           value="$(arg step)"/>
+        <param name="search_radius"  value="$(arg search_radius)"/>
+        <param name="radius"         value="$(arg radius)"/>
+        <param name="threshold"      value="$(arg threshold)"/>
+        <param name="eps"            value="$(arg eps)"/>
+        <param name="x_min"          value="$(arg x_min)"/>
+        <param name="x_max"          value="$(arg x_max)"/>
+        <param name="y_min"          value="$(arg y_min)"/>
+        <param name="y_max"          value="$(arg y_max)"/>
+        <param name="z_min"          value="$(arg z_min)"/>
+        <param name="z_max"          value="$(arg z_max)"/>
+        <param name="workers"        value="$(arg workers"/>
     </node>
 </launch>

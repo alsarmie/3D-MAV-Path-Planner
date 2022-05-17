@@ -1,28 +1,35 @@
 <launch>
-    <arg name="resolution" default="0.05"/>
-    <arg name="depth_levels" default="16"/>
-    <arg name="num_workers" default="3"/>
-    <arg name="color" default="true"/>
-    <arg name="model" default="studio_d435i_t265_3.ply"/>
-    
+    <!-- UFO Map server parameters, please consult https://github.com/UnknownFreeOccupied/ufomap/wiki/    for details. -->
+    <arg name="resolution"          default="0.05"/> <!-- Map resolution for UfoMap Server -->
+    <arg name="depth_levels"        default="16"/> <!-- Depth of Octomap -->
+    <arg name="num_workers"         default="3"/> <!-- Workers for UfoMap threads -->
+    <arg name="color"               default="true"/> <!-- Ufo Mao color map enabled -->
+    <arg name="model"               default="studio_d435i_t265_3.ply"/> <!-- .ply model name to load point cloud from.-->
+    <arg name="path"                default="$(find pointcloud_publisher)/models/$(arg model)"/> <!-- Relative path where .ply model is stored -->
+    <arg name="topic"               default="/camera/depth/points"/> <!-- Topic to publish the point cloud to.-->
+    <arg name="frame_id"            default="t265_d400_base"/> <!-- frame of reference of the point cloud. -->
+    <arg name="publish_rate"        default="1.0"/> <!-- Topic rate of publishing. -->
+    <!--UfoMap server node -->
     <node pkg="ufomap_mapping" type="ufomap_mapping_server_node" name="ufomap_mapping_server_node" output="log"
           required="true">
-        <remap from="cloud_in" to="/camera/depth/points"/>
-
-        <param name="num_workers" value="$(arg num_workers)"/>
-
-        <param name="resolution" value="$(arg resolution)"/>
-        <param name="depth_levels" value="$(arg depth_levels)"/>
-        <param name="color_map" value="$(arg color)"/>
+        <remap from="cloud_in"      to="/camera/depth/points"/>
+        <param name="num_workers"   value="$(arg num_workers)"/>
+        <param name="resolution"    value="$(arg resolution)"/>
+        <param name="depth_levels"  value="$(arg depth_levels)"/>
+        <param name="color_map"     value="$(arg color)"/>
     </node>
+    <!-- Point Cloud Publisher node-->
     <node pkg="pointcloud_publisher" type="cloud_publisher" name="cloud_publisher" output="screen">
-        <param name="path"  value="/home/alsarmi/udacity_ws/src/3D-MAV-Path-Planner/pointcloud_publisher/models/$(arg model)"/>
-        <param name="topic" value="/camera/depth/points"/>
-        <param name="frame_id" value="t265_d400_base"/>
-        <param name="publish_rate" value="1.0"/>
+        <param name="path"          value="$(arg path)"/>
+        <param name="topic"         value="$(arg topic)"/>
+        <param name="frame_id"      value="$(arg frame_id)"/>
+        <param name="publish_rate"  value="$(arg publish_rate)"/>
     </node>
+    <!-- Transform needed to align point cloud to world frame -->
     <node pkg="tf" type="static_transform_publisher" name="world_to_pointcloud"
           args="1.061 1.364 1.338 -1.571 -0.031 0.017 map t265_d400_base 100"/>
-    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find pointcloud_publisher)/rviz/pointcloud_publisher_rviz.rviz" />
+    <!-- Rviz configuration for visualization. -->
+    <node type="rviz" name="rviz" pkg="rviz"
+          args="-d $(find pointcloud_publisher)/rviz/pointcloud_publisher_rviz.rviz"/>
 
 </launch>

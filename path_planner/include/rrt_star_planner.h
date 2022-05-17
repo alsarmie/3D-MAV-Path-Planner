@@ -1,7 +1,9 @@
-//
-// Created by alsarmi on 04/04/22.
-//
-
+/**
+ * Created by Alejandro Sarmiento
+ *  @brief The implementation of RRT* is based on Intelligent
+ *  bidirectional rapidly-exploring random trees for optimal motion planning in
+ *  complex cluttered environments: https://arxiv.org/pdf/1703.08944.pdf
+ * */
 #ifndef PATH_PLANNER_RRT_STAR_PLANNER_H
 #define PATH_PLANNER_RRT_STAR_PLANNER_H
 
@@ -16,6 +18,11 @@ using std::chrono::duration;
 using std::chrono::duration_cast;
 using std::chrono::seconds;
 using std::chrono::steady_clock;
+// To improve readability
+using Sphere = ufo::geometry::Sphere;
+using Point = ufo::math::Vector3;
+using ColorMap = ufo::map::OccupancyMapColor;
+using NavPath = std::vector<Point>;
 
 namespace globalPlanner::RRT {
 template <typename Map, typename BoundingVolume, typename Coordinates,
@@ -24,7 +31,7 @@ class RRTStar {
 
 public:
   // Constructors
-  RRTStar(Map *map_, double radius_);
+  [[maybe_unused]] RRTStar(Map *map_, double radius_);
 
   RRTStar(Map *map_, Coordinates const &mapMinBoundary_,
           Coordinates const &mapMaxBoundary_, double step, double epsilon_,
@@ -52,6 +59,7 @@ public:
   }
   Path *computePath(Coordinates const &start_, Coordinates const &goal_);
   RRTStar() = default;
+
 private:
   // Default constructor for derived templates
 
@@ -69,12 +77,12 @@ private:
   std::vector<Node *> nearby;
   Path path{};
   Map *map{nullptr};
-  long timeout{30};         // 30 seconds default
-  double epsilon{0.0};      // 0.01 mts default
-  double threshold{0.0};    // 0.5 default
-  double searchRadius{0.0}; // 0.3 mts default
-  double deltaStep{0.0};    // in meters
-  double radius{0.0};       // in meters
+  long timeout{30};          // 30 seconds default
+  double epsilon{0.01};      // 0.01 mts default
+  double threshold{0.50};    // 0.5 default
+  double searchRadius{0.30}; // 0.3 mts default
+  double deltaStep{0.0};     // in meters
+  double radius{0.0};        // in meters
   Coordinates mapMinBoundary;
   Coordinates mapMaxBoundary;
   // Random number generator:
@@ -86,6 +94,11 @@ private:
 
   // Private methods
   // For Move Semantics
+  /**
+   * @brief  Friend function that swaps the values of two RRTStar objects.
+   * @param src Source RRTStar instance
+   * @param dst Destination RRTStar instance
+   */
   friend void swap(RRTStar &src, RRTStar &dst) {
     using std::swap;
     swap(src.tree, dst.tree);
@@ -129,15 +142,25 @@ private:
   // Generate the final path to be returned.
   void traceBack();
 };
-using Sphere = ufo::geometry::Sphere;
-using Point = ufo::math::Vector3;
-using ColorMap = ufo::map::OccupancyMapColor;
-using NavPath = std::vector<Point>;
+
 // Public template definitions
 // Constructors
+/**
+ * @brief Constructor of RRT * class
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param map_ Pointer to map resource.
+ * @param radius_ Radius of the agent (sphere). The sphere represents the volume
+ * occupied by a robot/MAV.
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
-RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(Map *map_,
-                                                         double radius_)
+[[maybe_unused]] RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
+    Map *map_, double radius_)
     : map(map_), timeout(30), deltaStep(0.05), epsilon(0.01), threshold(0.5),
       searchRadius(0.3), radius(radius_),
       randomEngine((std::random_device())()),
@@ -152,6 +175,27 @@ RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(Map *map_,
   // Initialize path frame_id
   std::cout << "RRTStar Planner created!" << std::endl;
 }
+
+/**
+ * @brief Constructor of RRT * class.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param map_ Pointer to map resource.
+ * @param mapMinBoundary_ 3D boundaries of provided map (x,y,z)
+ * @param mapMaxBoundary_ 3D boundaries of the provided map (x,y,z)
+ * @param step Exploration step (in mts) for RRT * algorithm.
+ * @param epsilon_ Error [mts] value condition to stop the path planner.
+ * @param threshold_ Bias used to influence search towards goal.
+ * @param searchRadius_ Radius used to search for near vertices, centered at
+ * random sample.
+ * @param radius_ Radius of the agent (sphere). The sphere represents the volume
+ * occupied by a robot/MAV.
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
     Map *map_, Coordinates const &mapMinBoundary_,
@@ -172,6 +216,27 @@ RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
 
   std::cout << "RRTStar Planner created!" << std::endl;
 }
+/**
+ * @brief Constructor of RRT * class
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param map_ Pointer to map resource.
+ * @param mapMinBoundary_ 3D boundaries of provided map (x,y,z)
+ * @param mapMaxBoundary_ 3D boundaries of the provided map (x,y,z)
+ * @param step Exploration step (in mts) for RRT * algorithm.
+ * @param epsilon_ Error [mts] value condition to stop the path planner.
+ * @param threshold_ Bias used to influence search towards goal.
+ * @param searchRadius_ Radius used to search for near vertices, centered at
+ * random sample.
+ * @param timeout_ timeout [seconds] value to stop the path planner.
+ * @param radius_ Radius of the agent (sphere). The sphere represents the volume
+ * occupied by a robot/MAV.
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
     Map *map_, Coordinates const &mapMinBoundary_,
@@ -191,16 +256,47 @@ RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
 
   std::cout << "RRTStar Planner created!" << std::endl;
 }
-// Destructor
+
+/**
+ * @brief Default destructor of RRTStar class.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 RRTStar<Map, BoundingVolume, Coordinates, Path>::~RRTStar() = default;
-// Move constructor and Move assignment
+/**
+ * @brief Move constructor for RRT * class
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param src Source R-value reference object of type RRTStar.
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 RRTStar<Map, BoundingVolume, Coordinates, Path>::RRTStar(
     RRTStar &&src) noexcept {
   swap(src, *this);
 }
-
+/**
+ * @brief Move assignment operator for the RRTStar class.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param src Source R-value reference object of type RRTStar.
+ * @return Reference to new object of class RRTStar
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 RRTStar<Map, BoundingVolume, Coordinates, Path> &
 RRTStar<Map, BoundingVolume, Coordinates, Path>::operator=(
@@ -208,14 +304,31 @@ RRTStar<Map, BoundingVolume, Coordinates, Path>::operator=(
   swap(src, *this);
   return *this;
 }
-// Private method definitions
+//! Private method definitions
+/**
+ * @brief Placeholder for testing
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param center Coordinate
+ * @return boolean
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 bool RRTStar<Map, BoundingVolume, Coordinates, Path>::isInCollision(
     Coordinates const &center) {
   return false;
 }
-// Template specialization for collision checking considering a specific
-// bounding volume.
+
+/**
+ * @brief Template specialization for collision checking considering a
+ * specific bounding volume.
+ * @param center Coordinate of the center of a sphere of radius R.
+ * @return Boolean. True if there is a collision with occupied space.
+ */
 template <>
 bool RRTStar<
     ufo::map::OccupancyMapColor, ufo::geometry::Sphere, ufo::math::Vector3,
@@ -232,6 +345,21 @@ bool RRTStar<
   // No leaf node intersects the bounding volume.
   return false;
 }
+/**
+ * @brief Checks if the linear path between the goal and the position is
+ * in collision with occupied space.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param goal_ Target coordinate
+ * @param position_ Current coordinate
+ * @return Boolean. True if there is a collision with occupied space along the
+ * trajectory between position_ and goal_.
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 bool RRTStar<Map, BoundingVolume, Coordinates, Path>::isInCollision(
     Coordinates const &goal_, Coordinates const &position_) {
@@ -257,10 +385,21 @@ bool RRTStar<Map, BoundingVolume, Coordinates, Path>::isInCollision(
     // Is in collision since a leaf node intersects the bounding volume.
     return true;
   }
-
   // No leaf node intersects the bounding volume.
   return false;
 }
+/**
+ * @brief Finding the closest voxel to the source point.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param src Origin Coordinate
+ * @param dst Coordinate of free space type closest to the src coordinate.
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 void RRTStar<Map, BoundingVolume, Coordinates, Path>::getClosestVoxel(
     const Coordinates &src, Coordinates &dst) {
@@ -273,28 +412,59 @@ void RRTStar<Map, BoundingVolume, Coordinates, Path>::getClosestVoxel(
     break;
   }
 }
-
+/**
+ * @brief This function tries to get the map boundaries from the UfoMap.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 void RRTStar<Map, BoundingVolume, Coordinates, Path>::getMapLimits() {
   getClosestVoxel(map->getMin(), mapMinBoundary);
   getClosestVoxel(map->getMax(), mapMaxBoundary);
 }
+/**
+ * @brief Main sample function used in RRT * algorithm. Returns an
+ * independent and uniformly distributed random sample from the map space, i.e.,
+ * xrand ∈ Xmap.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @return Independent and uniformly distributed random sample from the map
+ * space.
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 Coordinates
 RRTStar<Map, BoundingVolume, Coordinates, Path>::generateRandomPoint() {
-  Coordinates rndPoint(xrand(randomEngine), yrand(randomEngine),
-                       zrand(randomEngine));
-
-  rndPoint[0] = xrand(randomEngine);
-  rndPoint[1] = yrand(randomEngine);
-  rndPoint[2] = zrand(randomEngine);
-
-  return rndPoint;
+  return {xrand(randomEngine), yrand(randomEngine), zrand(randomEngine)};
 }
+/**
+ * @brief  This function returns the nearest vertex in the tree from any
+ given state x ∈ X. Given the tree T = (V, E), the nearest vertex procedure can
+ be defined as: Nearest(T, x) := argminv∈V d(x, v) |→ xmin.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param qrand Node pointer to the random vertex generated by the sample
+ * process of RRT * algorithm.
+ * @return Node pointer to the nearest vertex of the tree based on Euclidean
+ distance.
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 typename RRTStar<Map, BoundingVolume, Coordinates, Path>::Node *
-RRTStar<Map, BoundingVolume, Coordinates, Path>::nearestVertex(
-    RRTStar::Node *qrand) {
+RRTStar<Map, BoundingVolume, Coordinates, Path>::nearestVertex(Node *qrand) {
 
   double previousDistance{std::numeric_limits<double>::max()};
   double currentDistance{0.0};
@@ -315,7 +485,23 @@ RRTStar<Map, BoundingVolume, Coordinates, Path>::nearestVertex(
   }
   return nearest;
 }
-
+/**
+ * @brief This function generates a new coordinate at a step distance
+[mts] in direction of the randomVertex along the linear trajectory between the
+nearestVertex and it, starting from the nearestVertex.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param nearestVertex Coordinate of the nearest vertex in the tree.
+ * @param randomVertex Coordinate of the random vertex generated by the sampling
+process of RRT *
+ * @return Returns a coordinate at step distance in direction of the random
+vertex.
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 Coordinates RRTStar<Map, BoundingVolume, Coordinates, Path>::steer(
     Coordinates const &nearestVertex, Coordinates const &randomVertex) {
@@ -331,6 +517,19 @@ Coordinates RRTStar<Map, BoundingVolume, Coordinates, Path>::steer(
   }
   return randomVertex;
 }
+/**
+ * @brief This function chooses the best parent of the new vertex.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param qNear Node pointer.Parent vertex of the newly inserted node into the
+ * tree.
+ * @param newVertex Node pointer. Newest vertex inserted into the tree.
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 void RRTStar<Map, BoundingVolume, Coordinates, Path>::chooseParent(
     Node *qNear, Node *newVertex) {
@@ -357,6 +556,19 @@ void RRTStar<Map, BoundingVolume, Coordinates, Path>::chooseParent(
       }
     }
 }
+/**
+ * @brief Rewires the tree of vertices(Nodes). After successfully
+ * inserting a new vertex into the tree, this function sets the new vertex as
+ * parent of nearby vertices if the cost of traveling to the nearby vertices is
+ * lower through the new vertex than through its current parent.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 void RRTStar<Map, BoundingVolume, Coordinates, Path>::rewire() {
   double cost{0.0};
@@ -376,6 +588,22 @@ void RRTStar<Map, BoundingVolume, Coordinates, Path>::rewire() {
     }
   }
 }
+/**
+ * @brief Expands the current tree, sets qNear as parent of the new Node
+ * at qNew coordinates. After the new node is inserted into the tree, a rewire
+ * process is run on the tree to determine if the new node serves as the best
+ * parent for near nodes.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param qNear Node pointer to the vertex determined to be set as parent of
+ * qNew.
+ * @param qNew  Coordinate that is to be added to the tree.
+ */
 
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 void RRTStar<Map, BoundingVolume, Coordinates, Path>::expandTree(
@@ -398,6 +626,17 @@ void RRTStar<Map, BoundingVolume, Coordinates, Path>::expandTree(
   // Rewire the tree
   rewire();
 }
+
+/**
+ * @brief Track back the path from the goal to the start.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 void RRTStar<Map, BoundingVolume, Coordinates, Path>::traceBack() {
 
@@ -409,7 +648,19 @@ void RRTStar<Map, BoundingVolume, Coordinates, Path>::traceBack() {
   }
   std::reverse(path.begin(), path.end());
 }
-
+/**
+ * @brief Implementation of the RRT* algorithm.
+ * @tparam Map Template parameter, specifies the Map type.
+ * @tparam BoundingVolume Template parameter, specifies the type of bounding
+ * volume to check for collisions in a map.
+ * @tparam Coordinates Template parameter, specifies the type of coordinates
+ * data structure (2D/3D)
+ * @tparam Path Template parameter, specifies path type, default std::deque of
+ * ufo::math::Vector3
+ * @param start_ Start coordinate (2D/3D)
+ * @param goal_ Goal coordinate (2D/3D)
+ * @return A pointer to generated path between start and goal coordinates.
+ */
 template <class Map, class BoundingVolume, class Coordinates, class Path>
 Path *RRTStar<Map, BoundingVolume, Coordinates, Path>::computePath(
     Coordinates const &start_, Coordinates const &goal_) {
@@ -440,6 +691,8 @@ Path *RRTStar<Map, BoundingVolume, Coordinates, Path>::computePath(
   tree.emplace_back(std::move(qStart)); // Add start node.
   auto start = steady_clock::now();
   auto elapsedTime = std::numeric_limits<long>::min();
+  // Run algorithm until it reaches a timeout or finds a path with an error <=
+  // epsilon to the goal.
   while ((elapsedTime < timeout) && distanceToGoal >= epsilon) {
     if (rnd(randomEngine) > threshold)
       qRand->point = goal_;

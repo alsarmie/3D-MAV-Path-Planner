@@ -1,0 +1,119 @@
+\hypertarget{namespaceglobalPlanner}{}\doxysection{global\+Planner Namespace Reference}
+\label{namespaceglobalPlanner}\index{globalPlanner@{globalPlanner}}
+
+
+Created by Alejandro Sarmiento.  
+
+
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceglobalPlanner_1_1RRT}{R\+RT}}
+\begin{DoxyCompactList}\small\item\em The implementation of I\+B-\/\+R\+R\+T$\ast$ is based on Intelligent bidirectional rapidly-\/exploring random trees for optimal motion planning in complex cluttered environments\+: \href{https://arxiv.org/pdf/1703.08944.pdf}{\texttt{ https\+://arxiv.\+org/pdf/1703.\+08944.\+pdf}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{Catmull\+Rom\+Spline}}
+\item 
+struct \mbox{\hyperlink{structglobalPlanner_1_1overload}{overload}}
+\item 
+class \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner}{path\+Planner}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}{Sphere}} = ufo\+::geometry\+::\+Sphere
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} = ufo\+::math\+::\+Vector3
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_aceb717592b1bac801482e978f8c29d50}{Points}} = std\+::vector$<$ ufo\+::math\+::\+Vector3 $>$
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{Color\+Map}} = ufo\+::map\+::\+Occupancy\+Map\+Color
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}} = std\+::deque$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}} $>$
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a9d526081f07f361d9384ef4252326da4}{I\+B\+R\+RT}} = \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1IBRRT}{R\+R\+T\+::\+I\+B\+R\+RT}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{Color\+Map}}, \mbox{\hyperlink{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}{Sphere}}, \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}} $>$
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_ad76a196fff56b9857cf6b69355db79da}{P\+I\+B\+R\+RT}} = \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1PIBRRT}{R\+R\+T\+::\+P\+I\+B\+R\+RT}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{Color\+Map}}, \mbox{\hyperlink{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}{Sphere}}, \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}} $>$
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_ad19d88786f2d25f86f2288df7f508c37}{B\+R\+RT}} = \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{R\+R\+T\+::\+B\+R\+RT}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{Color\+Map}}, \mbox{\hyperlink{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}{Sphere}}, \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}} $>$
+\item 
+using \mbox{\hyperlink{namespaceglobalPlanner_a3c4eb2a6f1769e74dbdd52792b61e5c0}{R\+R\+TS}} = \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1RRTStar}{R\+R\+T\+::\+R\+R\+T\+Star}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{Color\+Map}}, \mbox{\hyperlink{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}{Sphere}}, \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class... Ts$>$ }\\\mbox{\hyperlink{namespaceglobalPlanner_a2a042fc04a2af7a21d1538463f09b425}{overload}} (Ts...) -\/$>$ \mbox{\hyperlink{structglobalPlanner_1_1overload}{overload}}$<$ Ts... $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Created by Alejandro Sarmiento. 
+
+Based on \href{https://www.cs.cmu.edu/~fp/courses/graphics/asst5/catmullRom.pdf}{\texttt{ https\+://www.\+cs.\+cmu.\+edu/$\sim$fp/courses/graphics/asst5/catmull\+Rom.\+pdf}} 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{namespaceglobalPlanner_ad19d88786f2d25f86f2288df7f508c37}\label{namespaceglobalPlanner_ad19d88786f2d25f86f2288df7f508c37}} 
+\index{globalPlanner@{globalPlanner}!BRRT@{BRRT}}
+\index{BRRT@{BRRT}!globalPlanner@{globalPlanner}}
+\doxysubsubsection{\texorpdfstring{BRRT}{BRRT}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespaceglobalPlanner_ad19d88786f2d25f86f2288df7f508c37}{global\+Planner\+::\+B\+R\+RT}} = typedef \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1BRRT}{R\+R\+T\+::\+B\+R\+RT}}$<$\mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{Color\+Map}}, \mbox{\hyperlink{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}{Sphere}}, \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}}$>$}
+
+\mbox{\Hypertarget{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}\label{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}} 
+\index{globalPlanner@{globalPlanner}!ColorMap@{ColorMap}}
+\index{ColorMap@{ColorMap}!globalPlanner@{globalPlanner}}
+\doxysubsubsection{\texorpdfstring{ColorMap}{ColorMap}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{global\+Planner\+::\+Color\+Map}} = typedef ufo\+::map\+::\+Occupancy\+Map\+Color}
+
+\mbox{\Hypertarget{namespaceglobalPlanner_a9d526081f07f361d9384ef4252326da4}\label{namespaceglobalPlanner_a9d526081f07f361d9384ef4252326da4}} 
+\index{globalPlanner@{globalPlanner}!IBRRT@{IBRRT}}
+\index{IBRRT@{IBRRT}!globalPlanner@{globalPlanner}}
+\doxysubsubsection{\texorpdfstring{IBRRT}{IBRRT}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespaceglobalPlanner_a9d526081f07f361d9384ef4252326da4}{global\+Planner\+::\+I\+B\+R\+RT}} = typedef \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1IBRRT}{R\+R\+T\+::\+I\+B\+R\+RT}}$<$\mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{Color\+Map}}, \mbox{\hyperlink{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}{Sphere}}, \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}}$>$}
+
+\mbox{\Hypertarget{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}\label{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}} 
+\index{globalPlanner@{globalPlanner}!NavPath@{NavPath}}
+\index{NavPath@{NavPath}!globalPlanner@{globalPlanner}}
+\doxysubsubsection{\texorpdfstring{NavPath}{NavPath}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{global\+Planner\+::\+Nav\+Path}} = typedef std\+::deque$<$\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}$>$}
+
+\mbox{\Hypertarget{namespaceglobalPlanner_ad76a196fff56b9857cf6b69355db79da}\label{namespaceglobalPlanner_ad76a196fff56b9857cf6b69355db79da}} 
+\index{globalPlanner@{globalPlanner}!PIBRRT@{PIBRRT}}
+\index{PIBRRT@{PIBRRT}!globalPlanner@{globalPlanner}}
+\doxysubsubsection{\texorpdfstring{PIBRRT}{PIBRRT}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespaceglobalPlanner_ad76a196fff56b9857cf6b69355db79da}{global\+Planner\+::\+P\+I\+B\+R\+RT}} = typedef \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1PIBRRT}{R\+R\+T\+::\+P\+I\+B\+R\+RT}}$<$\mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{Color\+Map}}, \mbox{\hyperlink{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}{Sphere}}, \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}}$>$}
+
+\mbox{\Hypertarget{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}\label{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}} 
+\index{globalPlanner@{globalPlanner}!Point@{Point}}
+\index{Point@{Point}!globalPlanner@{globalPlanner}}
+\doxysubsubsection{\texorpdfstring{Point}{Point}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{global\+Planner\+::\+Point}} = typedef ufo\+::math\+::\+Vector3}
+
+\mbox{\Hypertarget{namespaceglobalPlanner_aceb717592b1bac801482e978f8c29d50}\label{namespaceglobalPlanner_aceb717592b1bac801482e978f8c29d50}} 
+\index{globalPlanner@{globalPlanner}!Points@{Points}}
+\index{Points@{Points}!globalPlanner@{globalPlanner}}
+\doxysubsubsection{\texorpdfstring{Points}{Points}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespaceglobalPlanner_aceb717592b1bac801482e978f8c29d50}{global\+Planner\+::\+Points}} = typedef std\+::vector$<$ufo\+::math\+::\+Vector3$>$}
+
+\mbox{\Hypertarget{namespaceglobalPlanner_a3c4eb2a6f1769e74dbdd52792b61e5c0}\label{namespaceglobalPlanner_a3c4eb2a6f1769e74dbdd52792b61e5c0}} 
+\index{globalPlanner@{globalPlanner}!RRTS@{RRTS}}
+\index{RRTS@{RRTS}!globalPlanner@{globalPlanner}}
+\doxysubsubsection{\texorpdfstring{RRTS}{RRTS}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespaceglobalPlanner_a3c4eb2a6f1769e74dbdd52792b61e5c0}{global\+Planner\+::\+R\+R\+TS}} = typedef \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1RRTStar}{R\+R\+T\+::\+R\+R\+T\+Star}}$<$\mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{Color\+Map}}, \mbox{\hyperlink{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}{Sphere}}, \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}}$>$}
+
+\mbox{\Hypertarget{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}\label{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}} 
+\index{globalPlanner@{globalPlanner}!Sphere@{Sphere}}
+\index{Sphere@{Sphere}!globalPlanner@{globalPlanner}}
+\doxysubsubsection{\texorpdfstring{Sphere}{Sphere}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespaceglobalPlanner_a1a5ec4f86f9820ded1ad9c8860e2cb0f}{global\+Planner\+::\+Sphere}} = typedef ufo\+::geometry\+::\+Sphere}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceglobalPlanner_a2a042fc04a2af7a21d1538463f09b425}\label{namespaceglobalPlanner_a2a042fc04a2af7a21d1538463f09b425}} 
+\index{globalPlanner@{globalPlanner}!overload@{overload}}
+\index{overload@{overload}!globalPlanner@{globalPlanner}}
+\doxysubsubsection{\texorpdfstring{overload()}{overload()}}
+{\footnotesize\ttfamily template$<$class... Ts$>$ \\
+\mbox{\hyperlink{structglobalPlanner_1_1overload}{global\+Planner\+::overload}} (\begin{DoxyParamCaption}\item[{Ts...}]{ }\end{DoxyParamCaption}) -\/$>$  \mbox{\hyperlink{structglobalPlanner_1_1overload}{overload}}$<$ Ts... $>$}
+

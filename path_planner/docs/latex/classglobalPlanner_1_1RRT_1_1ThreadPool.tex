@@ -1,0 +1,116 @@
+\hypertarget{classglobalPlanner_1_1RRT_1_1ThreadPool}{}\doxysection{global\+Planner\+::R\+RT\+::Thread\+Pool Class Reference}
+\label{classglobalPlanner_1_1RRT_1_1ThreadPool}\index{globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}}
+
+
+{\ttfamily \#include $<$thread\+\_\+pool.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1ThreadPool_aba12a34afbb4ea9dfac2f9bb426ead3d}{Thread\+Pool}} (int workers\+\_\+)
+\item 
+\mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1ThreadPool_a68ce0f6c7c6c708bc2792bcc1c150554}{$\sim$\+Thread\+Pool}} ()
+\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1ThreadPool_afd3eab5cdb2e40e639db4816d9454f8b}{work\+On}} (std\+::function$<$ void(void)$>$ functor) noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1ThreadPool_aea65707021b8863804032d04365150d7}{start\+Thread}} (int n) noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::mutex \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1ThreadPool_a4165ddccb65cc4062ed20ac685b94adb}{thread\+Mtx}}
+\item 
+std\+::atomic$<$ bool $>$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1ThreadPool_ad2c0bf0dd2707b84f5b9665ac2a8601a}{shutdown}}
+\item 
+std\+::condition\+\_\+variable \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1ThreadPool_a0e4e7fb12621c9d62d3a72a4eb884ea7}{cv}}
+\item 
+std\+::vector$<$ std\+::thread $>$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1ThreadPool_a211d4d96f0d94591bd198877d26f575b}{workers}}
+\item 
+std\+::queue$<$ std\+::function$<$ void(void)$>$ $>$ \mbox{\hyperlink{classglobalPlanner_1_1RRT_1_1ThreadPool_a29958ce3d877dbdc8f83e0efd2203b1c}{tasks}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1ThreadPool_aba12a34afbb4ea9dfac2f9bb426ead3d}\label{classglobalPlanner_1_1RRT_1_1ThreadPool_aba12a34afbb4ea9dfac2f9bb426ead3d}} 
+\index{globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}!ThreadPool@{ThreadPool}}
+\index{ThreadPool@{ThreadPool}!globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{ThreadPool()}{ThreadPool()}}
+{\footnotesize\ttfamily global\+Planner\+::\+R\+R\+T\+::\+Thread\+Pool\+::\+Thread\+Pool (\begin{DoxyParamCaption}\item[{int}]{workers\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em workers\+\_\+} & Number of worker threads to create. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1ThreadPool_a68ce0f6c7c6c708bc2792bcc1c150554}\label{classglobalPlanner_1_1RRT_1_1ThreadPool_a68ce0f6c7c6c708bc2792bcc1c150554}} 
+\index{globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}!````~ThreadPool@{$\sim$ThreadPool}}
+\index{````~ThreadPool@{$\sim$ThreadPool}!globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{$\sim$ThreadPool()}{~ThreadPool()}}
+{\footnotesize\ttfamily global\+Planner\+::\+R\+R\+T\+::\+Thread\+Pool\+::$\sim$\+Thread\+Pool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1ThreadPool_aea65707021b8863804032d04365150d7}\label{classglobalPlanner_1_1RRT_1_1ThreadPool_aea65707021b8863804032d04365150d7}} 
+\index{globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}!startThread@{startThread}}
+\index{startThread@{startThread}!globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{startThread()}{startThread()}}
+{\footnotesize\ttfamily void global\+Planner\+::\+R\+R\+T\+::\+Thread\+Pool\+::start\+Thread (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [noexcept]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Worker number/\+ID. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1ThreadPool_afd3eab5cdb2e40e639db4816d9454f8b}\label{classglobalPlanner_1_1RRT_1_1ThreadPool_afd3eab5cdb2e40e639db4816d9454f8b}} 
+\index{globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}!workOn@{workOn}}
+\index{workOn@{workOn}!globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{workOn()}{workOn()}}
+{\footnotesize\ttfamily void global\+Planner\+::\+R\+R\+T\+::\+Thread\+Pool\+::work\+On (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(void)$>$}]{functor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em functor} & function object to execute in a worker thread. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1ThreadPool_a0e4e7fb12621c9d62d3a72a4eb884ea7}\label{classglobalPlanner_1_1RRT_1_1ThreadPool_a0e4e7fb12621c9d62d3a72a4eb884ea7}} 
+\index{globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}!cv@{cv}}
+\index{cv@{cv}!globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{cv}{cv}}
+{\footnotesize\ttfamily std\+::condition\+\_\+variable global\+Planner\+::\+R\+R\+T\+::\+Thread\+Pool\+::cv\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1ThreadPool_ad2c0bf0dd2707b84f5b9665ac2a8601a}\label{classglobalPlanner_1_1RRT_1_1ThreadPool_ad2c0bf0dd2707b84f5b9665ac2a8601a}} 
+\index{globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}!shutdown@{shutdown}}
+\index{shutdown@{shutdown}!globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{shutdown}{shutdown}}
+{\footnotesize\ttfamily std\+::atomic$<$bool$>$ global\+Planner\+::\+R\+R\+T\+::\+Thread\+Pool\+::shutdown\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1ThreadPool_a29958ce3d877dbdc8f83e0efd2203b1c}\label{classglobalPlanner_1_1RRT_1_1ThreadPool_a29958ce3d877dbdc8f83e0efd2203b1c}} 
+\index{globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}!tasks@{tasks}}
+\index{tasks@{tasks}!globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{tasks}{tasks}}
+{\footnotesize\ttfamily std\+::queue$<$std\+::function$<$void(void)$>$ $>$ global\+Planner\+::\+R\+R\+T\+::\+Thread\+Pool\+::tasks\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1ThreadPool_a4165ddccb65cc4062ed20ac685b94adb}\label{classglobalPlanner_1_1RRT_1_1ThreadPool_a4165ddccb65cc4062ed20ac685b94adb}} 
+\index{globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}!threadMtx@{threadMtx}}
+\index{threadMtx@{threadMtx}!globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{threadMtx}{threadMtx}}
+{\footnotesize\ttfamily std\+::mutex global\+Planner\+::\+R\+R\+T\+::\+Thread\+Pool\+::thread\+Mtx\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1RRT_1_1ThreadPool_a211d4d96f0d94591bd198877d26f575b}\label{classglobalPlanner_1_1RRT_1_1ThreadPool_a211d4d96f0d94591bd198877d26f575b}} 
+\index{globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}!workers@{workers}}
+\index{workers@{workers}!globalPlanner::RRT::ThreadPool@{globalPlanner::RRT::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{workers}{workers}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::thread$>$ global\+Planner\+::\+R\+R\+T\+::\+Thread\+Pool\+::workers\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/alsarmi/udacity\+\_\+ws/src/3\+D-\/\+M\+A\+V-\/\+Path-\/\+Planner/path\+\_\+planner/include/\mbox{\hyperlink{thread__pool_8h}{thread\+\_\+pool.\+h}}\end{DoxyCompactItemize}

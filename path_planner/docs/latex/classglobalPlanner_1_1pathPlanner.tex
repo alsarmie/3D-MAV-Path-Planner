@@ -1,0 +1,366 @@
+\hypertarget{classglobalPlanner_1_1pathPlanner}{}\doxysection{global\+Planner\+::path\+Planner Class Reference}
+\label{classglobalPlanner_1_1pathPlanner}\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+
+
+{\ttfamily \#include $<$path\+\_\+planner\+\_\+node.\+h$>$}
+
+
+
+Collaboration diagram for global\+Planner\+::path\+Planner\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{classglobalPlanner_1_1pathPlanner__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_ae9053b71faf7432fe157f3d56202808b}{path\+Planner}} (ros\+::\+Node\+Handle \&)
+\begin{DoxyCompactList}\small\item\em This is the constructor of the class {\ttfamily \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner}{path\+Planner}}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a747c0d5ed5c9c6070a70ef26c0b2f606}{run}} ()
+\begin{DoxyCompactList}\small\item\em This is the main function of the class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_ae4dd442f7cce5bcd6916379a89c68f1d}{map\+Callback}} (ufomap\+\_\+msgs\+::\+U\+F\+O\+Map\+Stamped\+::\+Const\+Ptr const \&msg)
+\begin{DoxyCompactList}\small\item\em Converting the map from the U\+F\+O\+Map format to the U\+FO format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_acc22dc1b2b5f65abc87d9c4a4e0c770e}{point\+Callback}} (geometry\+\_\+msgs\+::\+Point\+Stamped\+::\+Const\+Ptr const \&msg)
+\begin{DoxyCompactList}\small\item\em This function is the callback for the subscriber to the {\ttfamily /clicked\+\_\+point} topic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_aa367470150c38a7620c0387e14349670}{publish\+Interpolated\+Path}} ()
+\begin{DoxyCompactList}\small\item\em This function converts the interpolated path from the U\+FO format to the R\+OS nav\+\_\+msgs/\+Path format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a07c3d0732f8fb116b922f6332538d34e}{publish\+Path}} ()
+\begin{DoxyCompactList}\small\item\em Publishes the path to the topic /rrt/way\+\_\+points. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a54015d1a0bf12d8507caa10240e1041f}{get\+Rviz\+Points}} ()
+\begin{DoxyCompactList}\small\item\em This function waits for Rviz points to be available. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a393410cc17b0b2c90308a0ad56fdbce3}{publish\+Points\+Markers}} ()
+\begin{DoxyCompactList}\small\item\em Publish start and goal points to Rviz as visible markers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_ac244ef74c35120adbad9679f171af2ea}{publish\+Markers}} ()
+\begin{DoxyCompactList}\small\item\em Publishes the start and goal markers to the topic /visualization\+\_\+marker\+\_\+array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_afd1a90ffd78214f1aef750b2f60e9aed}{set\+Planner\+Type}} ()
+\begin{DoxyCompactList}\small\item\em Set the planner type\+: \mbox{\hyperlink{namespaceglobalPlanner_1_1RRT}{R\+RT}} $\ast$, B-\/\+R\+RT $\ast$ ,I\+B-\/\+R\+RT $\ast$ and Parallel I\+B-\/\+R\+RT $\ast$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ros\+::\+Node\+Handle \& \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a5ae59d92b0180787595367d52bfd646a}{nh}}
+\item 
+ros\+::\+Subscriber \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a6c4b198ccfe88f17cb8d6c20eadaff64}{map\+Subscriber}}
+\item 
+ros\+::\+Subscriber \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a2a07a5a77504325a683d38d4ec210688}{point\+Subscriber}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a988b884af5be4c2e1a80e7aa0b0ba9e4}{path\+Publisher}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a43de7b852eb8443434ca9aee5ca7f82e}{path\+Int\+Publisher}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a3e5c795ffeb6391724753c00a4dcfb36}{marker\+Publisher}}
+\item 
+int \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a2c1aaecb782c1870a2c2229b18d1edb4}{type}} \{0\}
+\item 
+bool \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a1e4e079d1961ff1a0e6b1ecdf04fa8dd}{map\+Available}} = false
+\item 
+bool \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_ab3f185e2d1c3c91af5a1f56effdca847}{set\+Points}} = true
+\item 
+\mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}} $\ast$ \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_af80b472b3108d5309134db4e15609597}{path}} \{\}
+\item 
+\mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}} \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a681f2c39fe3eb27f2a92940dc801c07d}{interpolated\+Path}} \{\}
+\item 
+\mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{Color\+Map}} \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a512000046490490991f2c4638568f3f8}{map}} \{0.\+05\}
+\item 
+\mbox{\hyperlink{namespaceglobalPlanner_aceb717592b1bac801482e978f8c29d50}{Points}} \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_aa32e8feb443a6b979dc6358c4408056b}{points}} \{\}
+\item 
+std\+::variant$<$ \mbox{\hyperlink{namespaceglobalPlanner_a3c4eb2a6f1769e74dbdd52792b61e5c0}{R\+R\+TS}}, \mbox{\hyperlink{namespaceglobalPlanner_ad19d88786f2d25f86f2288df7f508c37}{B\+R\+RT}}, \mbox{\hyperlink{namespaceglobalPlanner_a9d526081f07f361d9384ef4252326da4}{I\+B\+R\+RT}}, \mbox{\hyperlink{namespaceglobalPlanner_ad76a196fff56b9857cf6b69355db79da}{P\+I\+B\+R\+RT}} $>$ \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a82551c6c52e2ae75f76f0722b213ba69}{rrt\+\_\+planner}} \{\}
+\item 
+\mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$ \mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}} $>$ \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a7b724ce2ffc735a004b30507ac9a17f4}{catmull\+Rom\+Spline}} \{\}
+\item 
+ufo\+::math\+::\+Vector3 \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a0a795ebf8e68b876573109ea46468206}{min\+\_\+}} \{-\/3.\+0, -\/3.\+0, 0.\+0\}
+\item 
+ufo\+::math\+::\+Vector3 \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a3257aa898bc1f26577e33ea443710b01}{max\+\_\+}} \{3.\+0, 3.\+0, 2.\+0\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a225f6a20713b3d49f46a0fc44b1977c2}{delta\+\_\+}} \{0.\+0\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a853e0d74f59b1ce81ed32d9d41214f2c}{search\+Radius\+\_\+}} \{0.\+0\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a46e0e38312a620696fde320f2b426937}{radius\+\_\+}} \{0.\+0\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_aed9339ff50795ea21c7b2e2a0c0a0492}{thresh\+\_\+}} \{0.\+0\}
+\item 
+double \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_ab78b2e1af7d1373b430e086d80786353}{eps\+\_\+}} \{0.\+0\}
+\item 
+int \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_ad44ab657a5cd695f200262e4051933ba}{iterations\+\_\+}} \{0\}
+\item 
+int \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner_a05b373d65b942c8cdc3848cca6db49c4}{workers\+\_\+}} \{10\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_ae9053b71faf7432fe157f3d56202808b}\label{classglobalPlanner_1_1pathPlanner_ae9053b71faf7432fe157f3d56202808b}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!pathPlanner@{pathPlanner}}
+\index{pathPlanner@{pathPlanner}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{pathPlanner()}{pathPlanner()}}
+{\footnotesize\ttfamily global\+Planner\+::path\+Planner\+::path\+Planner (\begin{DoxyParamCaption}\item[{ros\+::\+Node\+Handle \&}]{handle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+This is the constructor of the class {\ttfamily \mbox{\hyperlink{classglobalPlanner_1_1pathPlanner}{path\+Planner}}}. 
+
+It is initializing the class variables and setting up the R\+OS subscribers and publishers. 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Reference to Ros node handle. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a54015d1a0bf12d8507caa10240e1041f}\label{classglobalPlanner_1_1pathPlanner_a54015d1a0bf12d8507caa10240e1041f}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!getRvizPoints@{getRvizPoints}}
+\index{getRvizPoints@{getRvizPoints}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{getRvizPoints()}{getRvizPoints()}}
+{\footnotesize\ttfamily void global\+Planner\+::path\+Planner\+::get\+Rviz\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+This function waits for Rviz points to be available. 
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_ae4dd442f7cce5bcd6916379a89c68f1d}\label{classglobalPlanner_1_1pathPlanner_ae4dd442f7cce5bcd6916379a89c68f1d}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!mapCallback@{mapCallback}}
+\index{mapCallback@{mapCallback}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{mapCallback()}{mapCallback()}}
+{\footnotesize\ttfamily void global\+Planner\+::path\+Planner\+::map\+Callback (\begin{DoxyParamCaption}\item[{ufomap\+\_\+msgs\+::\+U\+F\+O\+Map\+Stamped\+::\+Const\+Ptr const \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Converting the map from the U\+F\+O\+Map format to the U\+FO format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Ufo\+Map ros message. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_acc22dc1b2b5f65abc87d9c4a4e0c770e}\label{classglobalPlanner_1_1pathPlanner_acc22dc1b2b5f65abc87d9c4a4e0c770e}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!pointCallback@{pointCallback}}
+\index{pointCallback@{pointCallback}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{pointCallback()}{pointCallback()}}
+{\footnotesize\ttfamily void global\+Planner\+::path\+Planner\+::point\+Callback (\begin{DoxyParamCaption}\item[{geometry\+\_\+msgs\+::\+Point\+Stamped\+::\+Const\+Ptr const \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+This function is the callback for the subscriber to the {\ttfamily /clicked\+\_\+point} topic. 
+
+It is receiving the points from Rviz and storing them in the {\ttfamily points} vector. 
+\begin{DoxyParams}{Parameters}
+{\em msg} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_aa367470150c38a7620c0387e14349670}\label{classglobalPlanner_1_1pathPlanner_aa367470150c38a7620c0387e14349670}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!publishInterpolatedPath@{publishInterpolatedPath}}
+\index{publishInterpolatedPath@{publishInterpolatedPath}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{publishInterpolatedPath()}{publishInterpolatedPath()}}
+{\footnotesize\ttfamily void global\+Planner\+::path\+Planner\+::publish\+Interpolated\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+This function converts the interpolated path from the U\+FO format to the R\+OS nav\+\_\+msgs/\+Path format. 
+
+After conversion, the path is published to /rrt/way\+\_\+points\+\_\+int. \mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_ac244ef74c35120adbad9679f171af2ea}\label{classglobalPlanner_1_1pathPlanner_ac244ef74c35120adbad9679f171af2ea}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!publishMarkers@{publishMarkers}}
+\index{publishMarkers@{publishMarkers}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{publishMarkers()}{publishMarkers()}}
+{\footnotesize\ttfamily void global\+Planner\+::path\+Planner\+::publish\+Markers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Publishes the start and goal markers to the topic /visualization\+\_\+marker\+\_\+array. 
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a07c3d0732f8fb116b922f6332538d34e}\label{classglobalPlanner_1_1pathPlanner_a07c3d0732f8fb116b922f6332538d34e}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!publishPath@{publishPath}}
+\index{publishPath@{publishPath}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{publishPath()}{publishPath()}}
+{\footnotesize\ttfamily void global\+Planner\+::path\+Planner\+::publish\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Publishes the path to the topic /rrt/way\+\_\+points. 
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a393410cc17b0b2c90308a0ad56fdbce3}\label{classglobalPlanner_1_1pathPlanner_a393410cc17b0b2c90308a0ad56fdbce3}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!publishPointsMarkers@{publishPointsMarkers}}
+\index{publishPointsMarkers@{publishPointsMarkers}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{publishPointsMarkers()}{publishPointsMarkers()}}
+{\footnotesize\ttfamily void global\+Planner\+::path\+Planner\+::publish\+Points\+Markers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Publish start and goal points to Rviz as visible markers. 
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a747c0d5ed5c9c6070a70ef26c0b2f606}\label{classglobalPlanner_1_1pathPlanner_a747c0d5ed5c9c6070a70ef26c0b2f606}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!run@{run}}
+\index{run@{run}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void global\+Planner\+::path\+Planner\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This is the main function of the class. 
+
+It is waiting for the map to be available, and then it is waiting for the user to provide two points in Rviz. Once the points are provided, the planner is called and the path is published. \mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_afd1a90ffd78214f1aef750b2f60e9aed}\label{classglobalPlanner_1_1pathPlanner_afd1a90ffd78214f1aef750b2f60e9aed}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!setPlannerType@{setPlannerType}}
+\index{setPlannerType@{setPlannerType}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{setPlannerType()}{setPlannerType()}}
+{\footnotesize\ttfamily void global\+Planner\+::path\+Planner\+::set\+Planner\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Set the planner type\+: \mbox{\hyperlink{namespaceglobalPlanner_1_1RRT}{R\+RT}} $\ast$, B-\/\+R\+RT $\ast$ ,I\+B-\/\+R\+RT $\ast$ and Parallel I\+B-\/\+R\+RT $\ast$. 
+
+The type is read from ros launch file or parameter server. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a7b724ce2ffc735a004b30507ac9a17f4}\label{classglobalPlanner_1_1pathPlanner_a7b724ce2ffc735a004b30507ac9a17f4}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!catmullRomSpline@{catmullRomSpline}}
+\index{catmullRomSpline@{catmullRomSpline}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{catmullRomSpline}{catmullRomSpline}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classglobalPlanner_1_1CatmullRomSpline}{global\+Planner\+::\+Catmull\+Rom\+Spline}}$<$\mbox{\hyperlink{namespaceglobalPlanner_a314e0092088c858f98ffbf1a60833df1}{Point}}, \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}}$>$ global\+Planner\+::path\+Planner\+::catmull\+Rom\+Spline \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a225f6a20713b3d49f46a0fc44b1977c2}\label{classglobalPlanner_1_1pathPlanner_a225f6a20713b3d49f46a0fc44b1977c2}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!delta\_@{delta\_}}
+\index{delta\_@{delta\_}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{delta\_}{delta\_}}
+{\footnotesize\ttfamily double global\+Planner\+::path\+Planner\+::delta\+\_\+ \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_ab78b2e1af7d1373b430e086d80786353}\label{classglobalPlanner_1_1pathPlanner_ab78b2e1af7d1373b430e086d80786353}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!eps\_@{eps\_}}
+\index{eps\_@{eps\_}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{eps\_}{eps\_}}
+{\footnotesize\ttfamily double global\+Planner\+::path\+Planner\+::eps\+\_\+ \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a681f2c39fe3eb27f2a92940dc801c07d}\label{classglobalPlanner_1_1pathPlanner_a681f2c39fe3eb27f2a92940dc801c07d}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!interpolatedPath@{interpolatedPath}}
+\index{interpolatedPath@{interpolatedPath}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{interpolatedPath}{interpolatedPath}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}} global\+Planner\+::path\+Planner\+::interpolated\+Path \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_ad44ab657a5cd695f200262e4051933ba}\label{classglobalPlanner_1_1pathPlanner_ad44ab657a5cd695f200262e4051933ba}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!iterations\_@{iterations\_}}
+\index{iterations\_@{iterations\_}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{iterations\_}{iterations\_}}
+{\footnotesize\ttfamily int global\+Planner\+::path\+Planner\+::iterations\+\_\+ \{0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a512000046490490991f2c4638568f3f8}\label{classglobalPlanner_1_1pathPlanner_a512000046490490991f2c4638568f3f8}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!map@{map}}
+\index{map@{map}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{map}{map}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespaceglobalPlanner_a8ae936b7befef65ddd02c377f41cacd7}{Color\+Map}} global\+Planner\+::path\+Planner\+::map \{0.\+05\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a1e4e079d1961ff1a0e6b1ecdf04fa8dd}\label{classglobalPlanner_1_1pathPlanner_a1e4e079d1961ff1a0e6b1ecdf04fa8dd}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!mapAvailable@{mapAvailable}}
+\index{mapAvailable@{mapAvailable}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{mapAvailable}{mapAvailable}}
+{\footnotesize\ttfamily bool global\+Planner\+::path\+Planner\+::map\+Available = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a6c4b198ccfe88f17cb8d6c20eadaff64}\label{classglobalPlanner_1_1pathPlanner_a6c4b198ccfe88f17cb8d6c20eadaff64}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!mapSubscriber@{mapSubscriber}}
+\index{mapSubscriber@{mapSubscriber}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{mapSubscriber}{mapSubscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber global\+Planner\+::path\+Planner\+::map\+Subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a3e5c795ffeb6391724753c00a4dcfb36}\label{classglobalPlanner_1_1pathPlanner_a3e5c795ffeb6391724753c00a4dcfb36}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!markerPublisher@{markerPublisher}}
+\index{markerPublisher@{markerPublisher}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{markerPublisher}{markerPublisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher global\+Planner\+::path\+Planner\+::marker\+Publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a3257aa898bc1f26577e33ea443710b01}\label{classglobalPlanner_1_1pathPlanner_a3257aa898bc1f26577e33ea443710b01}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!max\_@{max\_}}
+\index{max\_@{max\_}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{max\_}{max\_}}
+{\footnotesize\ttfamily ufo\+::math\+::\+Vector3 global\+Planner\+::path\+Planner\+::max\+\_\+ \{3.\+0, 3.\+0, 2.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a0a795ebf8e68b876573109ea46468206}\label{classglobalPlanner_1_1pathPlanner_a0a795ebf8e68b876573109ea46468206}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!min\_@{min\_}}
+\index{min\_@{min\_}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{min\_}{min\_}}
+{\footnotesize\ttfamily ufo\+::math\+::\+Vector3 global\+Planner\+::path\+Planner\+::min\+\_\+ \{-\/3.\+0, -\/3.\+0, 0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a5ae59d92b0180787595367d52bfd646a}\label{classglobalPlanner_1_1pathPlanner_a5ae59d92b0180787595367d52bfd646a}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!nh@{nh}}
+\index{nh@{nh}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{nh}{nh}}
+{\footnotesize\ttfamily ros\+::\+Node\+Handle\& global\+Planner\+::path\+Planner\+::nh\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_af80b472b3108d5309134db4e15609597}\label{classglobalPlanner_1_1pathPlanner_af80b472b3108d5309134db4e15609597}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!path@{path}}
+\index{path@{path}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespaceglobalPlanner_a673d4db2579e15fe72dc6a6656c298a7}{Nav\+Path}}$\ast$ global\+Planner\+::path\+Planner\+::path \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a43de7b852eb8443434ca9aee5ca7f82e}\label{classglobalPlanner_1_1pathPlanner_a43de7b852eb8443434ca9aee5ca7f82e}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!pathIntPublisher@{pathIntPublisher}}
+\index{pathIntPublisher@{pathIntPublisher}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{pathIntPublisher}{pathIntPublisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher global\+Planner\+::path\+Planner\+::path\+Int\+Publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a988b884af5be4c2e1a80e7aa0b0ba9e4}\label{classglobalPlanner_1_1pathPlanner_a988b884af5be4c2e1a80e7aa0b0ba9e4}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!pathPublisher@{pathPublisher}}
+\index{pathPublisher@{pathPublisher}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{pathPublisher}{pathPublisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher global\+Planner\+::path\+Planner\+::path\+Publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_aa32e8feb443a6b979dc6358c4408056b}\label{classglobalPlanner_1_1pathPlanner_aa32e8feb443a6b979dc6358c4408056b}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!points@{points}}
+\index{points@{points}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{points}{points}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespaceglobalPlanner_aceb717592b1bac801482e978f8c29d50}{Points}} global\+Planner\+::path\+Planner\+::points \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a2a07a5a77504325a683d38d4ec210688}\label{classglobalPlanner_1_1pathPlanner_a2a07a5a77504325a683d38d4ec210688}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!pointSubscriber@{pointSubscriber}}
+\index{pointSubscriber@{pointSubscriber}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{pointSubscriber}{pointSubscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber global\+Planner\+::path\+Planner\+::point\+Subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a46e0e38312a620696fde320f2b426937}\label{classglobalPlanner_1_1pathPlanner_a46e0e38312a620696fde320f2b426937}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!radius\_@{radius\_}}
+\index{radius\_@{radius\_}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{radius\_}{radius\_}}
+{\footnotesize\ttfamily double global\+Planner\+::path\+Planner\+::radius\+\_\+ \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a82551c6c52e2ae75f76f0722b213ba69}\label{classglobalPlanner_1_1pathPlanner_a82551c6c52e2ae75f76f0722b213ba69}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!rrt\_planner@{rrt\_planner}}
+\index{rrt\_planner@{rrt\_planner}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{rrt\_planner}{rrt\_planner}}
+{\footnotesize\ttfamily std\+::variant$<$\mbox{\hyperlink{namespaceglobalPlanner_a3c4eb2a6f1769e74dbdd52792b61e5c0}{R\+R\+TS}}, \mbox{\hyperlink{namespaceglobalPlanner_ad19d88786f2d25f86f2288df7f508c37}{B\+R\+RT}}, \mbox{\hyperlink{namespaceglobalPlanner_a9d526081f07f361d9384ef4252326da4}{I\+B\+R\+RT}}, \mbox{\hyperlink{namespaceglobalPlanner_ad76a196fff56b9857cf6b69355db79da}{P\+I\+B\+R\+RT}}$>$ global\+Planner\+::path\+Planner\+::rrt\+\_\+planner \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a853e0d74f59b1ce81ed32d9d41214f2c}\label{classglobalPlanner_1_1pathPlanner_a853e0d74f59b1ce81ed32d9d41214f2c}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!searchRadius\_@{searchRadius\_}}
+\index{searchRadius\_@{searchRadius\_}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{searchRadius\_}{searchRadius\_}}
+{\footnotesize\ttfamily double global\+Planner\+::path\+Planner\+::search\+Radius\+\_\+ \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_ab3f185e2d1c3c91af5a1f56effdca847}\label{classglobalPlanner_1_1pathPlanner_ab3f185e2d1c3c91af5a1f56effdca847}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!setPoints@{setPoints}}
+\index{setPoints@{setPoints}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{setPoints}{setPoints}}
+{\footnotesize\ttfamily bool global\+Planner\+::path\+Planner\+::set\+Points = true\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_aed9339ff50795ea21c7b2e2a0c0a0492}\label{classglobalPlanner_1_1pathPlanner_aed9339ff50795ea21c7b2e2a0c0a0492}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!thresh\_@{thresh\_}}
+\index{thresh\_@{thresh\_}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{thresh\_}{thresh\_}}
+{\footnotesize\ttfamily double global\+Planner\+::path\+Planner\+::thresh\+\_\+ \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a2c1aaecb782c1870a2c2229b18d1edb4}\label{classglobalPlanner_1_1pathPlanner_a2c1aaecb782c1870a2c2229b18d1edb4}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!type@{type}}
+\index{type@{type}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily int global\+Planner\+::path\+Planner\+::type \{0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classglobalPlanner_1_1pathPlanner_a05b373d65b942c8cdc3848cca6db49c4}\label{classglobalPlanner_1_1pathPlanner_a05b373d65b942c8cdc3848cca6db49c4}} 
+\index{globalPlanner::pathPlanner@{globalPlanner::pathPlanner}!workers\_@{workers\_}}
+\index{workers\_@{workers\_}!globalPlanner::pathPlanner@{globalPlanner::pathPlanner}}
+\doxysubsubsection{\texorpdfstring{workers\_}{workers\_}}
+{\footnotesize\ttfamily int global\+Planner\+::path\+Planner\+::workers\+\_\+ \{10\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/alsarmi/udacity\+\_\+ws/src/3\+D-\/\+M\+A\+V-\/\+Path-\/\+Planner/path\+\_\+planner/include/\mbox{\hyperlink{path__planner__node_8h}{path\+\_\+planner\+\_\+node.\+h}}\end{DoxyCompactItemize}

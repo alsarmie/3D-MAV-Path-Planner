@@ -1,7 +1,7 @@
-//
-// Created by alsarmi on 31/03/22.
-//
-
+/**
+ *  Created by alsarmi on 31/03/22.
+ *  Header definition of .ply point cloud reader and publisher.
+ */
 #ifndef RGBD_MAPPING_PLY_PUBLISHER_H
 #define RGBD_MAPPING_PLY_PUBLISHER_H
 #include "pointcloud_publisher.h"
@@ -29,6 +29,12 @@ public:
 
 private:
   // For Move Semantics
+  /**
+   * A friend function that is used to swap the values of the member variables
+   * of the class.
+   * @param src Source ply_publisher class instance.
+   * @param dst  Destination ply_publisher class instance.
+   */
   friend void swap(Ply_publisher &src, Ply_publisher &dst) {
     using std::swap;
     swap(src.handle, dst.handle);
@@ -42,7 +48,6 @@ private:
 
   // Member functions
   void publishingCallback(const ros::TimerEvent &timerEvent);
-
   // Handle
   ros::NodeHandle *handle = nullptr;
   // Point cloud frame ID.
@@ -53,7 +58,7 @@ private:
   std::string pointCloudTopic;
   // Pointer to point cloud message
   std::unique_ptr<sensor_msgs::PointCloud2> pointCloudMessage;
-  // To constantly publish the cloud point we require a ross::Timer and a
+  // To constantly publish the cloud point we require a ros::Timer and a
   // ros::Duration
   ros::Timer publishTimer;
   ros::Duration publishRate;
