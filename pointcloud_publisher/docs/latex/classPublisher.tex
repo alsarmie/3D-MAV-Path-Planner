@@ -1,0 +1,91 @@
+\hypertarget{classPublisher}{}\doxysection{Publisher Class Reference}
+\label{classPublisher}\index{Publisher@{Publisher}}
+
+
+This header defines the general class point cloud\+\_\+publisher that is expected to be inherited on derived classes that read and publish different point cloud formats.  
+
+
+
+
+{\ttfamily \#include $<$pointcloud\+\_\+publisher.\+h$>$}
+
+
+
+Inheritance diagram for Publisher\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{classPublisher__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPublisher_ae2af6b0bc14ae40c9fd2cc974d551506}{Publisher}} ()=default
+\item 
+virtual \mbox{\hyperlink{classPublisher_a9130ace46fb3040e1acab6edfbffad28}{$\sim$\+Publisher}} ()=default
+\item 
+virtual bool \mbox{\hyperlink{classPublisher_a844e2d1f2461518b5b71f65f0d85cb10}{publish}} ()=0
+\item 
+virtual bool \mbox{\hyperlink{classPublisher_afe06f5cd507ce40f86f09071e423b525}{load\+File}} (const std\+::string \&path)=0
+\item 
+virtual void \mbox{\hyperlink{classPublisher_ade017cdb6edecaa1e99e8abb16a09d56}{load\+Params}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This header defines the general class point cloud\+\_\+publisher that is expected to be inherited on derived classes that read and publish different point cloud formats. 
+
+\begin{DoxyAuthor}{Author}
+Alejandro Sarmiento 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPublisher_ae2af6b0bc14ae40c9fd2cc974d551506}\label{classPublisher_ae2af6b0bc14ae40c9fd2cc974d551506}} 
+\index{Publisher@{Publisher}!Publisher@{Publisher}}
+\index{Publisher@{Publisher}!Publisher@{Publisher}}
+\doxysubsubsection{\texorpdfstring{Publisher()}{Publisher()}}
+{\footnotesize\ttfamily Publisher\+::\+Publisher (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classPublisher_a9130ace46fb3040e1acab6edfbffad28}\label{classPublisher_a9130ace46fb3040e1acab6edfbffad28}} 
+\index{Publisher@{Publisher}!````~Publisher@{$\sim$Publisher}}
+\index{````~Publisher@{$\sim$Publisher}!Publisher@{Publisher}}
+\doxysubsubsection{\texorpdfstring{$\sim$Publisher()}{~Publisher()}}
+{\footnotesize\ttfamily virtual Publisher\+::$\sim$\+Publisher (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPublisher_afe06f5cd507ce40f86f09071e423b525}\label{classPublisher_afe06f5cd507ce40f86f09071e423b525}} 
+\index{Publisher@{Publisher}!loadFile@{loadFile}}
+\index{loadFile@{loadFile}!Publisher@{Publisher}}
+\doxysubsubsection{\texorpdfstring{loadFile()}{loadFile()}}
+{\footnotesize\ttfamily virtual bool Publisher\+::load\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classPly__publisher_a82db2524309a2acb29ac222ac91be1a7}{Ply\+\_\+publisher}}.
+
+\mbox{\Hypertarget{classPublisher_ade017cdb6edecaa1e99e8abb16a09d56}\label{classPublisher_ade017cdb6edecaa1e99e8abb16a09d56}} 
+\index{Publisher@{Publisher}!loadParams@{loadParams}}
+\index{loadParams@{loadParams}!Publisher@{Publisher}}
+\doxysubsubsection{\texorpdfstring{loadParams()}{loadParams()}}
+{\footnotesize\ttfamily virtual void Publisher\+::load\+Params (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classPublisher_a844e2d1f2461518b5b71f65f0d85cb10}\label{classPublisher_a844e2d1f2461518b5b71f65f0d85cb10}} 
+\index{Publisher@{Publisher}!publish@{publish}}
+\index{publish@{publish}!Publisher@{Publisher}}
+\doxysubsubsection{\texorpdfstring{publish()}{publish()}}
+{\footnotesize\ttfamily virtual bool Publisher\+::publish (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classPly__publisher_a36eff0d617bf0f456772fac1f29cb8aa}{Ply\+\_\+publisher}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/alsarmi/udacity\+\_\+ws/src/3\+D-\/\+M\+A\+V-\/\+Path-\/\+Planner/pointcloud\+\_\+publisher/include/\mbox{\hyperlink{pointcloud__publisher_8h}{pointcloud\+\_\+publisher.\+h}}\end{DoxyCompactItemize}

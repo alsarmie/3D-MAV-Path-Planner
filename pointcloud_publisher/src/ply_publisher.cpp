@@ -1,6 +1,9 @@
-//
-// Created by alsarmi on 31/03/22.
-//
+/**
+*@mainpage  Point cloud publisher file.
+*@author  Alejandro Sarmiento.
+*@file  ply_publisher.cpp
+*@brief Point cloud publisher main file
+*/
 
 #include "ply_publisher.h"
 #include <iostream>

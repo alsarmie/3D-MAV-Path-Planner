@@ -1,6 +1,6 @@
 /**
- *  Created by alsarmi on 31/03/22.
- *  Header definition of .ply point cloud reader and publisher.
+ *  @author  Alejandro Sarmiento.
+ *  @brief Header definition of .ply point cloud reader and publisher.
  */
 #ifndef RGBD_MAPPING_PLY_PUBLISHER_H
 #define RGBD_MAPPING_PLY_PUBLISHER_H

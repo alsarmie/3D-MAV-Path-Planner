@@ -1,6 +1,6 @@
 /***
  * @author Alejandro Sarmiento
- * @description This header defines the general class point cloud_publisher that
+ * @brief This header defines the general class point cloud_publisher that
  * is expected to be inherited on derived classes that read and publish
  * different point cloud formats.
  *

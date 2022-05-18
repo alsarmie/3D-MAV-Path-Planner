@@ -1,0 +1,314 @@
+\hypertarget{classPly__publisher}{}\doxysection{Ply\+\_\+publisher Class Reference}
+\label{classPly__publisher}\index{Ply\_publisher@{Ply\_publisher}}
+
+
+Header definition of .ply point cloud reader and publisher.  
+
+
+
+
+{\ttfamily \#include $<$ply\+\_\+publisher.\+h$>$}
+
+
+
+Inheritance diagram for Ply\+\_\+publisher\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{classPly__publisher__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Ply\+\_\+publisher\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{classPly__publisher__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPly__publisher_a34b294981b197f3620e51f21901efa87}{Ply\+\_\+publisher}} (ros\+::\+Node\+Handle $\ast$node\+Handle, std\+::string frame\+ID, std\+::string ros\+Topic, ros\+::\+Duration pub\+Rate)
+\begin{DoxyCompactList}\small\item\em Class definitions and implementation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPly__publisher_ae725a8183876f2fe8dad83ab3e6e4961}{Ply\+\_\+publisher}} (\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&\&src) noexcept
+\begin{DoxyCompactList}\small\item\em Move semantics. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \& \mbox{\hyperlink{classPly__publisher_a3ebaddba8c585fc1f378740b11f9e103}{operator=}} (\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&\&src) noexcept
+\begin{DoxyCompactList}\small\item\em A move assignment operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPly__publisher_a7bd663d31a6da6437aee3f71625795ea}{$\sim$\+Ply\+\_\+publisher}} () override=default
+\item 
+\mbox{\hyperlink{classPly__publisher_a48df05466465987f0966cb96dfe15198}{Ply\+\_\+publisher}} (\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&src)=delete
+\item 
+\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \& \mbox{\hyperlink{classPly__publisher_a0671dcfcd20c24bde444f6a0f3f36b5d}{operator=}} (\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&src)=delete
+\item 
+bool \mbox{\hyperlink{classPly__publisher_a36eff0d617bf0f456772fac1f29cb8aa}{publish}} () override
+\begin{DoxyCompactList}\small\item\em It publishes the point cloud message to the topic specified in the constructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPly__publisher_a82db2524309a2acb29ac222ac91be1a7}{load\+File}} (const std\+::string \&path) override
+\begin{DoxyCompactList}\small\item\em It loads a .ply file and converts it to a R\+OS message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \mbox{\hyperlink{classPly__publisher_a4c09d8f909832e12995dd4eff3deb6f0}{setup}} (ros\+::\+Node\+Handle $\ast$node\+Handle)
+\begin{DoxyCompactList}\small\item\em Member functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classPly__publisher_ae1800e76c13ecd227a1cb385243c7611}{publishing\+Callback}} (const ros\+::\+Timer\+Event \&timer\+Event)
+\begin{DoxyCompactList}\small\item\em It publishes the point cloud. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ros\+::\+Node\+Handle $\ast$ \mbox{\hyperlink{classPly__publisher_a024d68c010f9cf20d8c986aa8f655458}{handle}} = nullptr
+\item 
+std\+::string \mbox{\hyperlink{classPly__publisher_a8a962b6e09aed1a6aae2e19f09d02bc3}{point\+Cloud\+Frame\+ID}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{classPly__publisher_a420237cb1b86d9737ba50d56a4ef8f9b}{point\+Cloud\+Publisher}}
+\item 
+std\+::string \mbox{\hyperlink{classPly__publisher_a23eafdca936269d2b0a3da3a9d98991f}{point\+Cloud\+Topic}}
+\item 
+std\+::unique\+\_\+ptr$<$ sensor\+\_\+msgs\+::\+Point\+Cloud2 $>$ \mbox{\hyperlink{classPly__publisher_a5369d11516c2aa9bc5df47526f04c971}{point\+Cloud\+Message}}
+\item 
+ros\+::\+Timer \mbox{\hyperlink{classPly__publisher_ab6e5692ca33e4b604133409b08696cda}{publish\+Timer}}
+\item 
+ros\+::\+Duration \mbox{\hyperlink{classPly__publisher_a267f31b5a53eeee6bcf3a912c24e1ef9}{publish\+Rate}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classPly__publisher_af5b3fda65d3b32be407218fab7599cc0}{swap}} (\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&src, \mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&dst)
+\begin{DoxyCompactList}\small\item\em A friend function that is used to swap the values of the member variables of the class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header definition of .ply point cloud reader and publisher. 
+
+\begin{DoxyAuthor}{Author}
+Alejandro Sarmiento. 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPly__publisher_a34b294981b197f3620e51f21901efa87}\label{classPly__publisher_a34b294981b197f3620e51f21901efa87}} 
+\index{Ply\_publisher@{Ply\_publisher}!Ply\_publisher@{Ply\_publisher}}
+\index{Ply\_publisher@{Ply\_publisher}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{Ply\_publisher()}{Ply\_publisher()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Ply\+\_\+publisher\+::\+Ply\+\_\+publisher (\begin{DoxyParamCaption}\item[{ros\+::\+Node\+Handle $\ast$}]{node\+Handle,  }\item[{std\+::string}]{frame\+ID,  }\item[{std\+::string}]{ros\+Topic,  }\item[{ros\+::\+Duration}]{pub\+Rate }\end{DoxyParamCaption})}
+
+
+
+Class definitions and implementation. 
+
+Constructor It creates a new {\ttfamily \mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}}} object, which is a class that publishes a point cloud message to a R\+OS topic
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+Handle} & The R\+OS node handle. \\
+\hline
+{\em frame\+ID} & The frame ID of the point cloud. \\
+\hline
+{\em ros\+Topic} & The topic name to publish the point cloud to. \\
+\hline
+{\em pub\+Rate} & The rate at which the point cloud will be published. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPly__publisher_ae725a8183876f2fe8dad83ab3e6e4961}\label{classPly__publisher_ae725a8183876f2fe8dad83ab3e6e4961}} 
+\index{Ply\_publisher@{Ply\_publisher}!Ply\_publisher@{Ply\_publisher}}
+\index{Ply\_publisher@{Ply\_publisher}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{Ply\_publisher()}{Ply\_publisher()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Ply\+\_\+publisher\+::\+Ply\+\_\+publisher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&\&}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Move semantics. 
+
+Move constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & The object to move from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPly__publisher_a7bd663d31a6da6437aee3f71625795ea}\label{classPly__publisher_a7bd663d31a6da6437aee3f71625795ea}} 
+\index{Ply\_publisher@{Ply\_publisher}!````~Ply\_publisher@{$\sim$Ply\_publisher}}
+\index{````~Ply\_publisher@{$\sim$Ply\_publisher}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{$\sim$Ply\_publisher()}{~Ply\_publisher()}}
+{\footnotesize\ttfamily Ply\+\_\+publisher\+::$\sim$\+Ply\+\_\+publisher (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+\mbox{\Hypertarget{classPly__publisher_a48df05466465987f0966cb96dfe15198}\label{classPly__publisher_a48df05466465987f0966cb96dfe15198}} 
+\index{Ply\_publisher@{Ply\_publisher}!Ply\_publisher@{Ply\_publisher}}
+\index{Ply\_publisher@{Ply\_publisher}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{Ply\_publisher()}{Ply\_publisher()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Ply\+\_\+publisher\+::\+Ply\+\_\+publisher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPly__publisher_a82db2524309a2acb29ac222ac91be1a7}\label{classPly__publisher_a82db2524309a2acb29ac222ac91be1a7}} 
+\index{Ply\_publisher@{Ply\_publisher}!loadFile@{loadFile}}
+\index{loadFile@{loadFile}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{loadFile()}{loadFile()}}
+{\footnotesize\ttfamily bool Ply\+\_\+publisher\+::load\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+It loads a .ply file and converts it to a R\+OS message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the .ply file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value. true if loading of the file is successful. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPublisher_afe06f5cd507ce40f86f09071e423b525}{Publisher}}.
+
+\mbox{\Hypertarget{classPly__publisher_a3ebaddba8c585fc1f378740b11f9e103}\label{classPly__publisher_a3ebaddba8c585fc1f378740b11f9e103}} 
+\index{Ply\_publisher@{Ply\_publisher}!operator=@{operator=}}
+\index{operator=@{operator=}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \& Ply\+\_\+publisher\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&\&}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+A move assignment operator. 
+
+It is used to move the data from one object to another.
+
+\begin{DoxyReturn}{Returns}
+A reference to the object that was assigned to. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPly__publisher_a0671dcfcd20c24bde444f6a0f3f36b5d}\label{classPly__publisher_a0671dcfcd20c24bde444f6a0f3f36b5d}} 
+\index{Ply\_publisher@{Ply\_publisher}!operator=@{operator=}}
+\index{operator=@{operator=}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}}\& Ply\+\_\+publisher\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classPly__publisher_a36eff0d617bf0f456772fac1f29cb8aa}\label{classPly__publisher_a36eff0d617bf0f456772fac1f29cb8aa}} 
+\index{Ply\_publisher@{Ply\_publisher}!publish@{publish}}
+\index{publish@{publish}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{publish()}{publish()}}
+{\footnotesize\ttfamily bool Ply\+\_\+publisher\+::publish (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+It publishes the point cloud message to the topic specified in the constructor. 
+
+\begin{DoxyReturn}{Returns}
+A boolean value. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPublisher_a844e2d1f2461518b5b71f65f0d85cb10}{Publisher}}.
+
+\mbox{\Hypertarget{classPly__publisher_ae1800e76c13ecd227a1cb385243c7611}\label{classPly__publisher_ae1800e76c13ecd227a1cb385243c7611}} 
+\index{Ply\_publisher@{Ply\_publisher}!publishingCallback@{publishingCallback}}
+\index{publishingCallback@{publishingCallback}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{publishingCallback()}{publishingCallback()}}
+{\footnotesize\ttfamily void Ply\+\_\+publisher\+::publishing\+Callback (\begin{DoxyParamCaption}\item[{const ros\+::\+Timer\+Event \&}]{timer\+Event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+It publishes the point cloud. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timer\+Event} & The timer event that triggered the callback. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPly__publisher_a4c09d8f909832e12995dd4eff3deb6f0}\label{classPly__publisher_a4c09d8f909832e12995dd4eff3deb6f0}} 
+\index{Ply\_publisher@{Ply\_publisher}!setup@{setup}}
+\index{setup@{setup}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} Ply\+\_\+publisher\+::setup (\begin{DoxyParamCaption}\item[{ros\+::\+Node\+Handle $\ast$}]{node\+Handle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Member functions. 
+
+It loads the parameters from the launch file and sets up the publisher
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+Handle} & A pointer to the node handle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} object. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classPly__publisher_af5b3fda65d3b32be407218fab7599cc0}\label{classPly__publisher_af5b3fda65d3b32be407218fab7599cc0}} 
+\index{Ply\_publisher@{Ply\_publisher}!swap@{swap}}
+\index{swap@{swap}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{swap}{swap}}
+{\footnotesize\ttfamily void swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&}]{src,  }\item[{\mbox{\hyperlink{classPly__publisher}{Ply\+\_\+publisher}} \&}]{dst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+A friend function that is used to swap the values of the member variables of the class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Source ply\+\_\+publisher class instance. \\
+\hline
+{\em dst} & Destination ply\+\_\+publisher class instance. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classPly__publisher_a024d68c010f9cf20d8c986aa8f655458}\label{classPly__publisher_a024d68c010f9cf20d8c986aa8f655458}} 
+\index{Ply\_publisher@{Ply\_publisher}!handle@{handle}}
+\index{handle@{handle}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{handle}{handle}}
+{\footnotesize\ttfamily ros\+::\+Node\+Handle$\ast$ Ply\+\_\+publisher\+::handle = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classPly__publisher_a8a962b6e09aed1a6aae2e19f09d02bc3}\label{classPly__publisher_a8a962b6e09aed1a6aae2e19f09d02bc3}} 
+\index{Ply\_publisher@{Ply\_publisher}!pointCloudFrameID@{pointCloudFrameID}}
+\index{pointCloudFrameID@{pointCloudFrameID}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{pointCloudFrameID}{pointCloudFrameID}}
+{\footnotesize\ttfamily std\+::string Ply\+\_\+publisher\+::point\+Cloud\+Frame\+ID\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classPly__publisher_a5369d11516c2aa9bc5df47526f04c971}\label{classPly__publisher_a5369d11516c2aa9bc5df47526f04c971}} 
+\index{Ply\_publisher@{Ply\_publisher}!pointCloudMessage@{pointCloudMessage}}
+\index{pointCloudMessage@{pointCloudMessage}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{pointCloudMessage}{pointCloudMessage}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$sensor\+\_\+msgs\+::\+Point\+Cloud2$>$ Ply\+\_\+publisher\+::point\+Cloud\+Message\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classPly__publisher_a420237cb1b86d9737ba50d56a4ef8f9b}\label{classPly__publisher_a420237cb1b86d9737ba50d56a4ef8f9b}} 
+\index{Ply\_publisher@{Ply\_publisher}!pointCloudPublisher@{pointCloudPublisher}}
+\index{pointCloudPublisher@{pointCloudPublisher}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{pointCloudPublisher}{pointCloudPublisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher Ply\+\_\+publisher\+::point\+Cloud\+Publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classPly__publisher_a23eafdca936269d2b0a3da3a9d98991f}\label{classPly__publisher_a23eafdca936269d2b0a3da3a9d98991f}} 
+\index{Ply\_publisher@{Ply\_publisher}!pointCloudTopic@{pointCloudTopic}}
+\index{pointCloudTopic@{pointCloudTopic}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{pointCloudTopic}{pointCloudTopic}}
+{\footnotesize\ttfamily std\+::string Ply\+\_\+publisher\+::point\+Cloud\+Topic\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classPly__publisher_a267f31b5a53eeee6bcf3a912c24e1ef9}\label{classPly__publisher_a267f31b5a53eeee6bcf3a912c24e1ef9}} 
+\index{Ply\_publisher@{Ply\_publisher}!publishRate@{publishRate}}
+\index{publishRate@{publishRate}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{publishRate}{publishRate}}
+{\footnotesize\ttfamily ros\+::\+Duration Ply\+\_\+publisher\+::publish\+Rate\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classPly__publisher_ab6e5692ca33e4b604133409b08696cda}\label{classPly__publisher_ab6e5692ca33e4b604133409b08696cda}} 
+\index{Ply\_publisher@{Ply\_publisher}!publishTimer@{publishTimer}}
+\index{publishTimer@{publishTimer}!Ply\_publisher@{Ply\_publisher}}
+\doxysubsubsection{\texorpdfstring{publishTimer}{publishTimer}}
+{\footnotesize\ttfamily ros\+::\+Timer Ply\+\_\+publisher\+::publish\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/alsarmi/udacity\+\_\+ws/src/3\+D-\/\+M\+A\+V-\/\+Path-\/\+Planner/pointcloud\+\_\+publisher/include/\mbox{\hyperlink{ply__publisher_8h}{ply\+\_\+publisher.\+h}}\item 
+/home/alsarmi/udacity\+\_\+ws/src/3\+D-\/\+M\+A\+V-\/\+Path-\/\+Planner/pointcloud\+\_\+publisher/src/\mbox{\hyperlink{ply__publisher_8cpp}{ply\+\_\+publisher.\+cpp}}\end{DoxyCompactItemize}

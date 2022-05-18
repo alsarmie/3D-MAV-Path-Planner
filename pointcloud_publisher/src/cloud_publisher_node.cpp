@@ -2,8 +2,7 @@
 #include "ply_publisher.h"
 
 /**
- *  Created by Alejandro Sarmiento
- *
+ * @brief Point cloud publisher node main file.
  * @param argc The number of arguments passed to the program.
  * @param argv The arguments to pass to the node, currently none.
  *
