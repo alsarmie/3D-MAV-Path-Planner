@@ -13,6 +13,8 @@ Udacity C++ Nanodegree Final Project
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
@@ -204,16 +206,15 @@ Alejandro Sarmiento - alejandro.sar.gon@gmail.com
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
+[forks-shield]: https://img.shields.io/github/forks/alsarmie/3D-MAV-Path-Planner.svg?style=for-the-badge
+[forks-url]: https://github.com/alsarmie/3D-MAV-Path-Planner/network/members
+[stars-shield]: https://img.shields.io/github/stars/alsarmie/3D-MAV-Path-Planner.svg?style=for-the-badge
+[stars-url]: https://github.com/alsarmie/3D-MAV-Path-Planner/stargazers
 [issues-shield]: https://img.shields.io/github/issues/alsarmie/3D-MAV-Path-Planner.svg?style=for-the-badge
-
 [issues-url]: https://github.com/alsarmie/3D-MAV-Path-Planner/issues
-
 [license-shield]: https://img.shields.io/github/license/alsarmie/3D-MAV-Path-Planner.svg?style=for-the-badge
-
-[license-url]: https://github.com/alsarmie/3D-MAV-Path-Planner/blob/main/LICENSE
-
+[license-url]: https://github.com/alsarmie/3D-MAV-Path-Planner/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-
 [linkedin-url]: https://www.linkedin.com/in/alejandrosargon
 
 [product-screenshot]: images/3D-MAV-Path-Planner.gif
