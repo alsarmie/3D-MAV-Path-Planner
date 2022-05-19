@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['setup_20',['setup',['../classPly__publisher.html#a4c09d8f909832e12995dd4eff3deb6f0',1,'Ply_publisher']]],
-  ['swap_21',['swap',['../classPly__publisher.html#af5b3fda65d3b32be407218fab7599cc0',1,'Ply_publisher']]]
+  ['setup_20',['setup',['../classPlyPublisher.html#ad57d86c62b7bb2c4d7d0aee477208c30',1,'PlyPublisher']]],
+  ['swap_21',['swap',['../classPlyPublisher.html#a87ebcf377254ddbfe29062bedf99b819',1,'PlyPublisher']]]
 ];

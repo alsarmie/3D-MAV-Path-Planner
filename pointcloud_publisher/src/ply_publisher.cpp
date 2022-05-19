@@ -1,9 +1,9 @@
 /**
-*@mainpage  Point cloud publisher file.
-*@author  Alejandro Sarmiento.
-*@file  ply_publisher.cpp
-*@brief Point cloud publisher main file
-*/
+ *@mainpage  Point cloud publisher file.
+ *@author  Alejandro Sarmiento.
+ *@file  ply_publisher.cpp
+ *@brief Point cloud publisher main file
+ */
 
 #include "ply_publisher.h"
 #include <iostream>
@@ -17,7 +17,7 @@
 /** Constructor */
 /**
  * It creates a new
- * `Ply_publisher` object, which is a class that publishes a point cloud
+ * `PlyPublisher` object, which is a class that publishes a point cloud
  * message to a ROS topic
  *
  * @param nodeHandle The ROS node handle.
@@ -25,7 +25,7 @@
  * @param rosTopic The topic name to publish the point cloud to.
  * @param pubRate The rate at which the point cloud will be published.
  */
-Ply_publisher::Ply_publisher(ros::NodeHandle *nodeHandle, std::string frameID,
+PlyPublisher::PlyPublisher(ros::NodeHandle *nodeHandle, std::string frameID,
                              std::string rosTopic, ros::Duration pubRate)
     : handle(nodeHandle), pointCloudFrameID(std::move(frameID)),
       pointCloudTopic(std::move(rosTopic)), publishRate(pubRate),
@@ -36,7 +36,7 @@ Ply_publisher::Ply_publisher(ros::NodeHandle *nodeHandle, std::string frameID,
                                  // intensive, we will set the queue at 1.
 
   publishTimer = nodeHandle->createTimer(
-      publishRate, &Ply_publisher::publishingCallback, this);
+      publishRate, &PlyPublisher::publishingCallback, this);
   ROS_INFO("Point Cloud Publisher created!");
 }
 /** Move semantics*/
@@ -45,7 +45,7 @@ Ply_publisher::Ply_publisher(ros::NodeHandle *nodeHandle, std::string frameID,
  *
  * @param src The object to move from.
  */
-Ply_publisher::Ply_publisher(Ply_publisher &&src) noexcept { swap(src, *this); }
+PlyPublisher::PlyPublisher(PlyPublisher &&src) noexcept { swap(src, *this); }
 
 /**
  * A move assignment operator. It is used to move the data from one object to
@@ -53,7 +53,7 @@ Ply_publisher::Ply_publisher(Ply_publisher &&src) noexcept { swap(src, *this); }
  *
  * @return A reference to the object that was assigned to.
  */
-Ply_publisher &Ply_publisher::operator=(Ply_publisher &&src) noexcept {
+PlyPublisher &PlyPublisher::operator=(PlyPublisher &&src) noexcept {
   std::cout << "Point Cloud Publisher move assignment operation.\n";
   swap(src, *this);
   return *this;
@@ -66,9 +66,9 @@ Ply_publisher &Ply_publisher::operator=(Ply_publisher &&src) noexcept {
  *
  * @param nodeHandle A pointer to the node handle.
  *
- * @return A Ply_publisher object.
+ * @return A PlyPublisher object.
  */
-Ply_publisher Ply_publisher::setup(ros::NodeHandle *nodeHandle) {
+PlyPublisher PlyPublisher::setup(ros::NodeHandle *nodeHandle) {
   // Point cloud file's absolute path.
   std::string filePath;
   // Ros topic to publish to.
@@ -86,7 +86,7 @@ Ply_publisher Ply_publisher::setup(ros::NodeHandle *nodeHandle) {
         "Path to *.ply file not provided in launch file or argument "
         "path:=your_path_to_ply_file when running as a single node! Assigning "
         "default demo file!");
-    filePath = "../models/room.ply";
+    filePath = "../models/studio_d435i_t265_3.ply";
   }
   if (!nodeHandle->getParam("topic", pointCloudTopic)) {
     ROS_WARN("ROS topic not provided in launch file or argument "
@@ -109,7 +109,7 @@ Ply_publisher Ply_publisher::setup(ros::NodeHandle *nodeHandle) {
     rate = 1.0;
   }
   publishRate.fromSec(1.0 / rate);
-  Ply_publisher publisher(std::move(nodeHandle), std::move(pointCloudFrameID),
+  PlyPublisher publisher(std::move(nodeHandle), std::move(pointCloudFrameID),
                           std::move(pointCloudTopic), std::move(publishRate));
   if (!publisher.loadFile(filePath)) {
     auto message = "Could not load provided file in path:" + filePath;
@@ -124,7 +124,7 @@ Ply_publisher Ply_publisher::setup(ros::NodeHandle *nodeHandle) {
  *
  * @param timerEvent The timer event that triggered the callback.
  */
-void Ply_publisher::publishingCallback(const ros::TimerEvent &timerEvent) {
+void PlyPublisher::publishingCallback(const ros::TimerEvent &timerEvent) {
   if (!publish())
     ROS_ERROR("Could not publish point cloud!");
 }
@@ -136,7 +136,7 @@ void Ply_publisher::publishingCallback(const ros::TimerEvent &timerEvent) {
  *
  * @return A boolean value. true if loading of the file is successful.
  */
-bool Ply_publisher::loadFile(const std::string &path) {
+bool PlyPublisher::loadFile(const std::string &path) {
   if (path.find(".ply") == std::string::npos) {
     ROS_WARN("Provided file format is different from .ply!");
     return false;
@@ -159,7 +159,7 @@ bool Ply_publisher::loadFile(const std::string &path) {
  *
  * @return A boolean value.
  */
-bool Ply_publisher::publish() {
+bool PlyPublisher::publish() {
   pointCloudMessage->header.stamp = ros::Time::now();
   pointCloudMessage->header.frame_id = pointCloudFrameID;
   if (pointCloudPublisher.getNumSubscribers() > 0) {

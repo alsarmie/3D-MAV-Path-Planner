@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setup_38',['setup',['../classPly__publisher.html#a4c09d8f909832e12995dd4eff3deb6f0',1,'Ply_publisher']]]
+  ['setup_38',['setup',['../classPlyPublisher.html#ad57d86c62b7bb2c4d7d0aee477208c30',1,'PlyPublisher']]]
 ];
