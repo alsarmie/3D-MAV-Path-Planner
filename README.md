@@ -361,11 +361,6 @@ All dependencies are taken care of. It will install ROS Noetic if it is not alre
     cd ~/udacity_ws/src
     # Clone the repo
     git clone https://github.com/alsarmie/3D-MAV-Path-Planner.git --recurse-submodules
-    # Power tool to address any remaining missing dependency.
-    cd ~/udacity_ws/src/3D-MAC-Path-Planner/path_planner
-    rosdep install --from-paths src --ignore-src --rosdistro noetic -y -r
-    cd ~/udacity_ws/src/3D-MAC-Path-Planner/pointcloud_publisher
-    rosdep install --from-paths src --ignore-src --rosdistro noetic -y -r
     cd ~/udacity_ws/src/
     source ~/.bashrc
    ```
