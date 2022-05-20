@@ -331,8 +331,7 @@ This project makes use of:
     * tf2 Tools
     * tf2 Tools
 * [Open CV 4.5](https://opencv.org/)                      -Optional - ONLY required for mapping
-* [Python](https://www.python.org/)                       -Optional - ONLY required for mapping
-
+* [Python 3](https://www.python.org/)                       
 ### Installation
 
 Installation is pretty simple, all the heavy work is done with a simple bash script.
