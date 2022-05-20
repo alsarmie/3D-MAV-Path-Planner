@@ -77,16 +77,16 @@ sudo apt install -y \
      git \
      curl \
      libtbb-dev \
-     python-pip \
-     python-rosdep \
-     python-rosinstall \
-     python-bloom \
-     python-wstool \
-     python-catkin-lint \
+     python3-pip \
+     python3-rosdep \
+     python3-rosinstall \
+     python3-bloom \
+     python3-wstool \
+     python3-catkin-lint \
      python3-catkin-tools \
      python3-osrf-pycommon \
-     python-rosinstall \
-     python-rosinstall-generator \
+     python3-rosinstall \
+     python3-rosinstall-generator \
      build-essential \
      ros-noetic-tf2-geometry-msgs \
      ros-noetic-tf2-tools \
