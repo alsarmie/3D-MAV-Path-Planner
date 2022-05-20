@@ -194,7 +194,7 @@ the [paper](https://arxiv.org/pdf/1703.08944.pdf) that was consulted for this pr
 [algorithms](https://arxiv.org/pdf/1703.08944.pdf) employed is shown below for reference.
 The main goals of the `path_planner` package:
 
-1. Provide lightweight template class definitions of RRT*, B-RRT*, IB-RRT*, Parallel IB-RRT * in header files.
+1. Provide template class definitions of RRT*, B-RRT*, IB-RRT*, Parallel IB-RRT * in header files.
 2. Provide a simple ROS path planner that can be used with MAV in 3D environments with real-time constraints.
 
 The RRT * algorithm pseudocode:
@@ -433,7 +433,9 @@ This will run the `IB-RRT *` planner with 10000 iterations as a stop condition.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+Once the Rviz window pops up, you can easily set the start and goal points in the map with the Publish Point utility. Click on the utility and then click anywhere in the green (free) area of the map. **You need to select the tool for each point**.
 
+![Path planner][path-planner-screenshot]
 <!-- ROADMAP -->
 
 ## Roadmap
@@ -519,5 +521,5 @@ Alejandro Sarmiento - alejandro.sar.gon@gmail.com
 [linkedin-url]: https://www.linkedin.com/in/alejandrosargon
 
 [product-screenshot]: images/3D-MAV-Path-Planner.gif
-
+[path-planner-screenshot]: images/path_planner_running.png
 [pointcloud-class-screenshot]: images/pointcloud_publisher.png
