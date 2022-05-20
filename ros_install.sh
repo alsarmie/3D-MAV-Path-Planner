@@ -84,6 +84,7 @@ sudo apt install -y \
      python3-catkin-lint \
      python3-catkin-tools \
      python3-osrf-pycommon \
+     python3-roslaunch \
      python3-rosinstall \
      python3-rosinstall-generator \
      build-essential \
@@ -94,12 +95,7 @@ sudo apt install -y \
 
 pip install opencv-contrib-python
 
-# Only init if it has not already been done before
-if [ ! -e /etc/ros/rosdep/sources.list.d/20-default.list ]; then
-  sudo rosdep init
-fi
-sudo rosdep fix-premissions
-rosdep update
+
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 #source /opt/ros/melodic/setup.bash

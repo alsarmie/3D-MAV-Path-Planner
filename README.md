@@ -212,7 +212,8 @@ The `path_planner` package is structured in the following manner:
 ```shell
 :path_planner$
 ├── CMakeLists.txt
-├── Doxyfile                                         <-Doxygen documentation
+├── Doxyfile                                        
+├── docs                                             <-Doxygen documentation
 ├── include
 │   ├── b_rrt_star_planner.h                         <- Templated class definition for B-RRT *
 │   ├── ib_rrt_star_planner.h                        <- Templated class definition for IB-RRT *
@@ -314,15 +315,23 @@ The rubric points that are covered in this project are listed as follows:
 
 To be able to run the project, it is important to understand the necessary dependencies required. A bash script is
 provided to simplify the installation process from scratch.
-
+### Dependencies
+   * Cmake >=3.0.2
+   * Doxygen
+   * PCL-ROS 
 ### Prerequisites
 
 This project makes use of:
 
   * [C++17](https://isocpp.org/get-started)
   * [ROS Noetic](https://www.ros.org/)
-    * With catkin tools
-  
+    * catkin tools 
+    * 
+    * 
+    *
+    *
+    *
+    *
   * [Open CV 4.5](https://opencv.org/)                      -Optional - ONLY required for mapping
   * [Python](https://www.python.org/)                       -Optional - ONLY required for mapping
 
