@@ -90,6 +90,7 @@ sudo apt install -y \
      build-essential \
      ros-noetic-tf2-geometry-msgs \
      ros-noetic-tf2-tools \
+     ros-noetic-pcl-ros \
 
 pip install opencv-contrib-python
 
@@ -111,11 +112,13 @@ catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release # To enable release mode c
 # Move to catkin workspace /src and clone the project
 cd ~/udacity_ws/src
 # Clon repo
-git clone https://github.com/alsarmie/3D-MAV-Path-Planner.git
+git clone https://github.com/alsarmie/3D-MAV-Path-Planner.git --recurse-submodules
 # Power tool to address any remaining missing dependency.
+cd ~/udacity_ws/src/3D-MAC-Path-Planner/path_planner
 rosdep install --from-paths src --ignore-src --rosdistro noetic -y -r
-source ~/.bashrc
-catkin clean -y
+cd ~/udacity_ws/src/3D-MAC-Path-Planner/pointcloud_publisher
+rosdep install --from-paths src --ignore-src --rosdistro noetic -y -r
+cd ~/udacity_ws/src/
 source ~/.bashrc
 catkin build
 echo "source ~/udacity_ws/devel/setup.bash" >> ~/.bashrc
