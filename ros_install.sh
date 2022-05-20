@@ -76,6 +76,7 @@ sudo apt install -y \
      ros-$ROS_DISTRO-desktop \
      git \
      curl \
+     doxygen \
      libtbb-dev \
      python3-pip \
      python3-rosdep \
@@ -91,6 +92,7 @@ sudo apt install -y \
      ros-noetic-tf2-geometry-msgs \
      ros-noetic-tf2-tools \
      ros-noetic-pcl-ros \
+     ros-noetic-tf2-sensor-msgs \
 
 pip install opencv-contrib-python
 
