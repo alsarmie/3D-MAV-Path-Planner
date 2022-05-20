@@ -48,17 +48,17 @@ motion planning in complex cluttered environments</a>
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#map-generation">Map generation and point cloud publisher</a></li>
+        <li><a href="#map-generation-and-point-cloud-publisher">Map generation and point cloud publisher</a></li>
       </ul>
       <ul>
-        <li><a href="#rrt-planner">RRT * ,B-RRT* ,IB-RRT* and Parallel IB-RRT* algorithms for path planning</a></li>
+        <li><a href="#path-planning-algorithms">Path planning algorithms</a></li>
       </ul>
     </li>
     <li><a href="#rubric">Rubric</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites & Dependencies</a></li>
+        <li><a href="#prerequisites-and-dependencies">Prerequisites and Dependencies</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -107,6 +107,8 @@ The project is divided into two main ROS packages:
 
 The [`ufomap`](https://github.com/UnknownFreeOccupied/ufomap) ROS package is used as is, provided by the original
 author/repo.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MAP GENERATION -->
 
@@ -179,9 +181,11 @@ convention:
   <img src="images/pointcloud_publisher_schematic2.png" />
 </p>
 
-<!-- RRT PLANNER -->
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### RRT * ,B-RRT* ,IB-RRT* and Parallel IB-RRT* algorithms for path planning
+<!-- PATH PLANNER ALGORITHMS -->
+
+### Path planning algorithms
 
 RRT * algorithms have been extensively studied, a large volume of work has been published. Hence, it is out of the
 scope explaining the details of RRT* here, you can refer
@@ -242,7 +246,6 @@ The `path_planner` package is structured in the following manner:
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- RUBRIC  -->
 
@@ -316,7 +319,7 @@ The rubric points that are covered in this project are listed as follows:
 To be able to run the project, it is important to understand the necessary dependencies required. A bash script is
 provided to simplify the installation process from scratch.
 
-### Prerequisites & Dependencies
+### Prerequisites and Dependencies
 
 This project makes use of:
 
@@ -331,7 +334,8 @@ This project makes use of:
     * tf2 Tools
     * tf2 Tools
 * [Open CV 4.5](https://opencv.org/)                      -Optional - ONLY required for mapping
-* [Python 3](https://www.python.org/)                       
+* [Python 3](https://www.python.org/)           
+
 ### Installation
 
 Installation is pretty simple, all the heavy work is done with a simple bash script.
