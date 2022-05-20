@@ -1,7 +1,3 @@
-//
-// Created by Alejandro Sarmiento on 12/05/22.
-//
-
 #ifndef PATH_PLANNER_THREAD_POOL_H
 #define PATH_PLANNER_THREAD_POOL_H
 #include <atomic>

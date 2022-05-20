@@ -53,9 +53,6 @@ motion planning in complex cluttered environments</a>
       <ul>
         <li><a href="#rrt-planner">RRT * ,B-RRT* ,IB-RRT* and Parallel IB-RRT* algorithms for path planning</a></li>
       </ul>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li><a href="#rubric">Rubric</a></li>
     <li>
@@ -163,6 +160,17 @@ The `pointcloud_publisher` package is structured in the following manner:
 
 > The class hierarchy and relationship is shown next:
 
+#### Colors:
+
+The different node and edge types are also displayed using different colors. The default color scheme uses this
+convention:
+
+| Color | Node | Edge
+| --- | --- | ---
+| gray | types and classes | type use
+| yellow | functions and methods | calls
+| blue | variables and fields | variable access
+
 <h4 align="center"> Program Schematic  </h4>
 <p align="center">
   <img src="images/pointcloud_publisher_schematic3.png" />
@@ -179,7 +187,7 @@ RRT * algorithms have been extensively studied, a large volume of work has been 
 scope explaining the details of RRT* here, you can refer
 to [this video](https://www.youtube.com/watch?v=Ob3BIJkQJEw&ab_channel=AaronBecker) or to
 the [paper](https://arxiv.org/pdf/1703.08944.pdf) that was consulted for this project. However, the pseudocode for the
-algorithms employed is shown below for reference.
+[algorithms](https://arxiv.org/pdf/1703.08944.pdf) employed is shown below for reference.
 The main goals of the `path_planner` package:
 
 1. Provide lightweight template class definitions of RRT*, B-RRT*, IB-RRT*, Parallel IB-RRT * in header files.
@@ -232,12 +240,6 @@ The `path_planner` package is structured in the following manner:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Built With
-
-* [C++17](https://isocpp.org/get-started)
-* [ROS Noetic](https://www.ros.org/)
-* [Open CV 4.5](https://opencv.org/)
-* [Python](https://www.python.org/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -258,32 +260,41 @@ The rubric points that are covered in this project are listed as follows:
 > Loops, Functions, I/O
 
 * [x] The project demonstrates an understanding of C++ functions and control structures.
+    * All files in project.
 * [x] The project reads data from a file and process the data, or the program writes data to a file.
+    * `ply_publisher.cpp`   `path_planner_node.h` (mainly from ROS launch files)
 * [x] The project accepts user input and processes the input.
+    * Through launch files: `publish_pointcloud.launch`  `path_planner.launch`
 
 > Object Oriented Programming
 
-* [x] The project uses Object Oriented Programming techniques.
+* [x] The project uses Object-Oriented Programming techniques.
 * [x] Classes use appropriate access specifiers for class members.
 * [x] Class constructors utilize member initialization lists.
 * [x] Classes abstract implementation details from their interfaces.
 * [x] Classes encapsulate behavior.
 * [x] Classes follow an appropriate inheritance hierarchy.
 * [x] Overloaded functions allow the same function to operate on different parameters.
+    * All files in project (for all previous points).
 * [x] Derived class functions override virtual base class functions.
+    * `ply_publisher.cpp` `ply_publisher.h`
 * [x] Templates generalize functions in the project.
+    * `b_rrt_star_planner.h` `ib_rrt_star_planner.h` `parallel_ib_rrt_star_planner.h` `rrt_star_planner.h`  `path_smoothing.h`
 
 > Memory Management
 
 * [x] The project makes use of references in function declarations.
     * Most, if not all functions use references or pointers as arguments.
 * [x] The project uses destructors appropriately.
+    * Most classes use a default destructor. The `thread_pool.h` file makes use of a more advanced destructor.
 * [x] The project uses scope / Resource Acquisition Is Initialization (RAII) where appropriate.
 * [x] The project follows the Rule of 5.
     * The project uses Move assignment operators and constructors, copy constructors and copy assignment operators are
       not used(explicitly forbidden).
 * [x] The project uses move semantics to move data, instead of copying it, where possible.
 * [x] The project uses smart pointers instead of raw pointers.
+    * All classes handling dynamic memory
+      resources.  `thread_pool.h`  `b_rrt_star_planner.h` `ib_rrt_star_planner.h` `parallel_ib_rrt_star_planner.h` `rrt_star_planner.h`  `path_smoothing.h`
 
 > Concurrency
 
@@ -291,6 +302,7 @@ The rubric points that are covered in this project are listed as follows:
 * [ ] A promise and future is used in the project.
 * [x] A mutex or lock is used in the project.
 * [x] A condition variable is used in the project.
+    * `thread_pool.h` `ib_rrt_star_planner.h` `parallel_ib_rrt_star_planner.h`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -300,17 +312,30 @@ The rubric points that are covered in this project are listed as follows:
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To be able to run the project, it is important to understand the necessary dependencies required. A bash script is
+provided to simplify the installation process from scratch.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+This project makes use of:
 
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+  * [C++17](https://isocpp.org/get-started)
+  * [ROS Noetic](https://www.ros.org/)
+    * With catkin tools
+     ```shell
+      sudo apt install python3-catkin-tools python3-osrf-pycommon
+      mkdir -p ~/catkin_ws/src
+      cd ~/catkin_ws
+      catkin init # Init Catkin workspace
+      catkin config --extend /opt/ros/noetic  # exchange noetic for your ros distro if necessary
+      catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release # To enable release mode compiler optimzations
+     ```
+  * [Open CV 4.5](https://opencv.org/)                      -Optional - ONLY required for mapping
+  * [Python](https://www.python.org/)                       -Optional - ONLY required for mapping
+
+     ```sh
+     npm install npm@latest -g
+     ```
 
 ### Installation
 
@@ -401,6 +426,7 @@ Alejandro Sarmiento - alejandro.sar.gon@gmail.com
 
 * [UFOMap: An Efficient Probabilistic 3D Mapping Framework That Embraces the Unknown by Daniel Duberg](https://github.com/UnknownFreeOccupied/ufomap)
 * [Intelligent bidirectional rapidly-exploring random trees for optimal motion planning in complex cluttered environments by Qureshi & Ayaz](https://arxiv.org/pdf/1703.08944.pdf)
+* [SourceTrail](https://github.com/CoatiSoftware/Sourcetrail)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
