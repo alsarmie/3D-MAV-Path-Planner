@@ -345,6 +345,8 @@ All dependencies are taken care of. It will install ROS Noetic if it is not alre
    ```sh
    user@user:~$ sudo ./ros_install.sh noetic
    ```
+   > Make sure to set the bash script to be an executable first.
+
 2. Once the script finishes running (will take several minutes), execute the following:
    ```sh
     echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
