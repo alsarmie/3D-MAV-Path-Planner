@@ -48,6 +48,12 @@ motion planning in complex cluttered environments</a>
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#map-generation">Map generation and point cloud publisher</a></li>
+      </ul>
+      <ul>
+        <li><a href="#rrt-planner">RRT * ,B-RRT* ,IB-RRT* and Parallel IB-RRT* algorithms for path planning</a></li>
+      </ul>
+      <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -105,6 +111,8 @@ The project is divided into two main ROS packages:
 The [`ufomap`](https://github.com/UnknownFreeOccupied/ufomap) ROS package is used as is, provided by the original
 author/repo.
 
+<!-- MAP GENERATION -->
+
 ### Map generation and point cloud publisher.
 
 The `pointcloud_publisher` package has two main goals:
@@ -131,15 +139,15 @@ The `pointcloud_publisher` package is structured in the following manner:
 :pointcloud_publisher$
 ├── CMakeLists.txt
 ├── Doxyfile                                              
-├── docs                                              <-Doxygen documentation.
+├── docs                                              <-Doxygen documentation
 ├── include
-│   ├── ply_publisher.h                               <-  Class definition for a specific point cloud publisher.
-│   └── pointcloud_publisher.h                        <-  Base class definition for general point cloud publishers.
+│   ├── ply_publisher.h                               <-  Class definition for a specific point cloud publisher
+│   └── pointcloud_publisher.h                        <-  Base class definition for general point cloud publishers
 ├── launch                                            
-│   ├── 3d_mapping_d435i.launch                       <- Launch file to start mapping process.
-│   └── publish_pointcloud.launch                     <- Launch file to start read/publish operations on point cloud data.
+│   ├── 3d_mapping_d435i.launch                       <- Launch file to start mapping process
+│   └── publish_pointcloud.launch                     <- Launch file to start read/publish operations on point cloud data
 ├── models
-│   └── studio_d435i_t265_3.ply                       <- Demo model for path planning testing.
+│   └── studio_d435i_t265_3.ply                       <- Demo model for path planning testing
 ├── package.xml
 ├── rviz  
 │   ├── 3d_mapping_rviz.rviz
@@ -149,22 +157,78 @@ The `pointcloud_publisher` package is structured in the following manner:
 │   ├── map_to_odom_transformation.py
 │   └── marker_map_reference.py
 └── src
-├── cloud_publisher_node.cpp                          <- Main ROS node file.
-└── ply_publisher.cpp                                 <- Point cloud publisher member function definitions.
+├── cloud_publisher_node.cpp                          <- Main ROS node file
+└── ply_publisher.cpp                                 <- Point cloud publisher member function definitions
 ```
 
 > The class hierarchy and relationship is shown next:
 
-<h4 align="center"> ROS Graph  </h4>
-<p align="center">
-  <img src="images/pointcloud_publisher.png" />
-</p>
 <h4 align="center"> Program Schematic  </h4>
 <p align="center">
-  <img src="images/pointcloud_publisher_schematic.png" />
+  <img src="images/pointcloud_publisher_schematic3.png" />
+</p>
+<p align="center">
+  <img src="images/pointcloud_publisher_schematic2.png" />
 </p>
 
-### RRT * ,B-RRT* ,IB-RRT* and Parallel IB-RRT* algorithms for path planning.
+<!-- RRT PLANNER -->
+
+### RRT * ,B-RRT* ,IB-RRT* and Parallel IB-RRT* algorithms for path planning
+
+RRT * algorithms have been extensively studied, a large volume of work has been published. Hence, it is out of the
+scope explaining the details of RRT* here, you can refer
+to [this video](https://www.youtube.com/watch?v=Ob3BIJkQJEw&ab_channel=AaronBecker) or to
+the [paper](https://arxiv.org/pdf/1703.08944.pdf) that was consulted for this project. However, the pseudocode for the
+algorithms employed is shown below for reference.
+The main goals of the `path_planner` package:
+
+1. Provide lightweight template class definitions of RRT*, B-RRT*, IB-RRT*, Parallel IB-RRT * in header files.
+2. Provide a simple ROS path planner that can be used with MAV in 3D environments with real-time constraints.
+
+The RRT * algorithm pseudocode:
+<p align="center">
+  <img src="images/RRT.png" />
+</p>
+The B-RRT * algorithm pseudocode:
+<p align="center">
+  <img src="images/B-RRT.png" />
+</p>
+The IB-RRT * and Parallel IB-RRT* algorithm pseudocode:
+<p align="center">
+  <img src="images/IB-RRT.png" />
+</p>
+
+
+The `path_planner` package is structured in the following manner:
+
+```shell
+:path_planner$
+├── CMakeLists.txt
+├── Doxyfile                                         <-Doxygen documentation
+├── include
+│   ├── b_rrt_star_planner.h                         <- Templated class definition for B-RRT *
+│   ├── ib_rrt_star_planner.h                        <- Templated class definition for IB-RRT *
+│   ├── parallel_ib_rrt_star_planner.h               <- Templated class definition for parallel IB-RRT *
+│   ├── path_planner_node.h                          <- Definition and utilities of the path planner class
+│   ├── path_smoothing.h                             <- Templated class definition for path interpolation
+│   ├── rrt_star_planner.h                           <- Templated class definition for RRT *
+│   └── thread_pool.h                                <- Definition of thread pool class for concurrency
+├── launch
+│   └── path_planner.launch                          <- Launch file to start planner process
+├── package.xml
+└── src                                              
+└── path_planner_node.cpp                            <-  Main ROS node for path planning
+```
+
+> The class hierarchy and relationship is shown next:
+
+<h4 align="center"> Program Schematic  </h4>
+<p align="center">
+  <img src="images/path_planner_schematic3.png" />
+</p>
+<p align="center">
+  <img src="images/path_planner_schematic.png" />
+</p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -177,7 +241,7 @@ The `pointcloud_publisher` package is structured in the following manner:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<!-- Rubric  -->
+<!-- RUBRIC  -->
 
 ## Rubric
 
