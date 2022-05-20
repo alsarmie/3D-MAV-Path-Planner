@@ -66,8 +66,6 @@ if [ -z "$roskey" ]; then
 fi
 
 echo "Updating & upgrading all packages"
-sudo add-apt-repository universe
-sudo add-apt-repository multiverse
 sudo apt-get update
 sudo apt-get dist-upgrade -y
 
