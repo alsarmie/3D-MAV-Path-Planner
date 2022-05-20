@@ -91,7 +91,7 @@ sudo apt install -y \
      ros-noetic-tf2-tools \
      ros-noetic-pcl-ros \
      ros-noetic-tf2-sensor-msgs \
-
+sudo rosdep fix-premissions
 pip install opencv-contrib-python
 
 # Only init if it has not already been done before
