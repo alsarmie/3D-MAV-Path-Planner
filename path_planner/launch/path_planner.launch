@@ -14,7 +14,7 @@
     <arg name="z_min"                default="-0.05"/>          <!-- Map z min boundary-->
     <arg name="z_max"                default="2.10"/>           <!-- Map z max boundary-->
     <!-- For B-RRT* & IB-RRT*-->
-    <arg name="iterations"           default="30000"/>  <!-- Max number of iterations for bidirectional RRT-->
+    <arg name="iterations"           default="30000"/>  <!-- Max number of iterations for B-RRT * & IB-RRT*-->
     <!-- For Parallel IB-RRT*-->
     <arg name="workers"              default="10"/>
     <!-- UFO Map server parameters, please consult https://github.com/UnknownFreeOccupied/ufomap/wiki/    for details. -->

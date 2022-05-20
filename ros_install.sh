@@ -1,11 +1,5 @@
 #!/bin/bash -eu
 
-# The BSD License
-# Copyright (c) 2018 PickNik Consulting
-# Copyright (c) 2014 OROCA and ROS Korea Users Group
-
-#set -x
-
 function usage {
     # Print out usage of this script.
     echo >&2 "usage: $0 [ROS distro] (default: noetic)"
@@ -79,13 +73,11 @@ sudo apt install -y \
      python3-pip \
      python3-rosdep \
      python3-rosinstall \
-     python3-bloom \
      python3-wstool \
      python3-catkin-lint \
      python3-catkin-tools \
      python3-osrf-pycommon \
      python3-roslaunch \
-     python3-rosinstall \
      python3-rosinstall-generator \
      build-essential \
      ros-noetic-tf2-geometry-msgs \
@@ -94,30 +86,6 @@ sudo apt install -y \
      ros-noetic-tf2-sensor-msgs \
 
 pip install opencv-contrib-python
+echo "Done installing ROS & project dependencies"
 
-
-echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-#source /opt/ros/melodic/setup.bash
-echo "Done installing ROS"
-#Create catkin workspace
-mkdir -p ~/udacity_ws/src
-cd ~/udacity_ws
-catkin init # Init Catkin workspace
-catkin config --extend /opt/ros/noetic  # exchange noetic for your ros distro if necessary
-catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release # To enable release mode compiler optimzations
-# Move to catkin workspace /src and clone the project
-cd ~/udacity_ws/src
-# Clon repo
-git clone https://github.com/alsarmie/3D-MAV-Path-Planner.git --recurse-submodules
-# Power tool to address any remaining missing dependency.
-cd ~/udacity_ws/src/3D-MAC-Path-Planner/path_planner
-rosdep install --from-paths src --ignore-src --rosdistro noetic -y -r
-cd ~/udacity_ws/src/3D-MAC-Path-Planner/pointcloud_publisher
-rosdep install --from-paths src --ignore-src --rosdistro noetic -y -r
-cd ~/udacity_ws/src/
-source ~/.bashrc
-catkin build
-echo "source ~/udacity_ws/devel/setup.bash" >> ~/.bashrc
-source ~/.bashrc
 exit 0

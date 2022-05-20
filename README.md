@@ -58,7 +58,7 @@ motion planning in complex cluttered environments</a>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#prerequisites">Prerequisites & Dependencies</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -315,61 +315,116 @@ The rubric points that are covered in this project are listed as follows:
 
 To be able to run the project, it is important to understand the necessary dependencies required. A bash script is
 provided to simplify the installation process from scratch.
-### Dependencies
-   * Cmake >=3.0.2
-   * Doxygen
-   * PCL-ROS 
-### Prerequisites
+
+### Prerequisites & Dependencies
 
 This project makes use of:
 
-  * [C++17](https://isocpp.org/get-started)
-  * [ROS Noetic](https://www.ros.org/)
-    * catkin tools 
-    * 
-    * 
-    *
-    *
-    *
-    *
-  * [Open CV 4.5](https://opencv.org/)                      -Optional - ONLY required for mapping
-  * [Python](https://www.python.org/)                       -Optional - ONLY required for mapping
-
-     ```sh
-     npm install npm@latest -g
-     ```
+* [C++17](https://isocpp.org/get-started)
+* [ROS Noetic](https://www.ros.org/)
+    * catkin tools
+    * pcl-ros
+    * tf2 tools
+    * tf2 sensor msgs
+    * tf2 geometry msgs
+    * libtbb-dev
+    * tf2 Tools
+    * tf2 Tools
+* [Open CV 4.5](https://opencv.org/)                      -Optional - ONLY required for mapping
+* [Python](https://www.python.org/)                       -Optional - ONLY required for mapping
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+Installation is pretty simple, all the heavy work is done with a simple bash script.
+All dependencies are taken care of. It will install ROS Noetic if it is not already.
+
+1. Download the `ros_install.sh` script from the main repository and run at the home directory:
    ```sh
-   git clone https://github.com/alsarmie/3D-MAV-Path-Planner.git
+   user@user:~$ sudo ./ros_install.sh noetic
    ```
-3. Install NPM packages
+2. Once the script finishes running (will take several minutes), execute the following:
    ```sh
-   npm install
+    echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+    source ~/.bashrc
+    #Create catkin workspace
+    mkdir -p ~/udacity_ws/src
+    cd ~/udacity_ws
+    catkin init # Init Catkin workspace
+    catkin config --extend /opt/ros/noetic  # exchange noetic for your ros distro if necessary
+    catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release # To enable release mode compiler optimzations
+    # Move to catkin workspace /src and clone the project
+    cd ~/udacity_ws/src
+    # Clone the repo
+    git clone https://github.com/alsarmie/3D-MAV-Path-Planner.git --recurse-submodules
+    # Power tool to address any remaining missing dependency.
+    cd ~/udacity_ws/src/3D-MAC-Path-Planner/path_planner
+    rosdep install --from-paths src --ignore-src --rosdistro noetic -y -r
+    cd ~/udacity_ws/src/3D-MAC-Path-Planner/pointcloud_publisher
+    rosdep install --from-paths src --ignore-src --rosdistro noetic -y -r
+    cd ~/udacity_ws/src/
+    source ~/.bashrc
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Build the ROS workspace:
+   ```sh
+    user@user:~/udacity_ws/src/$ catkin build
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos
-work well in this space. You may also link to more resources.
+After successful installation of the workspace, simply run the **path planner** with the following command:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+   ```sh
+    user@user:~/udacity_ws/src/$ roslaunch paht_planner path_planner.launch
+   ```
+
+This will launch the `path_planner` and `pointcloud_publisher` node. If you want to test the different planners and
+configuration options, you can modify the launch file.
+
+   ```xml
+    <!--Path planner parameters-->
+<arg name="planner" default="1"/> <!-- 0: RRT*  1: B-RRT*  2: IB-RRT* 3: Parallel IB-RRT*-->
+        <!-- For RRT*-->
+<arg name="step" default="0.2"/>            <!-- Step size to expand in the direction of random sample-->
+<arg name="search_radius" default=" 1.75"/>  <!-- Search radius for neighbor vertices in tree graph-->
+<arg name="radius" default="0.05"/>          <!-- Assuming a sphere bounding volume for a robot -->
+<arg name="threshold" default="0.2"/>       <!-- Bias used to pull the random tree exploration to the goal-->
+<arg name="eps" default="0.1"/>             <!-- Stop condition, in  meters. Error between a node and the goal. -->
+<arg name="x_min" default="-5.0"/>          <!-- Map x min boundary -->
+<arg name="x_max" default="5.0"/>           <!-- Map x max boundary-->
+<arg name="y_min" default="-5.0"/>          <!-- Map y min boundary-->
+<arg name="y_max" default="5.0"/>           <!-- Map y max boundary-->
+<arg name="z_min" default="-0.05"/>          <!-- Map z min boundary-->
+<arg name="z_max" default="2.10"/>           <!-- Map z max boundary-->
+        <!-- For B-RRT* & IB-RRT*-->
+<arg name="iterations" default="30000"/>  <!-- Max number of iterations for B-RRT* and IB-RRT*-->
+        <!-- For Parallel IB-RRT*-->
+<arg name="workers" default="10"/>
+        <!-- UFO Map server parameters, please consult https://github.com/UnknownFreeOccupied/ufomap/wiki/    for details. -->
+<arg name="resolution" default="0.05"/> <!-- Map resolution for UfoMap Server -->
+<arg name="depth_levels" default="16"/> <!-- Depth of Octomap -->
+<arg name="num_workers" default="3"/> <!-- Workers for UfoMap threads -->
+<arg name="color" default="true"/> <!-- Ufo Mao color map enabled -->
+<arg name="model" default="studio_d435i_t265_3.ply"/> <!-- .ply model name to load point cloud from.-->
+<arg name="path"
+     default="$(find pointcloud_publisher)/models/$(arg model)"/> <!-- Relative path where .ply model is stored -->
+<arg name="topic" default="/camera/depth/points"/> <!-- Topic to publish the point cloud to.-->
+<arg name="frame_id" default="t265_d400_base"/> <!-- frame of reference of the point cloud. -->
+<arg name="publish_rate" default="1.0"/> <!-- Topic rate of publishing. -->
+   ```
+
+You can also run the launch file with the parameters you want to modify directly from the command line, for example:
+
+   ```sh
+    user@user:~/udacity_ws/src/$ roslaunch paht_planner path_planner.launch planner:=3 iterations:=10000
+   ```
+
+This will run the `IB-RRT *` planner with 10000 iterations as a stop condition.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- ROADMAP -->
