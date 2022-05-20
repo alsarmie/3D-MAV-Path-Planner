@@ -8,7 +8,7 @@
 
 function usage {
     # Print out usage of this script.
-    echo >&2 "usage: $0 [ROS distro (default: noetic)"
+    echo >&2 "usage: $0 [ROS distro] (default: noetic)"
     echo >&2 "          [-h|--help] Print help message."
     exit 0
 }
@@ -52,7 +52,7 @@ then
 else
   echo "Your ubuntu version is $relesenum"
 fi
-
+sudo apt install curl -y
 echo "Add the ROS repository"
 if [ ! -e /etc/apt/sources.list.d/ros-latest.list ]; then
   sudo sh -c "echo \"deb http://packages.ros.org/ros/ubuntu ${version} main\" > /etc/apt/sources.list.d/ros-latest.list"
@@ -62,7 +62,7 @@ echo "Download the ROS keys"
 roskey=`apt-key list | grep "ROS Builder"` && true # make sure it returns true
 if [ -z "$roskey" ]; then
   echo "No ROS key, adding"
-  sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+  curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 fi
 
 echo "Updating & upgrading all packages"
