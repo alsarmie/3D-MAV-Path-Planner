@@ -322,14 +322,7 @@ This project makes use of:
   * [C++17](https://isocpp.org/get-started)
   * [ROS Noetic](https://www.ros.org/)
     * With catkin tools
-     ```shell
-      sudo apt install python3-catkin-tools python3-osrf-pycommon
-      mkdir -p ~/catkin_ws/src
-      cd ~/catkin_ws
-      catkin init # Init Catkin workspace
-      catkin config --extend /opt/ros/noetic  # exchange noetic for your ros distro if necessary
-      catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release # To enable release mode compiler optimzations
-     ```
+  
   * [Open CV 4.5](https://opencv.org/)                      -Optional - ONLY required for mapping
   * [Python](https://www.python.org/)                       -Optional - ONLY required for mapping
 

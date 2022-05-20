@@ -91,13 +91,14 @@ sudo apt install -y \
      ros-noetic-tf2-tools \
      ros-noetic-pcl-ros \
      ros-noetic-tf2-sensor-msgs \
-sudo rosdep fix-premissions
+
 pip install opencv-contrib-python
 
 # Only init if it has not already been done before
 if [ ! -e /etc/ros/rosdep/sources.list.d/20-default.list ]; then
   sudo rosdep init
 fi
+sudo rosdep fix-premissions
 rosdep update
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
