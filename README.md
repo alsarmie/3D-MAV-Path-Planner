@@ -365,9 +365,16 @@ All dependencies are taken care of. It will install ROS Noetic if it is not alre
     source ~/.bashrc
    ```
 3. Build the ROS workspace:
+
    ```sh
     user@user:~/udacity_ws/src/$ catkin build
    ```
+4. Source the workspace:
+
+```sh
+ user@user:~/udacity_ws/src$ cd ..
+ user@user:~/udacity_ws$ source devel/setup.bash
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
